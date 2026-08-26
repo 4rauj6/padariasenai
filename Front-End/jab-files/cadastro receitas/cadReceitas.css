@@ -1,0 +1,71 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.hero {
+    background-color: #E8C9A0;
+    padding: 30px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.form-content {
+    display: flex;
+    width: 100%;
+}
+
+.form-receita {
+    display: flex;
+    flex-direction: column;
+    background-color: #F2E8D9;
+    color: #7A4E32;
+    width: 100%;
+    height: 50vh;
+    padding: 20px;
+    border-radius: 6px;
+}
+
+.form-receita-inputs {
+    display: flex;
+    flex-direction: column;
+    margin-top: 25px;
+    font-size: 1.2em;
+    gap: 15px;
+}
+
+.form-receita-inputs input, .form-receita-inputs select, .form-receita-inputs textarea {
+    width: 50%;
+    height: 4vh;
+    border-radius: 6px;
+}
+
+.form-receita-inputs textarea {
+    resize: none;
+    width: 300px;
+    height: 15vh;
+}
+
+.infoReceitas {
+    display: flex;
+    flex-direction: column;
+}
+
+.maisInfoReceitas {
+    display: flex;
+    gap: 30px;
+    background-color: #E8C9A0;
+}

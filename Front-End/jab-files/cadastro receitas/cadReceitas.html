@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" integrity="sha512-QeR2VH+lsBE5LSAe1Q5EnTBbe7XTBubt8dG93Y7gidSgdMCr8nVqKcfKAMyN96SV8KDbZVTDXChatu5G2KQGzg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="../cadastro receitas/cadReceitas.css">
+</head>
+<body>
+    <div class="hero">
+        <div class="hero-header">
+            <div class="header">
+                <div class="header-text">
+                    <h1><i class="fa-regular fa-file"></i>CADASTRAR NOVA RECEITA</h1>
+                    <span>PREENCHA AS INFORMAÇÕES DA NOVA RECEITA</span>
+                </div>
+
+                <div class="exit-button">
+                    <button>
+                        <i class="fa-solid fa-xmark"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="form-content">
+            <section class="form-section">
+                <div class="form-receita">
+                    <!--NÃO MEXER NO ACTION DO FORMULARIO-->
+                    <form action="#">
+                        <h3>INFORMAÇÕES BÁSICAS</h3>
+
+                        <div class="form-receita-inputs">
+                            <label for="receitaNome">NOME DA RECEITA</label>
+                            <input type="text" name="receitaNome" id="receitaNome" placeholder="Pão Françês" required>
+
+                            <label for="categoriaReceita">CATEGORIA</label>
+                            <select name="categoriaReceita" id="categoriaReceita" required>
+                                <option value="">Seleciona uma categoria</option>
+                                <option value="massaSalgada">Massa salgada</option>
+                                <option value="massaDoce">Massa doce</option>
+                                <option value="sobremessa">Sobremessa</option>
+                            </select>
+
+                            <label for="descReceita">DESCRIÇÃO</label>
+                            <textarea name="descReceita" id="descReceita" placeholder="Descreva a sua receita" required></textarea>
+
+                            <!--PRECISA ADICIONAR O CAMPO PARA PERMITIR QUE O USUÁRIO SELECIONE UMA IMAGEM DA RECETIA-->
+                        </div>
+                    </form>
+                </div>
+            </section>
+
+            <div class="table-content">
+                <section class="table-box">
+                    <div class="table-container">
+                        <h3>INGREDIENTES</h3>
+
+                        <div>
+                            <table>
+                                <tr>
+                                    <th>INGREDIENTE</th>
+                                    <th>QUANTIDADE</th>
+                                    <th>UNIDADE</th>
+                                    <th>CUSTO UNI.</th>
+                                    <th>CUSTO TOTAL</th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Digite o ingrediente">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="0,000" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="Defina a unidade" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="R$0,00" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="R$0,00" inputmode="numeric">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Digite o ingrediente">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="0,000" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="Defina a unidade" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="R$0,00" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="R$0,00" inputmode="numeric">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Digite o ingrediente">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="0,000" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="Defina a unidade" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="R$0,00" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="R$0,00" inputmode="numeric">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Digite o ingrediente">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="0,000" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="Defina a unidade" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="R$0,00" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="R$0,00" inputmode="numeric">
+                                    </td>
+                                </tr>
+
+                                <tr>
+                                    <td>
+                                        <input type="text" placeholder="Digite o ingrediente">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="0,000" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="Defina a unidade" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="R$0,00" inputmode="numeric">
+                                    </td>
+                                    <td>
+                                        <input type="number" placeholder="R$0,00" inputmode="numeric">
+                                    </td>
+                                </tr>
+                            </table>
+
+                            <button>
+                                <i class="fa-solid fa-plus"></i>
+                                ADICIONAR INGREDIENTE
+                            </button>
+                        </div>
+                    </div>
+                </section>
+
+                <div class="table-container-2">
+                    <section>
+                        <div class="infoReceitas">
+                            <h3>INFORMAÇÕES DA RECEITA</h3>
+
+                            <div class="maisInfoReceitas">
+                                <div>
+                                    <span> <i class="fa-solid fa-chart-simple"></i> RENDIMENTO</span>
+                                </div>
+                                
+                                <div>
+                                    <span><i class="fa-solid fa-scale-balanced"></i> PESO POR UNIDADE</span>
+                                </div>
+                                
+                                <div>
+                                    <span><i class="fa-regular fa-clock"></i> TEMPO DE PREPARO</span>
+                                </div>
+                            </div>
+                            <hr>
+                            <div>
+                                <h4>MODO DE PREPARO</h4>
+                                <textarea name="modoPreparo" id="modoPreparo" placeholder="Descreva o modo de preparo da receita" required></textarea>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <section>
+            <div>
+                <button>SALVAR RECEITA</button>
+            </div>
+        </section>
+    </div>
+</body>
+</html>
