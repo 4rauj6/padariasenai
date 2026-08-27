@@ -13,7 +13,7 @@
   border-radius: 10px;
   display: flex;
   flex-direction: column;
-  min-height: 1000px;
+  min-height: 1080px;
 }
 
 .hero hr {
@@ -62,7 +62,7 @@
   flex-direction: column;
   background-color: #f2e8d9;
   color: #4a2c1a;
-  width: 100%;
+  width: 109%;
   min-height: auto;
   margin-top: 10px;
   padding: 20px;
@@ -80,8 +80,8 @@
 .form-receita-inputs input,
 .form-receita-inputs select,
 .form-receita-inputs textarea {
-  width: 60%;
-  height: 4vh;
+  width: 100%;
+  min-height: 50px;
   border-radius: 6px;
   border: solid 2px #e8c9a0;
   outline: none;
@@ -96,8 +96,13 @@
 
 .form-receita-inputs textarea {
   resize: none;
-  width: 300px;
-  height: 200px;
+  min-width: 500px;
+  height: 100px;
+}
+
+.imgSelector {
+    height: 22.6vh;
+    object-fit: cover;
 }
 
 .table-content {
@@ -106,6 +111,7 @@
   gap: 10px;
   color: #4a2c1a;
   margin-top: 10px;
+  margin-left: 50px;
 }
 
 .table-container {
@@ -140,6 +146,7 @@
 .table-container td {
   background-color: #f2e8d9;
   padding: 4px;
+  min-width: 240px;
 }
 
 .table-container td input {
@@ -215,7 +222,7 @@
   background-color: rgb(34, 19, 10);
 }
 
-@media (max-width: 768px) {
+@media (max-width: 788px) {
   .hero {
     padding: 20px;
     min-height: auto;
@@ -322,7 +329,7 @@
 
 @media (max-width: 480px) {
   .hero {
-    padding: 12px;
+    padding: 15px;
     border-radius: 0;
   }
 
@@ -353,14 +360,24 @@
   .form-receita,
   .table-container {
     padding: 10px;
+    width: 100%;
   }
 
   .form-receita-inputs {
     gap: 10px;
   }
 
+  .form-receita-inputs textarea {
+    min-width: 10%;
+  }
+
+  .table-content {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
   .table-container table {
-    min-width: 520px;
+    min-width: 500px;
   }
 
   .table-container td:last-child {
@@ -368,6 +385,11 @@
   }
 
   .addIngred {
-    width: 100%;
+    min-width: 10%;
+  }
+
+  .table-container-2 {
+    max-width: 100%;
+    padding: 10px;
   }
 }
