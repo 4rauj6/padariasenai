@@ -1,0 +1,21 @@
+.home-cards {
+    display: grid;
+    grid-template-columns: repeat(3, 14.5rem);
+    grid-template-rows: 1fr;
+    margin-top: 25px !important;
+}
+
+.home-cards img {
+    height: 40px !important;
+    padding-top: 15px !important;
+    padding-right: 7.6rem !important;
+}
+
+.home-cards p {
+    font-size: 14.25px;
+}
+
+.home-info {
+    margin-top: 25px;
+    cursor: pointer;
+}
