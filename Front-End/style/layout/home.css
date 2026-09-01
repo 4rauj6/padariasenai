@@ -1,115 +1,123 @@
 @import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prata&family=Quicksand:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url('https: //fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet');
 
 .font1 {
-    font-family: 'Prata', serif;
+  font-family: 'Prata', serif;
+}
+
+.font2 {
+  font-family: 'Outfit', sans-serif;
 }
 
 body,
 html {
-    margin: 0;
-    padding: 0;
-    height: 100%;
-    box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  box-sizing: border-box;
 }
 
 .home {
-    background-image: linear-gradient(to right, 
-            #000000 0%, 
-            #000000 25%, 
-            rgba(0, 0, 0, 0.85) 45%, 
-            rgba(0, 0, 0, 0.3) 65%, 
-            transparent 78%
-        ),
-        url(../../src/assets/paoTelaInicia.png);
-    background-repeat: no-repeat;
-    background-color: #000000;
-    background-size: auto 99%;
-    background-position: right center;
-    min-height: 100vh;
-    width: 100%;
-    box-sizing: border-box;
+  background-image: linear-gradient(to right,
+      #000000 0%,
+      #000000 25%,
+      rgba(0, 0, 0, 0.85) 45%,
+      rgba(0, 0, 0, 0.3) 65%,
+      transparent 78%),
+    url(../../src/assets/paoTelaInicia.png);
+  background-repeat: no-repeat;
+  background-color: #000000;
+  background-size: auto 99%;
+  background-position: right center;
+  min-height: 100vh;
+  width: 100%;
+  padding-top: 0.1rem;
+  box-sizing: border-box;
 }
 
 .home-logo {
-    display: inline-block;
-    margin-top: 1px;
-    margin-left: 0.1px;
+  display: inline-block;
+  margin-top: 3rem;
+  margin-left: 5.4rem;
 }
 
-.home-logo svg, 
+.home-logo svg,
 .home-logo img {
-    width: 150px;
-    height: auto;        
-    max-height: 75px;    
-    object-fit: contain;
-    display: block;
+  width: 160px;
+  height: auto;
+  max-height: 115px;
+  object-fit: contain;
+  display: block;
 }
 
 .home-container {
-    display: flex;
-    flex-direction: column;
-    margin-top: 3px;
-    margin-left: 5rem;
+  display: flex;
+  flex-direction: column;
+  margin-top: 5rem;
+  margin-left: 8rem;
 }
 
 .home-descript h2, spam {
-    text-transform: uppercase;
-    gap: 10px;
-    font-size: 2.2rem;
+  text-transform: uppercase;
+  font-size: 3.7rem;
 }
 
 .home-descript h2 {
-    color: #b5b5b5;
-    margin-bottom: 1rem;
+  color: #b5b5b5;
+  gap: 20rem;
+  margin-bottom: 1rem;
 }
 
 .home-descript spam {
-    color: #BD8944;
+  color: #BD8944;
 }
 
 .home-descript p:first-of-type {
-    color: #BD8944;
-    text-transform: uppercase;
-    font-size: 12px;
+  color: #BD8944;
+  margin-bottom: 2rem;
+  text-transform: uppercase;
+  font-size: 15px;
 }
 
 .home-descript p:nth-of-type(2) {
-    font-size: 14.5px;
-    color: #b5b5b5;
+  font-size: 17px;
+  color: #b5b5b5;
 }
+
 .home-cards {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(3, 10.5rem);
-    grid-template-rows: 1fr;
-    object-fit: contain !important;
-    white-space: nowrap;
+  display: grid;
+  width: 100%;
+  grid-template-columns: repeat(3, 12rem);
+  grid-template-rows: 1fr;
+  object-fit: contain !important;
+  white-space: nowrap;
 }
 
-.home-cards >.card {
-    background-color: rgba(58, 59, 67, 0.51);
-    transition: 0.5s ease-in-out;
+.home-cards>.card {
+  background-color: rgba(58, 59, 67, 0.51);
+  transition: 0.5s ease-in-out;
 }
 
-.home-cards >.card:hover {
-    transform: scale(1.05);
+.home-cards>.card:hover {
+  transform: scale(1.05);
 }
 
 .home-cards img {
-    display: inline-block;
-    height: 50px !important;
-    padding-top: 20px !important;
-    padding-right: 4.2rem !important;
+  display: inline-block;
+  height: 60px !important;
+  padding-top: 20px !important;
+  padding-right: 4.2rem !important;
 }
 
 .home-cards h5 {
-    color: #FFFFFF;
-    font-size: 13px;
+  color: #FFFFFF;
+  font-size: 14px;
 }
 
 .home-cards p {
-    color: #b5b5b5;
-    font-size: 11px;
+  color: #b5b5b5;
+  font-weight: 400;
+  font-size: 13.5px;
 }
 
 @property --angle {
@@ -121,13 +129,13 @@ html {
 .home-info {
   position: relative;
   display: flex;
-  width: 15rem;
-  height: 3rem;
+  width: 18rem;
+  height: 3.7rem;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   background-color: #D9A157;
-  margin-top: 25px;
+  margin-top: 4.5rem;
   border-radius: 25px;
   cursor: pointer;
   overflow: hidden;
@@ -181,16 +189,18 @@ html {
 
 .home-info a {
   text-transform: uppercase;
+  padding-left: 2rem;
   padding-right: 2.3rem;
   color: #573925 !important;
   text-decoration: none;
-  font-weight: 700;
+  font-weight: 400;
+  font-size: 1.4rem;
 }
 
 .home-info img {
   display: block;
-  height: auto;
-  max-height: 1.5rem;
+  min-height: 2rem;
+  max-height: 4rem;
 }
 
 .home-info:hover {
@@ -218,46 +228,20 @@ html {
   0% {
     transform: translate(-100%, -100%);
   }
+
   25% {
     transform: translate(0%, -100%);
   }
+
   50% {
     transform: translate(0%, 0%);
   }
+
   75% {
     transform: translate(-100%, 0%);
   }
+
   100% {
     transform: translate(-100%, -100%);
   }
 }
-
-/* OU .home-info {
-    display: flex;
-    width: 15rem;
-    height: 3rem;
-    flex-direction: row;
-    justify-content: center;
-    align-items: center;
-    
-    background-color: #D9A157;
-    margin-top: 25px;
-    border-radius: 25px;
-    cursor: pointer;
-    transition: 0.3s ease-in-out;
-}
-
-.home-info:hover {
-    background-color: #E8C9A0;
-}
-
-.home-info a {
-    text-transform: uppercase;
-    padding-right: 2.3rem;
-    color: #573925 !important;
-}
-
-.home-info img {
-    display: block;
-} 
-*/
