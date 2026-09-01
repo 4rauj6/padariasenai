@@ -14,18 +14,18 @@
     Wingrid Nicolly - Front-End chief leader | Graphics design
   </li>
   <li>
-    William Davidson - Front-End engeneer
+    William Davidson - Front-End engineer
   </li>
   <li>
-    Joknean - Front-End Engeneer
+    Joknean - Front-End Engineer | Graphics design
   </li>
   <li>
-    João Victor Araújo - Front-End engeneer
+    João Victor Araújo - Front-End engineer
   </li>
   <li>
-    Alan Kauê - Front-End engeneer
+    Alan Kauê - Front-End engineer
   </li>
   <li>
-    Micael - Front-End engeneer
+    Micael - Front-End engineer
   </li>
 </ul>
