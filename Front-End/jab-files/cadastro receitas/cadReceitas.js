@@ -25,10 +25,18 @@ overlay.addEventListener("click", (event) => {
 });
 
 
+/*LÓGICA DA ESCOLHA DE PORCENTAGEM PARA O INGREDIENTE ESCOLHIDO*/
+const percentPorIngred = {
+  acucar: [0, 0.5, 1, 1.5, 2],
+  fermentoFresco: [0, 0.5, 1, 1.5, 2, 2.5, 3,  3.5, 4, 4.5, 5],
+  fermentoSeco: [0, 0.5, 1, 1.5, 2, 2.5],
+}
+
+
 /*LÓGICA DO CALCÚLO PARA PORCENTAGEM ESCOLHIDA SER TRANSFORMADA EM GRAMAS */
 const percentIngred = document.getElementById("quantIngred");
 
-percentIngred.addEventListener("input", () => {
+percentIngred.addEventListener("change", () => {
   const percentValue = parseFloat(percentIngred.value) || 0;
   const totalWeight = 1000;
 

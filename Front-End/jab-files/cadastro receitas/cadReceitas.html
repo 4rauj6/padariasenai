@@ -55,8 +55,8 @@
                 <select name="categoriaReceita" id="categoriaReceita" required>
                   <option value="">Seleciona uma categoria</option>
                   <option value="massaSalgada">Massa salgada</option>
-                  <option value="massaDoce">Massa doce</option>
-                  <option value="sobremessa">Sobremessa</option>
+                  <option value="massaDoce">Massa semi doce</option>
+                  <option value="sobremessa">Massa doce</option>
                 </select>
 
                 <label for="descReceita">DESCRIÇÃO</label>
@@ -69,7 +69,7 @@
 
                 <label for="imgReceita">FOTO DA RECEITA:</label>
                 <input type="file" id="imgReceita" name="imgReceita" accept="image/*" class="imgSelector">
-              </div>
+              </di  v>
             </form>
           </div>
         </section>
@@ -80,206 +80,10 @@
               <h3>INGREDIENTES</h3>
               <br />
 
-              <div>
-                <table>
-                  <tr>
-                    <th>INGREDIENTE</th>
-                    <th>QUANTIDADE</th>
-                    <th>UNIDADE</th>
-                    <th>CUSTO UNI.</th>
-                    <th>CUSTO TOTAL</th>
-                  </tr>
-                  <tr>
-                    <td>
-                      <input type="text" placeholder="Digite o ingrediente" />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="0,000"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="Defina a unidade"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="R$0,00"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="R$0,00"
-                        inputmode="numeric"
-                      />
-                      <button class="td-button">
-                        <i class="fa-regular fa-trash-can"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <input type="text" placeholder="Digite o ingrediente" />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="0,000"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="Defina a unidade"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="R$0,00"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="R$0,00"
-                        inputmode="numeric"
-                      />
-                      <button class="td-button">
-                        <i class="fa-regular fa-trash-can"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <input type="text" placeholder="Digite o ingrediente" />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="0,000"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="Defina a unidade"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="R$0,00"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="R$0,00"
-                        inputmode="numeric"
-                      />
-                      <button class="td-button">
-                        <i class="fa-regular fa-trash-can"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <input type="text" placeholder="Digite o ingrediente" />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="0,000"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="Defina a unidade"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="R$0,00"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="R$0,00"
-                        inputmode="numeric"
-                      />
-                      <button class="td-button">
-                        <i class="fa-regular fa-trash-can"></i>
-                      </button>
-                    </td>
-                  </tr>
-
-                  <tr>
-                    <td>
-                      <input type="text" placeholder="Digite o ingrediente" />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="0,000"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="Defina a unidade"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="R$0,00"
-                        inputmode="numeric"
-                      />
-                    </td>
-                    <td>
-                      <input
-                        type="number"
-                        placeholder="R$0,00"
-                        inputmode="numeric"
-                      />
-                      <button class="td-button">
-                        <i class="fa-regular fa-trash-can"></i>
-                      </button>
-                    </td>
-                  </tr>
-                </table>
-
                 <button class="addIngred">
                   <i class="fa-solid fa-plus"></i>
                   ADICIONAR INGREDIENTE
                 </button>
-              </div>
             </div>
           </section>
 
@@ -338,18 +142,16 @@
                   <select name="nomeIngred" id="nomeIngred">
                     <!--<option value="farinha">Farinha</option>-->
                     <option value="acucar">Açúcar</option>
-                    <option value="fermento">Fermento</option>
+                    <option value="fermentoFresco">Fermento Fresco</option>
+                    <option value="fermentoSeco">Fermento Seco</option>
                     <option value="sal">Sal</option>
                     <option value="ovos">Ovos</option>
                   </select>
 
                   <label for="quantIngred">Selecione a quantidade (%):</label>
                   <select name="quantIngred" id="quantIngred">
-                    <option value="0">Selecione a porcentagem</option>
-                    <option value="5">5%</option>
-                    <option value="10">10%</option>
-                    <option value="15">15%</option>
-                    <option value="20">20%</option>
+                    <option value="">Selecione um ingrediente primeiro
+                    </option>
                   </select>
 
                   <label for="gramaDoIngred">Quantidade em grama:</label>
