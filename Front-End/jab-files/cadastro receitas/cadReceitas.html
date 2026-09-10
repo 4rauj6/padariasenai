@@ -322,6 +322,63 @@
             </section>
           </div>
         </div>
+
+        <section class="modal hidden">
+          <!--MODAL PARA ADICIONAR OS INGREDIENTES-->
+          <div class="overlay hidden">
+            <div class="modal-body">
+              <div class="modal-text">
+                <button class="close-modal">
+                  <i class="fa-solid fa-xmark"></i>
+                </button>
+                <h3>Adicionando ingredientes</h3>
+                <div class="addingIngred">
+                  <label for="nomeIngred">Selecione do ingrediente:</label>
+                  <select name="nomeIngred" id="nomeIngred">
+                    <!--<option value="farinha">Farinha</option>-->
+                    <option value="acucar">Açúcar</option>
+                    <option value="fermento">Fermento</option>
+                    <option value="sal">Sal</option>
+                    <option value="ovos">Ovos</option>
+                  </select>
+
+                  <label for="quantIngred">Selecione a quantidade (%):</label>
+                  <select name="quantIngred" id="quantIngred">
+                    <option value="0">Selecione a porcentagem</option>
+                    <option value="5">5%</option>
+                    <option value="10">10%</option>
+                    <option value="15">15%</option>
+                    <option value="20">20%</option>
+                  </select>
+
+                  <label for="gramaDoIngred">Quantidade em grama:</label>
+                  <span id="gramaDoIngred"></span>
+
+                  <label for="tipoIngred"
+                    >Selecione o tipo do ingrediente:</label
+                  >
+                  <select name="tipoIngred" id="tipoIngred">
+                    <option value="grao">Grão</option>
+                    <option value="massa">Massa</option>
+                    <option value="farinha1">Farinha 1</option>
+                    <option value="farinha2">Farinha 2</option>
+                    <option value="farinha3">Farinha 3</option>
+                  </select>
+
+                  <div class="modal-buttons">
+                    <button class="add-mais-ingred">
+                      <i class="fa-solid fa-plus"></i> Mais
+                    </button>
+
+                    <button class="save-ingred">
+                      <i class="fa-solid fa-check"></i> Salvar ingrediente
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
       </div>
       <hr />
       <section>
