@@ -336,6 +336,50 @@ select {
     background-color: rgb(34, 19, 10);
   }
 
+  @media (max-width: 1100px) {
+    .hero {
+      min-height: auto;
+    }
+
+    .form-content {
+      flex-direction: column;
+    }
+
+    .form-receita {
+      width: 100%;
+      min-height: auto;
+    }
+
+    .table-content {
+      width: 100%;
+      margin-left: 0;
+    }
+
+    .table-container {
+      overflow-x: auto;
+    }
+
+    .table-container table {
+      width: 100%;
+      min-width: 620px;
+      height: auto;
+    }
+
+    .form-receita-inputs textarea,
+    .mp-container textarea {
+      min-width: 0;
+      width: 100%;
+    }
+
+    .maisInfoReceitas {
+      flex-wrap: wrap;
+    }
+
+    .table-container-2 {
+      width: 100%;
+    }
+  }
+
   @media (max-width: 788px) {
     .hero {
       padding: 20px;
@@ -420,6 +464,7 @@ select {
     .maisInfoReceitas {
       flex-direction: column;
       gap: 15px;
+      align-items: center;
     }
 
     .mp-container {
