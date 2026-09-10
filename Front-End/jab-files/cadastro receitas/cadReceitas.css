@@ -336,7 +336,7 @@ select {
     background-color: rgb(34, 19, 10);
   }
 
-  @media (max-width: 1100px) {
+    @media (max-width: 1100px) {
     .hero {
       min-height: auto;
     }
@@ -464,7 +464,6 @@ select {
     .maisInfoReceitas {
       flex-direction: column;
       gap: 15px;
-      align-items: center;
     }
 
     .mp-container {
