@@ -1,6 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Rufina:wght@400;700&display=swap");
 
+:root {
+  --cor-1: #4a2c1a;
+  --cor-2: #e8c9a0;
+  --cor-3: #f2e8d9;
+  --font-1: "Outfit", sans-serif;
+  --font-2: "Rufina", serif;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -117,14 +125,14 @@
   background-color: #f2e8d9;
   padding: 20px;
   min-height: 40px;
-  width: 100%;
+  width: 115%;
   border-radius: 6px;
 }
 
 .table-container table {
   background-color: #e8c9a0;
   border-radius: 10px 10px 10px 10px;
-  min-width: 100;
+  min-width: 100px;
   height: 200px;
   margin-bottom: 10px;
 }
@@ -223,7 +231,7 @@ select {
 
 .modal-text label {
   font-family: "Outfit";
-  color: #e8c9a0;
+  color: var(--cor-2);
 }
 
 .modal-buttons {
@@ -240,12 +248,12 @@ select {
   border-radius: 6px;
   border: solid 2px #e8c9a0;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .add-mais-ingred:hover {
-  background-color: #e8c9a0;
+  background-color: var(--cor-2);
   color: #4a2c1a;
-  transform: 3ms ease-in-out;
 }
 
 .addingIngred {
@@ -276,17 +284,17 @@ select {
   border-radius: 6px;
   border: solid 2px #e8c9a0;
   cursor: pointer;
+  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
 }
 
 .save-ingred:hover {
-  background-color: #e8c9a0;
+  background-color: var(--cor-2);
   color: #4a2c1a;
-  transform: 3ms ease-in-out;
 }
 
 .table-container-2 {
   background-color: #f2e8d9;
-  width: 100%;
+  width: 115%;
   border-radius: 6px;
 }
 
@@ -335,7 +343,11 @@ select {
   background-color: rgb(34, 19, 10);
 }
 
-@media (max-width: 1600px) {
+button {
+  font-family: "Outfit";
+}
+
+@media (max-width: 1560px) {
   .hero {
     min-height: 100vh;
   }
@@ -346,22 +358,21 @@ select {
   }
 
   .form-receita {
-    width: 183%;
+    width: 160%;
     min-height: auto;
   }
 
   .table-content {
-    width: 100%;
     margin-left: 0;
   }
 
   .table-container {
     overflow-x: auto;
+    width: 100%;
   }
 
   .table-container table {
     width: 100%;
-    min-width: 620px;
     height: auto;
   }
 

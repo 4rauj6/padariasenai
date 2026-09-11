@@ -43,7 +43,6 @@ selectedIngred.addEventListener("change", () => {
 
   if (resultBox) {
     resultBox.style.display = "none";
-    /*resultBox.innerHTML = "";*/
   }
 
   if (actualIngredQuant.length === 0) {
