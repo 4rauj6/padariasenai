@@ -24,14 +24,48 @@ overlay.addEventListener("click", (event) => {
   }
 });
 
-
-/*LÓGICA DA ESCOLHA DE PORCENTAGEM PARA O INGREDIENTE ESCOLHIDO*/
+/*LÓGICA PARA CADA INGREDIENTE TER SUA  */
 const percentPorIngred = {
   acucar: [0, 0.5, 1, 1.5, 2],
-  fermentoFresco: [0, 0.5, 1, 1.5, 2, 2.5, 3,  3.5, 4, 4.5, 5],
+  fermentoFresco: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
   fermentoSeco: [0, 0.5, 1, 1.5, 2, 2.5],
-}
+};
 
+const selectedIngred = document.querySelector("#nomeIngred");
+const percentSelectPlace = document.querySelector("#quantIngred");
+
+selectedIngred.addEventListener("change", () => {
+  const actualIngred = selectedIngred.value;
+  const actualIngredQuant = percentPorIngred[actualIngred] || [];
+  const resultBox = document.getElementById("gramaDoIngred");
+
+  percentSelectPlace.innerHTML = "";
+
+  if (resultBox) {
+    resultBox.style.display = "none";
+    /*resultBox.innerHTML = "";*/
+  }
+
+  if (actualIngredQuant.length === 0) {
+    percentSelectPlace.innerHTML = `<option value="">Nenhuma quantidade disponível</option>`;
+
+    percentSelectPlace.disabled = true;
+    return;
+  }
+
+  percentSelectPlace.innerHTML = `<option value="">Seleciona a quantidade</option>`;
+
+  actualIngredQuant.forEach((percent) => {
+    const options = document.createElement("option");
+
+    options.value = percent;
+    options.textContent = `${percent}%`;
+
+    percentSelectPlace.appendChild(options);
+  });
+
+  percentSelectPlace.disabled = false;
+});
 
 /*LÓGICA DO CALCÚLO PARA PORCENTAGEM ESCOLHIDA SER TRANSFORMADA EM GRAMAS */
 const percentIngred = document.getElementById("quantIngred");
@@ -39,12 +73,10 @@ const percentIngred = document.getElementById("quantIngred");
 percentIngred.addEventListener("change", () => {
   const percentValue = parseFloat(percentIngred.value) || 0;
   const totalWeight = 1000;
-
   const result = (percentValue / 100) * totalWeight;
+  const resultPlacement = document.getElementById("gramaDoIngred");
 
-  const resultPlacement = document.getElementById('gramaDoIngred');
-
-  if(result === 0) {
+  if (result === 0) {
     resultPlacement.style.display = "none";
   } else {
     resultPlacement.style.display = "block";
