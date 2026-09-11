@@ -485,7 +485,7 @@ select {
   }
 }
 
-@media (max-width: 480px) {
+@media (max-width: 460px) {
   .hero {
     padding: 15px;
     border-radius: 0;
@@ -513,6 +513,10 @@ select {
 
   .header-text-content p {
     font-size: 0.8em;
+  }
+
+  .form-content {
+    gap: 0;
   }
 
   .form-receita,
@@ -549,5 +553,45 @@ select {
   .table-container-2 {
     max-width: 100%;
     padding: 10px;
+  }
+
+  .modal {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 30%;
+    left: 0;
+    right: 0;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .modal-body {
+    display: flex;
+    flex-direction: column;
+    background-color: #4a2c1a;
+    width: 440px;
+    height: 600px;
+    padding: 40px;
+    border-radius: 50px 50px 0px 0px;
+    gap: 10px;
+  }
+
+  .modal-text input,
+  select {
+    width: 100%;
+    padding: 5px;
+  }
+
+  .add-mais-ingred {
+    width: 20%;
+  }
+
+  .save-ingred {
+    width: 40%;
   }
 }
