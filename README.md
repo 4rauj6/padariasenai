@@ -24,7 +24,7 @@ Diante do que foi proposto pelo coordenador do projeto, o time de Front-End busc
 ### Front-End
 * Alan Kauê - Front-End engineer.
 * João Victor Araújo - Front-End team leader.
-* Wingrid Nicolly - Graphics Design leader.
+* Wingrid Nicolly - Front-End engeneer | Graphics Design team leader.
 * William Davidson - Front-End engineer.
-* Joknean - Front-End Engineer | Graphics designer.
+* Joknean - Front-End Engineer | Graphics design engeneer.
 * Micael - Front-End engineer.
