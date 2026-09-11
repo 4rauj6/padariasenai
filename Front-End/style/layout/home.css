@@ -27,7 +27,7 @@ html {
     url(../../src/assets/paoTelaInicia.png);
   background-repeat: no-repeat;
   background-color: #000000;
-  background-size: auto 99%;
+  background-size: auto 100%;
   background-position: right center;
   min-height: 100vh;
   width: 100%;
@@ -243,5 +243,121 @@ html {
 
   100% {
     transform: translate(-100%, -100%);
+  }
+}
+
+/* RESPONSIVO- Telas Pequenas Portait*/
+@media (max-width:375px) {
+  .home-descript p:first-of-type {
+    font-size: 10px;
+  }
+
+  .home-cards>.card {
+    width: 8.4rem !important;
+    height: 7rem !important;
+  }
+
+  .home-cards img {
+    height: 57px !important;
+  }
+
+  .home-cards h5 {
+    font-size: 13.3px;
+  }
+
+  .home-cards p {
+    font-size: 13px;
+  }
+
+  .home-info {
+    width: 15.5rem;
+  }
+
+  .home-info a {
+    font-size: 1.32rem;
+  }
+}
+
+@media (max-width:670px) {
+  .home-logo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 1.5rem;
+    margin-left: 0;
+  }
+
+  .home-info {
+    margin-top: 1.7rem;
+    margin-bottom: 1.7rem;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .home-container {
+    margin-top: 4rem;
+    margin-left: 0;
+    align-items: center;
+    text-align: center;
+  }
+
+  .home-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+  }
+
+  .home-cards img {
+    padding-left: 1.2rem;
+  }
+
+  .home-descript h2,
+  spam {
+    font-size: 2rem;
+  }
+
+  .home-descript p:first-of-type {
+    font-size: 0.8rem;
+  }
+
+  .home-descript p:nth-of-type(2) {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 685px) {
+  .home-cards {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+  }
+
+  .home-cards>.card {
+    height: 10.9rem !important;
+  }
+
+  .home-cards img {
+    margin-left: 1.15rem;
+  }
+}
+
+ @media (max-width: 516px) {
+  .home {
+    overflow: hidden;
+  }
+
+  .home-cards {
+    gap: 1rem;
+  }
+} 
+
+/* RESPONSIVO- Telas Pequenas Landscape*/
+
+@media only screen and (min-width: 670px) and (orientation: landscape) {
+  .home-info {
+    margin-bottom: 3rem;
   }
 }
