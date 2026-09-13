@@ -28,3 +28,4 @@ Diante do que foi proposto pelo coordenador do projeto, o time de Front-End busc
 * William Davidson - Front-End engineer.
 * Joknean - Front-End Engineer | Graphics design engeneer.
 * Micael - Front-End engineer.
+* Liandra Lima - Front-End engineer
