@@ -129,50 +129,6 @@
   border-radius: 6px;
 }
 
-.table-container table {
-  background-color: #e8c9a0;
-  border-radius: 10px 10px 10px 10px;
-  min-width: 100px;
-  height: 200px;
-  margin-bottom: 10px;
-}
-
-.table-container input {
-  border: solid 2px #e8c9a0;
-  background-color: transparent;
-  border-radius: 6px;
-  height: 30px;
-  font-family: "Outfit";
-}
-
-.table-container th {
-  font-family: "Outfit";
-  font-weight: 500;
-}
-
-.table-container td {
-  background-color: #f2e8d9;
-  padding: 4px;
-  min-width: 240px;
-}
-
-.table-container td input {
-  padding: 5px;
-}
-
-.table-container td:last-child {
-  display: flex;
-  flex-direction: row;
-  height: 5vh;
-  text-align: center;
-  gap: 10px;
-}
-
-.td-button {
-  background-color: transparent;
-  border: none;
-}
-
 .addIngred {
   background-color: #4a2c1a;
   color: #f2e8d9;
@@ -248,7 +204,9 @@ select {
   border-radius: 6px;
   border: solid 2px #e8c9a0;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
 }
 
 .add-mais-ingred:hover {
@@ -284,7 +242,9 @@ select {
   border-radius: 6px;
   border: solid 2px #e8c9a0;
   cursor: pointer;
-  transition: background-color 0.3s ease-in-out, transform 0.3s ease-in-out;
+  transition:
+    background-color 0.3s ease-in-out,
+    transform 0.3s ease-in-out;
 }
 
 .save-ingred:hover {
@@ -347,18 +307,52 @@ button {
   font-family: "Outfit";
 }
 
-@media (max-width: 1560px) {
+@media (max-width: 1540px) {
+  .hero {
+    height: auto;
+  }
+  .table-container {
+    width: 103%;
+  }
+
+  .table-container-2 {
+    width: 103%;
+  }
+
+  .form-receita {
+    width: 109%;
+    min-height: auto;
+  }
+
+  .mp-container {
+    padding: 8px;
+  }
+
+  .mp-container textarea {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .maisInfoReceitas {
+    flex-direction: row;
+    justify-content: center;
+    width: 100%;
+    text-align: center;
+  }
+}
+
+@media (max-width: 1490px) {
   .hero {
     min-height: 100vh;
   }
 
   .form-content {
     flex-direction: row;
-    gap: 190px;
+    gap: 290px;
   }
 
   .form-receita {
-    width: 160%;
+    width: 250%;
     min-height: auto;
   }
 
@@ -368,7 +362,7 @@ button {
 
   .table-container {
     overflow-x: auto;
-    width: 100%;
+    width: 97%;
   }
 
   .table-container table {
@@ -383,11 +377,15 @@ button {
   }
 
   .maisInfoReceitas {
-    flex-wrap: wrap;
+    flex-direction: row;
+    width: 95%;
+    height: auto;
+    text-align: center;
+    justify-content: center;
   }
 
   .table-container-2 {
-    width: 100%;
+    width: 97%;
   }
 }
 

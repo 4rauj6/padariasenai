@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Cadastro de receita</title>
 
     <link
       rel="stylesheet"
@@ -34,6 +34,7 @@
           </div>
         </div>
       </div>
+
       <div class="form-content">
         <section class="form-section">
           <div class="form-receita">
@@ -68,8 +69,14 @@
                 ></textarea>
 
                 <label for="imgReceita">FOTO DA RECEITA:</label>
-                <input type="file" id="imgReceita" name="imgReceita" accept="image/*" class="imgSelector">
-              </di  v>
+                <input
+                  type="file"
+                  id="imgReceita"
+                  name="imgReceita"
+                  accept="image/*"
+                  class="imgSelector"
+                />
+              </div>
             </form>
           </div>
         </section>
@@ -78,118 +85,109 @@
           <section class="table-box">
             <div class="table-container">
               <h3>INGREDIENTES</h3>
-              <br />
 
-                <button class="addIngred">
-                  <i class="fa-solid fa-plus"></i>
-                  ADICIONAR INGREDIENTE
-                </button>
+              <div id="tablePlace"></div>
+
+              <button class="addIngred">
+                <i class="fa-solid fa-plus"></i> ADICIONAR INGREDIENTE
+              </button>
             </div>
           </section>
 
           <div class="table-container-2">
-            <section>
-              <div class="infoReceitas">
-                <h3>INFORMAÇÕES DA RECEITA</h3>
+            <div class="infoReceitas">
+              <h3>INFORMAÇÕES DA RECEITA</h3>
 
-                <div class="maisInfoReceitas">
-                  <div class="infoBox">
-                    <span>
-                      <i class="fa-solid fa-chart-simple"></i> RENDIMENTO</span
-                    >
-                  </div>
-
-                  <div class="infoBox">
-                    <span
-                      ><i class="fa-solid fa-scale-balanced"></i> PESO POR
-                      UNIDADE</span
-                    >
-                  </div>
-
-                  <div class="infoBox">
-                    <span
-                      ><i class="fa-regular fa-clock"></i> TEMPO DE
-                      PREPARO</span
-                    >
-                  </div>
+              <div class="maisInfoReceitas">
+                <div class="infoBox">
+                  <span>
+                    <i class="fa-solid fa-chart-simple"></i> RENDIMENTO</span
+                  >
                 </div>
-                <hr />
-                <div class="mp-container">
-                  <h4>MODO DE PREPARO</h4>
-                  <textarea
-                    name="modoPreparo"
-                    id="modoPreparo"
-                    placeholder="Descreva o modo de preparo da receita"
-                    required
-                  ></textarea>
+
+                <div class="infoBox">
+                  <span
+                    ><i class="fa-solid fa-scale-balanced"></i> PESO POR
+                    UNIDADE</span
+                  >
+                </div>
+
+                <div class="infoBox">
+                  <span
+                    ><i class="fa-regular fa-clock"></i> TEMPO DE PREPARO</span
+                  >
                 </div>
               </div>
-            </section>
-          </div>
-        </div>
-
-        <section class="modal hidden">
-          <!--MODAL PARA ADICIONAR OS INGREDIENTES-->
-          <div class="overlay hidden">
-            <div class="modal-body">
-              <div class="modal-text">
-                <button class="close-modal">
-                  <i class="fa-solid fa-xmark"></i>
-                </button>
-                <h3>Adicionando ingredientes</h3>
-                <div class="addingIngred">
-                  <label for="nomeIngred">Selecione do ingrediente:</label>
-                  <select name="nomeIngred" id="nomeIngred">
-                    <option value="">Clique aqui para selecionar</option>
-                    <option value="acucar">Açúcar</option>
-                    <option value="fermentoFresco">Fermento Fresco</option>
-                    <option value="fermentoSeco">Fermento Seco</option>
-                    <option value="sal">Sal</option>
-                    <option value="ovos">Ovos</option>
-                  </select>
-
-                  <label for="quantIngred">Selecione a quantidade (%):</label>
-                  <select name="quantIngred" id="quantIngred" disabled>
-                    <option value="">Selecione um ingrediente primeiro
-                    </option>
-                  </select>
-
-                  <label for="gramaDoIngred">Quantidade em grama:</label>
-                  <span id="gramaDoIngred"></span>
-
-                  <label for="tipoIngred"
-                    >Selecione o tipo do ingrediente:</label
-                  >
-                  <select name="tipoIngred" id="tipoIngred">
-                    <option value="grao">Grão</option>
-                    <option value="massa">Massa</option>
-                    <option value="farinha1">Farinha 1</option>
-                    <option value="farinha2">Farinha 2</option>
-                    <option value="farinha3">Farinha 3</option>
-                  </select>
-
-                  <div class="modal-buttons">
-                    <button class="add-mais-ingred">
-                      <i class="fa-solid fa-plus"></i> Mais
-                    </button>
-
-                    <button class="save-ingred">
-                      <i class="fa-solid fa-check"></i> Salvar ingrediente
-                    </button>
-                  </div>
-                </div>
+              <hr />
+              <div class="mp-container">
+                <h4>MODO DE PREPARO</h4>
+                <textarea
+                  name="modoPreparo"
+                  id="modoPreparo"
+                  placeholder="Descreva o modo de preparo da receita"
+                  required
+                ></textarea>
               </div>
             </div>
           </div>
-        </section>
-      </div>
-      <hr />
-      <section>
-        <br />
-        <div class="saveButton">
-          <button>SALVAR RECEITA</button>
         </div>
-      </section>
+      </div>
+      <br />
+      <div class="saveButton">
+        <button>SALVAR RECEITA</button>
+      </div>
     </div>
+
+    <!--MODAL PARA ADICIONAR OS INGREDIENTES-->
+    <section class="modal hidden">
+      <div class="overlay hidden">
+        <div class="modal-body">
+          <div class="modal-text">
+            <button class="close-modal">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3>Adicionando ingredientes</h3>
+            <div class="addingIngred">
+              <label for="nomeIngred">Selecione do ingrediente:</label>
+              <select name="nomeIngred" id="nomeIngred">
+                <option value="">Clique aqui para selecionar</option>
+                <option value="acucar">Açúcar</option>
+                <option value="fermentoFresco">Fermento Fresco</option>
+                <option value="fermentoSeco">Fermento Seco</option>
+                <option value="sal">Sal</option>
+                <option value="ovos">Ovos</option>
+              </select>
+
+              <label for="quantIngred">Selecione a quantidade (%):</label>
+              <select name="quantIngred" id="quantIngred" disabled>
+                <option value="">Selecione um ingrediente primeiro</option>
+              </select>
+
+              <label for="gramaDoIngred">Quantidade em grama:</label>
+              <span id="gramaDoIngred"></span>
+
+              <label for="tipoIngred">Selecione o tipo do ingrediente:</label>
+              <select name="tipoIngred" id="tipoIngred">
+                <option value="grao">Grão</option>
+                <option value="massa">Massa</option>
+                <option value="farinha1">Farinha 1</option>
+                <option value="farinha2">Farinha 2</option>
+                <option value="farinha3">Farinha 3</option>
+              </select>
+
+              <div class="modal-buttons">
+                <button class="add-mais-ingred">
+                  <i class="fa-solid fa-plus"></i> Mais
+                </button>
+
+                <button class="save-ingred">
+                  <i class="fa-solid fa-check"></i> Salvar ingrediente
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
   </body>
 </html>
