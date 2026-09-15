@@ -28,10 +28,10 @@ modalButtons.forEach((modalElement) => {
   modalElement.addEventListener("click", () => {
     if (modalElement.classList.contains("addIngred")) {
       setModalState(true);
-      outsideModalBody.style.filter = "grayscale(100%)";
+      outsideModalBody.style.filter = "blur(6px)";
     } else {
       setModalState(false);
-      outsideModalBody.style.filter = "grayscale(0)";
+      outsideModalBody.style.filter = "blur(0)";
     }
   });
 });
@@ -95,12 +95,13 @@ percentIngred.addEventListener("change", () => {
 
   if (result === 0) {
     resultPlacement.style.display = "none";
+    resultPlacement.backgroundColor = "transparent";
   } else {
     resultPlacement.style.display = "block";
+    resultPlacement.style.backgroundColor = "#e8c9a0";
   }
 
   resultPlacement.innerText = `${result.toFixed(2)} g`;
-  resultPlacement.style.backgroundColor = "#f2e8d9";
 });
 
 /*LÓGICA DE CRIAR E RENDERIZAR A TABELA PELO MODAL DE CADASTRAR RECEITA*/
@@ -124,6 +125,23 @@ saveButton.addEventListener("click", (e) => {
   let th = document.createElement("thead");
   let tr = document.createElement("tr");
   let tb = tablePlacement.querySelector("tbody");
+
+  if(tb) {
+    const rows = tb.querySelectorAll("tr");
+    let isDuplicate = false;
+
+    rows.forEach((row) => {
+      const rowName = row.cells[0].textContent || "";
+      if(rowName && rowName.trim().toLowerCase() === name.trim().toLowerCase()) {
+        isDuplicate = true;
+      } 
+    });
+
+    if(isDuplicate) {
+      alert("Não é possível adicionar ingredientes duplicados. Por favor, selecione outro ingrediente.");
+      return;
+    }
+  }
 
   if (!tb) {
     tb = document.createElement("tbody");
@@ -155,6 +173,7 @@ saveButton.addEventListener("click", (e) => {
   getIngredQuant.disabled = true;
   getIngredGr.textContent = "";
   getINgredType.selectedIndex = 0;
+  outsideModalBody.style.filter = "blur(0)";
 
   setModalState(false);
 });

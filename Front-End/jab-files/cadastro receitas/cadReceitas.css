@@ -125,7 +125,7 @@
   background-color: #f2e8d9;
   padding: 20px;
   min-height: 40px;
-  width: 115%;
+  width: 114%;
   border-radius: 6px;
 }
 
@@ -196,6 +196,20 @@ select {
   margin-top: 30px;
 }
 
+.addingIngred input, select{
+  background-color: var(--cor-2);
+  border: none;
+  width: 60%;
+  padding: 2px;
+  border-radius: 5px;
+}
+
+#gramaDoIngred {
+  border-radius: 2px;
+  width: 60%;
+  color: var(--cor-1);
+  padding: 3px;
+} 
 .add-mais-ingred {
   width: 13%;
   height: 30px;
@@ -254,7 +268,7 @@ select {
 
 .table-container-2 {
   background-color: #f2e8d9;
-  width: 115%;
+  width: 114%;
   border-radius: 6px;
 }
 
@@ -560,7 +574,7 @@ button {
   }
 
   .table-container-2 {
-    max-width: 100%;
+    min-width: 100%;
     padding: 10px;
   }
 
