@@ -57,7 +57,8 @@ html {
   margin-left: 8rem;
 }
 
-.home-descript h2, spam {
+.home-descript h2,
+spam {
   text-transform: uppercase;
   font-size: 3.7rem;
 }
@@ -344,7 +345,7 @@ html {
   }
 }
 
- @media (max-width: 516px) {
+@media (max-width: 516px) {
   .home {
     overflow: hidden;
   }
@@ -352,12 +353,78 @@ html {
   .home-cards {
     gap: 1rem;
   }
-} 
+}
 
 /* RESPONSIVO- Telas Pequenas Landscape*/
 
 @media only screen and (min-width: 670px) and (orientation: landscape) {
   .home-info {
     margin-bottom: 3rem;
+  }
+}
+
+/* RESPONSIVO - iPads para telas grandes */
+@media (min-width: 767px) and (max-width: 960px) {
+  .home-logo {
+    margin-top: 4rem;
+  }
+
+  .home-container {
+    margin-top: 3rem;
+  }
+
+  .home-descript h2,
+  spam {
+    font-size: 2.8rem;
+  }
+
+  .home-info {
+    margin-top: 3rem;
+  }
+}
+
+@media (min-width: 1031px) and (max-width: 1279px) {
+  .home-logo {
+    margin-top: 12rem;
+  }
+
+  .home-descript p:first-of-type {
+    font-size: 20px;
+  }
+
+  .home-descript p:nth-of-type(2) {
+    font-size: 21px;
+  }
+
+  .home-cards>.card {
+    width: 9.5rem !important;
+    height: 12.5rem !important;
+  }
+
+  .home-cards h5 {
+    font-size: 15px;
+  }
+
+  .home-cards p {
+    font-size: 14.7px;
+  }
+}
+
+@media (min-width: 959px) and (max-width: 1280px) {
+  .home-logo {
+    margin-top: 17rem;
+  }
+
+  .home-cards>.card {
+    width: 9.5rem !important;
+    height: 12.5rem !important;
+  }
+
+  .home-cards h5 {
+    font-size: 15px;
+  }
+
+  .home-cards p {
+    font-size: 14.7px;
   }
 }
