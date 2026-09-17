@@ -69,13 +69,12 @@
                 ></textarea>
 
                 <label for="imgReceita">FOTO DA RECEITA:</label>
-                <input
-                  type="file"
-                  id="imgReceita"
-                  name="imgReceita"
-                  accept="image/*"
-                  class="imgSelector"
-                />
+                <label class="image-upload" for="imgReceita">
+            <img id="imagePreview" alt="Prévia da receita" hidden />
+            <span class="upload-placeholder"><i class="fa-regular fa-file-circle-plus"></i><span>Clique para adicionar<br />uma foto</span></span>
+          </label>
+          <input type="file" id="imgReceita" name="imgReceita" accept="image/png, image/jpeg" class="visually-hidden" />
+          <small>Formatos aceitos: JPG, PNG (máx. 5MB)</small>
               </div>
             </form>
           </div>
