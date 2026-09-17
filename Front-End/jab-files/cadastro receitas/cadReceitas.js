@@ -177,3 +177,14 @@ saveButton.addEventListener("click", (e) => {
 
   setModalState(false);
 });
+
+
+/*ÍCONE PARA LABEL DE ESCLHER A FOTO DA RECEITA*/
+imageInput.addEventListener("change", () => {
+  const file = imageInput.files[0];
+  if (!file) return;
+  if (file.size > 5 * 1024 * 1024) { alert("A imagem deve ter no máximo 5 MB."); imageInput.value = ""; return; }
+  imagePreview.src = URL.createObjectURL(file);
+  imagePreview.hidden = false;
+  document.querySelector(".upload-placeholder").hidden = true;
+});
