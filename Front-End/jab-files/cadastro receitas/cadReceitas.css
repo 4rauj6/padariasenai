@@ -321,6 +321,42 @@ button {
   font-family: "Outfit";
 }
 
+.image-upload {
+  display: grid;
+  place-items: center;
+  height: 300px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.upload-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  color: #765b4c;
+  text-align: center;
+  font-size: 0.85rem;
+}
+
+.upload-placeholder i {
+  font-size: 3rem;
+  color: var(--brown);
+}
+
+#imagePreview {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+small {
+  text-align: center;
+  color: #765b4c;
+}
+
 @media (max-width: 1540px) {
   .hero {
     height: auto;
