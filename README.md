@@ -1,5 +1,5 @@
 # padariasenai
-Boas-vindas ao repositório! Este é um espaço para a comunicação e armazenagem de arquivos entre os colaboradores do projeto. Por favor, leia este documento para se manter dentro das regras e possíveis mudanças e atualizações. 
+Sejam bem-vindos ao repositório. Este é um espaço para a comunicação e armazenagem de arquivos entre os colaboradores do projeto. Por favor, leia este documento para se manter dentro das regras e possíveis mudanças e atualizações. 
 
 ## SUMÁRIO
 * [Sobre](#sobre-o-repositório)
