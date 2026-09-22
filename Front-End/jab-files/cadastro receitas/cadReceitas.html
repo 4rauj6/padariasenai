@@ -47,7 +47,7 @@
                   type="text"
                   name="receitaNome"
                   id="receitaNome"
-                  placeholder="Pão Françês"
+                  placeholder="Pão Francês"
                   required
                 />
 
@@ -68,12 +68,12 @@
                 ></textarea>
 
                 <span class="field-label">FOTO DA RECEITA:</span>
-          <label class="image-upload" for="imgReceita">
-            <img id="imagePreview" alt="Prévia da receita" hidden />
-            <span class="upload-placeholder"><i class="fa-regular fa-file"></i><span>Clique para adicionar<br />uma foto</span></span>
-          </label>
-          <input type="file" id="imgReceita" name="imgReceita" accept="image/png, image/jpeg" class="visually-hidden" />
-          <small>Formatos aceitos: JPG, PNG (máx. 5MB)</small>
+                <label class="image-upload" for="imgReceita">
+                  <img id="imagePreview" alt="Prévia da receita" hidden />
+                  <span class="upload-placeholder"><i class="fa-regular fa-file"></i><span>Clique para adicionar<br />uma foto</span></span>
+                </label>
+                <input type="file" id="imgReceita" name="imgReceita" accept="image/png, image/jpeg" class="visually-hidden" />
+                <small>Formatos aceitos: JPG, PNG (máx. 5MB)</small>
               </div>
             </form>
           </div>
@@ -115,7 +115,6 @@
                   >
                 </div>
               </div>
-              <hr />
               <div class="mp-container">
                 <h4>MODO DE PREPARO</h4>
                 <textarea
@@ -149,10 +148,12 @@
               <select name="nomeIngred" id="nomeIngred">
                 <option value="">Clique aqui para selecionar</option>
                 <option value="acucar">Açúcar</option>
-                <option value="fermentoFresco">Fermento Fresco</option>
-                <option value="fermentoSeco">Fermento Seco</option>
+                <option value="fermentoFresco">Fermento Biológico Fresco</option>
+                <option value="fermentoSeco">Fermento Biológico Seco</option>
                 <option value="sal">Sal</option>
-                <option value="ovos">Ovos</option>
+                <option value="claraOvo">Ovos (clara)</option>
+                <option value="gemaOvo">Ovos (gema)</option>
+                <option value="agua">Água</option>
               </select>
 
               <label for="quantIngred">Selecione a quantidade (%):</label>
@@ -163,13 +164,19 @@
               <label for="gramaDoIngred">Quantidade em grama:</label>
               <span id="gramaDoIngred"></span>
 
-              <label for="tipoIngred">Selecione o tipo do ingrediente:</label>
+              <!--<label for="tipoIngred">Selecione o tipo do ingrediente:</label>
               <select name="tipoIngred" id="tipoIngred">
                 <option value="grao">Grão</option>
                 <option value="massa">Massa</option>
                 <option value="farinha1">Farinha 1</option>
                 <option value="farinha2">Farinha 2</option>
                 <option value="farinha3">Farinha 3</option>
+              </select>-->
+
+              <label for="tipoForno">Selecione o tipo de forno:</label>
+              <select name="tipoForno" id="tipoForno">
+                <option value="turbo">Forno turbo</option>
+                <option value="lastro">Forno lastro</option>
               </select>
 
               <div class="modal-buttons">

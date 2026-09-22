@@ -28,7 +28,6 @@
     padding: 30px;
     display: flex;
     flex-direction: column;
-    min-height: 1080px;
   }
 
   .hero hr {
@@ -69,7 +68,7 @@
   .form-content {
     display: flex;
     width: 100%;
-    gap: 10px;
+    gap: 20px;
   }
 
   .form-receita {
@@ -77,8 +76,8 @@
     flex-direction: column;
     background-color: #f2e8d9;
     color: #4a2c1a;
-    min-height: 730px;
-    width: 100%;
+    min-height: 100px;
+    width: 110%;
     margin-top: 10px;
     padding: 20px;
     border-radius: 6px;
@@ -133,7 +132,7 @@
     background-color: #f2e8d9;
     padding: 20px;
     min-height: 40px;
-    width: 100%;
+    width: 145%;
     border-radius: 6px;
   }
 
@@ -201,7 +200,7 @@
   .modal-body {
     display: flex;
     flex-direction: column;
-    background-color: #4a2c1a;
+    background-color: var(--cor-3);
     width: 600px;
     height: 420px;
     padding: 5px;
@@ -211,7 +210,7 @@
 
   .modal-body h3 {
     text-align: center;
-    color: #e8c9a0;
+    color: var(--cor-1);
   }
 
   .modal-text {
@@ -228,7 +227,7 @@
 
   .modal-text label {
     font-family: var(--font-1);
-    color: var(--cor-2);
+    color: var(--cor-1);
   }
 
   .modal-buttons {
@@ -239,8 +238,8 @@
 
   .addingIngred input,
   .addingIngred select {
-    background-color: var(--cor-2);
-    border: none;
+    background-color: transparent;
+    border: solid 2px var(--cor-2);
     width: 60%;
     padding: 2px;
     border-radius: 5px;
@@ -256,9 +255,9 @@
     width: 13%;
     height: 30px;
     background-color: transparent;
-    color: #e8c9a0;
+    color: var(--cor-1);
     border-radius: 6px;
-    border: solid 2px #e8c9a0;
+    border: solid 2px var(--cor-1);
     cursor: pointer;
     transition:
       background-color 0.3s ease-in-out,
@@ -266,8 +265,8 @@
   }
 
   .add-mais-ingred:hover {
-    background-color: var(--cor-2);
-    color: #4a2c1a;
+    background-color: var(--cor-1);
+    color: var(--cor-2);
   }
 
   .addingIngred {
@@ -294,9 +293,9 @@
     width: 25%;
     height: 30px;
     background-color: transparent;
-    color: #e8c9a0;
+    color: var(--cor-1);
     border-radius: 6px;
-    border: solid 2px #e8c9a0;
+    border: solid 2px var(--cor-1);
     cursor: pointer;
     transition:
       background-color 0.3s ease-in-out,
@@ -304,13 +303,13 @@
   }
 
   .save-ingred:hover {
-    background-color: var(--cor-2);
-    color: #4a2c1a;
+    background-color: var(--cor-1);
+    color: var(--cor-2);
   }
 
   .table-container-2 {
     background-color: #f2e8d9;
-    width: 100%;
+    width: 145%;
     border-radius: 6px;
   }
 
@@ -345,6 +344,8 @@
     border-radius: 6px;
     border: solid 2px #e8c9a0;
     outline: none;
+    padding: 10px;
+    margin-top: 10px;
   }
 
   .saveButton button {
@@ -365,14 +366,18 @@
   }
 
   .image-upload {
-    display: grid;
-    place-items: center;
-    height: 300px;
-    border: 1px solid var(--line);
-    border-radius: 6px;
-    cursor: pointer;
-    overflow: hidden;
-  }
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 250px; 
+  border: 2px solid var(--cor-2);
+  border-radius: 6px;
+  cursor: pointer;
+  overflow: hidden;
+  background-color: transparent;
+}
 
   .upload-placeholder {
     display: flex;
@@ -389,12 +394,14 @@
     color: var(--brown);
   }
 
-  #imagePreview {
-    width: 100%;
-    height: 100%;
-    display: block;
-    object-fit: contain;
-  }
+#imagePreview {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
 
   .visually-hidden {
     position: absolute;
@@ -406,6 +413,10 @@
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
     border: 0;
+  }
+
+  [hidden] {
+    display: none !important;
   }
 
   small {
@@ -708,167 +719,5 @@
 
     .save-ingred {
       width: 40%;
-    }
-  }
-
-  /* Ajustes responsivos */
-  .hero {
-    min-height: 100vh;
-  }
-
-  .hero-header,
-  .form-content,
-  .saveButton {
-    width: 100%;
-    margin-inline: 0;
-  }
-
-  .form-receita {
-    min-height: 0;
-    padding: 18px;
-  }
-
-  [hidden] {
-    display: none !important;
-  }
-
-  .form-content {
-    display: grid;
-    grid-template-columns: minmax(280px, 0.42fr) minmax(0, 1fr);
-    justify-content: space-between;
-    gap: clamp(16px, 3vw, 50px);
-    gap: clamp(12px, 1.2vw, 24px);
-  }
-
-  .form-section,
-  .table-content {
-    width: 100%;
-    min-width: 0;
-  }
-
-  .table-content {
-    margin-left: 0;
-  }
-
-  .form-receita-inputs textarea {
-    min-width: 0;
-  }
-
-  .form-receita-inputs {
-    margin-top: 24px;
-    gap: 10px;
-  }
-
-  .form-receita-inputs input,
-  .form-receita-inputs select {
-    min-height: 44px;
-  }
-
-  .image-upload {
-    height: clamp(180px, 14vw, 220px);
-  }
-
-  .table-container {
-    padding: 16px;
-    width: 100%;
-  }
-
-  .table-container-2 {
-    width: 100%;
-  }
-
-  .maisInfoReceitas {
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-
-  .infoBox {
-    flex: 1 1 180px;
-    width: auto;
-  }
-
-  .addIngred {
-    width: auto;
-    min-width: 190px;
-    padding-inline: 12px;
-  }
-
-  .modal-body {
-    width: min(600px, calc(100vw - 32px));
-    max-height: calc(100vh - 32px);
-    overflow-y: auto;
-  }
-
-  @media (max-width: 835px) {
-    .hero {
-      min-height: 100vh;
-    }
-
-    .form-content {
-      grid-template-columns: 1fr;
-    }
-
-    .image-upload {
-      height: 240px;
-    }
-
-    .maisInfoReceitas {
-      justify-content: stretch;
-    }
-  }
-
-  @media (max-width: 460px) {
-    .hero {
-      padding: 15px;
-    }
-
-    .header {
-      flex-direction: row;
-      justify-content: space-between;
-    }
-
-    .header-text-content h1 {
-      font-size: 1rem;
-    }
-
-    .header-text-content span {
-      font-size: 0.75rem;
-    }
-
-    .form-receita,
-    .table-container,
-    .table-container-2 {
-      width: 100%;
-    }
-
-    .image-upload {
-      height: 220px;
-    }
-
-    .infoBox {
-      flex-basis: 100%;
-    }
-
-    .addIngred,
-    .saveButton button {
-      width: 100%;
-    }
-
-    .modal-body {
-      height: auto;
-      min-height: 0;
-      padding: 20px;
-      border-radius: 16px;
-    }
-
-    .modal-buttons {
-      gap: 10px;
-      margin-top: 20px;
-    }
-
-    .add-mais-ingred,
-    .save-ingred {
-      width: auto;
-      padding-inline: 10px;
     }
   }

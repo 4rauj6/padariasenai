@@ -32,7 +32,7 @@ modalButtons.forEach((modalElement) => {
   modalElement.addEventListener("click", () => {
     if (modalElement.classList.contains("addIngred")) {
       setModalState(true);
-      outsideModalBody.style.filter = "blur(6px)";
+      outsideModalBody.style.filter = "blur(5px)";
     } else {
       setModalState(false);
       outsideModalBody.style.filter = "blur(0)";
@@ -47,13 +47,14 @@ overlay.addEventListener("click", (event) => {
   }
 });
 
-/*LÓGICA PARA CADA INGREDIENTE TER SUA  */
+/*LÓGICA PARA CADA INGREDIENTE TER SUA  PORCENTAGEM*/
 const percentPorIngred = {
   acucar: [0, 0.5, 1, 1.5, 2],
   fermentoFresco: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
   fermentoSeco: [0, 0.5, 1, 1.5, 2, 2.5],
   sal: [0, 0.5, 1, 1.5, 2],
-  ovos: [1, 2, 3, 4, 5],
+  claraOvo: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10],
+  gemaOvo: [10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20]
 };
 
 const selectedIngred = document.querySelector("#nomeIngred");
@@ -101,14 +102,15 @@ percentIngred.addEventListener("change", () => {
   const resultPlacement = document.getElementById("gramaDoIngred");
 
   if (result === 0) {
-    resultPlacement.style.display = "none";
-    resultPlacement.backgroundColor = "transparent";
+    resultPlacement.style.display = "block";
+    resultPlacement.style.backgroundColor = "#e8c9a0";
+    resultPlacement.innerText = "A porcentagem deve ser maior que 0%"
   } else {
     resultPlacement.style.display = "block";
     resultPlacement.style.backgroundColor = "#e8c9a0";
+    resultPlacement.style.border = "solid ##4a2c1a"
+    resultPlacement.innerText = `${result.toFixed(2)} g`;
   }
-
-  resultPlacement.innerText = `${result.toFixed(2)} g`;
 });
 
 /*LÓGICA DE CRIAR E RENDERIZAR A TABELA PELO MODAL DE CADASTRAR RECEITA*/
