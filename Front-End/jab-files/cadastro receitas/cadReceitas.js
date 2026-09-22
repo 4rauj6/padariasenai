@@ -9,12 +9,16 @@ const getIngredQuant = document.getElementById("quantIngred");
 const getIngredGr = document.getElementById("gramaDoIngred");
 const getINgredType = document.getElementById("tipoIngred");
 const saveButton = document.querySelector(".save-ingred");
+const imageInput = document.getElementById("imgReceita");
+const imagePreview = document.getElementById("imagePreview");
+const uploadPlaceholder = document.querySelector(".upload-placeholder");
 
 function setModalState(isOpen) {
   modal.classList.toggle("hidden", !isOpen);
   overlay.classList.toggle("hidden", !isOpen);
 
   if (!isOpen) {
+    outsideModalBody.style.filter = "blur(0)";
     [getIngredName, getIngredQuant, getINgredType].forEach(
       (index) => (index.selectedIndex = 0),
     );
@@ -39,6 +43,7 @@ modalButtons.forEach((modalElement) => {
 overlay.addEventListener("click", (event) => {
   if (!event.target.closest(".modal-body")) {
     setModalState(false);
+    outsideModalBody.style.filter = "blur(0)";
   }
 });
 
@@ -47,6 +52,8 @@ const percentPorIngred = {
   acucar: [0, 0.5, 1, 1.5, 2],
   fermentoFresco: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
   fermentoSeco: [0, 0.5, 1, 1.5, 2, 2.5],
+  sal: [0, 0.5, 1, 1.5, 2],
+  ovos: [1, 2, 3, 4, 5],
 };
 
 const selectedIngred = document.querySelector("#nomeIngred");
@@ -183,8 +190,17 @@ saveButton.addEventListener("click", (e) => {
 imageInput.addEventListener("change", () => {
   const file = imageInput.files[0];
   if (!file) return;
-  if (file.size > 5 * 1024 * 1024) { alert("A imagem deve ter no máximo 5 MB."); imageInput.value = ""; return; }
+  if (!["image/jpeg", "image/png"].includes(file.type)) {
+    alert("Selecione uma imagem JPG ou PNG.");
+    imageInput.value = "";
+    return;
+  }
+  if (file.size > 5 * 1024 * 1024) {
+    alert("A imagem deve ter no máximo 5 MB.");
+    imageInput.value = "";
+    return;
+  }
   imagePreview.src = URL.createObjectURL(file);
   imagePreview.hidden = false;
-  document.querySelector(".upload-placeholder").hidden = true;
+  uploadPlaceholder.hidden = true;
 });
