@@ -7,7 +7,8 @@ const outsideModalBody = document.querySelector(".hero");
 const getIngredName = document.getElementById("nomeIngred");
 const getIngredQuant = document.getElementById("quantIngred");
 const getIngredGr = document.getElementById("gramaDoIngred");
-const getINgredType = document.getElementById("tipoIngred");
+const getFornoType = document.getElementById("tipoForno");
+
 const saveButton = document.querySelector(".save-ingred");
 const imageInput = document.getElementById("imgReceita");
 const imagePreview = document.getElementById("imagePreview");
@@ -19,7 +20,7 @@ function setModalState(isOpen) {
 
   if (!isOpen) {
     outsideModalBody.style.filter = "blur(0)";
-    [getIngredName, getIngredQuant, getINgredType].forEach(
+    [getIngredName, getIngredQuant, getFornoType].forEach(
       (index) => (index.selectedIndex = 0),
     );
     getIngredQuant.disabled = true;
@@ -123,7 +124,7 @@ saveButton.addEventListener("click", (e) => {
   const quant =
     getIngredQuant.options[getIngredQuant.selectedIndex]?.text || "";
   const grama = getIngredGr.textContent || "0g";
-  const type = getINgredType.options[getINgredType.selectedIndex]?.text || "";
+  const type = getFornoType.options[getFornoType.selectedIndex]?.text || "";
 
   if (!getIngredName.value || !getIngredQuant.value) {
     alert("Todos os campos precisão ser preenchidos antes de salvar");
@@ -181,7 +182,7 @@ saveButton.addEventListener("click", (e) => {
   getIngredQuant.selectedIndex = 0;
   getIngredQuant.disabled = true;
   getIngredGr.textContent = "";
-  getINgredType.selectedIndex = 0;
+  getFornoType.selectedIndex = 0;
   outsideModalBody.style.filter = "blur(0)";
 
   setModalState(false);
