@@ -48,50 +48,50 @@ overlay.addEventListener("click", (event) => {
   }
 });
 
-/*LÓGICA PARA CADA INGREDIENTE TER SUA  PORCENTAGEM*/
-const percentPorIngred = {
-  acucar: [0, 0.5, 1, 1.5, 2],
-  fermentoFresco: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
-  fermentoSeco: [0, 0.5, 1, 1.5, 2, 2.5],
-  sal: [0, 0.5, 1, 1.5, 2],
-  claraOvo: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10],
-  gemaOvo: [10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20]
-};
+  /*LÓGICA PARA CADA INGREDIENTE TER SUA  PORCENTAGEM*/
+  const percentPorIngred = {
+    acucar: [0, 0.5, 1, 1.5, 2],
+    fermentoFresco: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
+    fermentoSeco: [0, 0.5, 1, 1.5, 2, 2.5],
+    sal: [0, 0.5, 1, 1.5, 2],
+    claraOvo: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10],
+    gemaOvo: [10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20]
+  };
 
-const selectedIngred = document.querySelector("#nomeIngred");
-const percentSelectPlace = document.querySelector("#quantIngred");
+  const selectedIngred = document.querySelector("#nomeIngred");
+  const percentSelectPlace = document.querySelector("#quantIngred");
 
-selectedIngred.addEventListener("change", () => {
-  const actualIngred = selectedIngred.value;
-  const actualIngredQuant = percentPorIngred[actualIngred] || [];
-  const resultBox = document.getElementById("gramaDoIngred");
+  selectedIngred.addEventListener("change", () => {
+    const actualIngred = selectedIngred.value;
+    const actualIngredQuant = percentPorIngred[actualIngred] || [];
+    const resultBox = document.getElementById("gramaDoIngred");
 
-  percentSelectPlace.innerHTML = "";
+    percentSelectPlace.innerHTML = "";
 
-  if (resultBox) {
-    resultBox.style.display = "none";
-  }
+    if (resultBox) {
+      resultBox.style.display = "none";
+    }
 
-  if (actualIngredQuant.length === 0) {
-    percentSelectPlace.innerHTML = `<option value="">Nenhuma quantidade disponível</option>`;
+    if (actualIngredQuant.length === 0) {
+      percentSelectPlace.innerHTML = `<option value="">Nenhuma quantidade disponível</option>`;
 
-    percentSelectPlace.disabled = true;
-    return;
-  }
+      percentSelectPlace.disabled = true;
+      return;
+    }
 
-  percentSelectPlace.innerHTML = `<option value="">Seleciona a quantidade</option>`;
+    percentSelectPlace.innerHTML = `<option value="">Seleciona a quantidade</option>`;
 
-  actualIngredQuant.forEach((percent) => {
-    const options = document.createElement("option");
+    actualIngredQuant.forEach((percent) => {
+      const options = document.createElement("option");
 
-    options.value = percent;
-    options.textContent = `${percent}%`;
+      options.value = percent;
+      options.textContent = `${percent}%`;
 
-    percentSelectPlace.appendChild(options);
+      percentSelectPlace.appendChild(options);
+    });
+
+    percentSelectPlace.disabled = false;
   });
-
-  percentSelectPlace.disabled = false;
-});
 
 /*LÓGICA DO CALCÚLO PARA PORCENTAGEM ESCOLHIDA SER TRANSFORMADA EM GRAMAS */
 const percentIngred = document.getElementById("quantIngred");

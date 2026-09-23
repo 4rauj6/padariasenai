@@ -140,7 +140,7 @@
     appearance: none;
     background-color: transparent;
     border: 2px solid var(--cor-1);
-    border-radius: 15px;
+    border-radius: 10px;
     box-sizing: border-box;
     color: #3B3B3B;
     cursor: pointer;
