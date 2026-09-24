@@ -10,8 +10,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Rufina:wght@400;700&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" />
-    <link rel="stylesheet" href="cadReceitas.css" />
-    <script src="cadReceitas.js" defer></script>
+    <link rel="stylesheet" href="../cadastro receitas/cadReceitas.css" />
+    <script src="../cadastro receitas/cadReceitas.js" defer></script>
   </head>
   <body>
     <div class="hero">
@@ -59,6 +59,16 @@
                   <option value="sobremessa">Massa doce</option>
                 </select>
 
+                <label for="pesoBaseFarinha">PESO BASE DA FARINHA (g)</label>
+                <input
+                  type="number"
+                  id="pesoBaseFarinha"
+                  value="1000"
+                  min="100"
+                  step="100"
+                  placeholder="Ex: 1000"
+                />
+
                 <label for="descReceita">DESCRIÇÃO</label>
                 <textarea
                   name="descReceita"
@@ -67,7 +77,7 @@
                   required
                 ></textarea>
 
-                <span class="field-label">FOTO DA RECEITA:</span>
+                 <span class="field-label">FOTO DA RECEITA:</span>
                 <label class="image-upload" for="imgReceita">
                   <img id="imagePreview" alt="Prévia da receita" hidden />
                   <span class="upload-placeholder"><i class="fa-regular fa-file"></i><span>Clique para adicionar<br />uma foto</span></span>
@@ -97,24 +107,17 @@
 
               <div class="maisInfoReceitas">
                 <div class="infoBox">
-                  <label for="pesoFarinha"><i class="fa-solid fa-wheat-awn"></i> FARINHA BASE (g)</label>
-                  <input type="number" id="pesoFarinha" min="1" step="any" value="1000" />
+                  <label for="tempoEstimado"><i class="fa-solid fa-scale-balanced"></i> TEMPO ESTIMO</label>
+                  <span id="tempoEstimado"></span>
                 </div>
                 <div class="infoBox">
-                  <label for="pesoUnidade"><i class="fa-solid fa-scale-balanced"></i> PESO CRU / UNIDADE (g)</label>
-                  <input type="number" id="pesoUnidade" min="1" step="any" placeholder="Ex.: 60" />
+                  <label for="porcoesEstimadas"><i class="fa-solid fa-bread-slice"></i> PORÇÕES ESTIMADAS</label>
+                  <span id="porcoesEstimadas"></span>
                 </div>
                 <div class="infoBox">
-                  <label for="qtdEncomenda"><i class="fa-solid fa-basket-shopping"></i> UNIDADES DESEJADAS</label>
-                  <input type="number" id="qtdEncomenda" min="1" step="1" placeholder="Ex.: 130" />
+                  <label for="mCTotal"><i class="fa-solid fa-basket-shopping"></i> MASSA CRUA TOTAL</label>
+                  <span id="mCTotal"></span>
                 </div>
-              </div>
-              <div class="calcResultados">
-                <span>Massa total: <strong id="massaTotal">—</strong></span>
-                <span>Rendimento estimado: <strong id="rendimento">—</strong></span>
-                <span>Fórmula total: <strong id="percentualTotal">100%</strong></span>
-                <button type="button" id="calcularEncomenda">Calcular farinha para encomenda</button>
-                <span>Farinha necessária: <strong id="farinhaEncomenda">—</strong></span>
               </div>
               <div class="mp-container">
                 <h4>MODO DE PREPARO</h4>
@@ -148,13 +151,8 @@
               <label for="nomeIngred">Selecione do ingrediente:</label>
               <select name="nomeIngred" id="nomeIngred">
                 <option value="">Clique aqui para selecionar</option>
+                <option value="farinha">Farinha de trigo</option>
                 <option value="acucar">Açúcar</option>
-                <option value="gordura">Gordura</option>
-                <option value="leite">Leite líquido</option>
-                <option value="leitePo">Leite em pó</option>
-                <option value="aditivoPo">Aditivo em pó</option>
-                <option value="aditivoPasta">Aditivo em pasta</option>
-                <option value="aditivoLiquido">Aditivo líquido</option>
                 <option value="fermentoFresco">Fermento Biológico Fresco</option>
                 <option value="fermentoSeco">Fermento Biológico Seco</option>
                 <option value="sal">Sal</option>
@@ -202,4 +200,3 @@
     </section>
   </body>
 </html>
-
