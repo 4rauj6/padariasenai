@@ -1,209 +1,120 @@
-/*LÓGICA DO PRIMEIRO MODAL*/
-const modal = document.querySelector(".modal");
-const overlay = document.querySelector(".overlay");
-const modalButtons = document.querySelectorAll(".addIngred, .close-modal");
-const outsideModalBody = document.querySelector(".hero");
+const modal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+const openModalButton = document.querySelector('.addIngred');
+const closeModalButton = document.querySelector('.close-modal');
+const nameSelect = document.getElementById('nomeIngred');
+const percentSelect = document.getElementById('quantIngred');
+const gramsLabel = document.getElementById('gramaDoIngred');
+const ovenSelect = document.getElementById('tipoForno');
+const flourInput = document.getElementById('pesoFarinha');
+const categorySelect = document.getElementById('categoriaReceita');
+const tablePlacement = document.getElementById('tablePlace');
+const imageInput = document.getElementById('imgReceita');
+const imagePreview = document.getElementById('imagePreview');
+const uploadPlaceholder = document.querySelector('.upload-placeholder');
+const ingredients = [];
 
-const getIngredName = document.getElementById("nomeIngred");
-const getIngredQuant = document.getElementById("quantIngred");
-const getIngredGr = document.getElementById("gramaDoIngred");
-const getFornoType = document.getElementById("tipoForno");
-
-const saveButton = document.querySelector(".save-ingred");
-const imageInput = document.getElementById("imgReceita");
-const imagePreview = document.getElementById("imagePreview");
-const uploadPlaceholder = document.querySelector(".upload-placeholder");
-
-function setModalState(isOpen) {
-  modal.classList.toggle("hidden", !isOpen);
-  overlay.classList.toggle("hidden", !isOpen);
-
-  if (!isOpen) {
-    outsideModalBody.style.filter = "blur(0)";
-    [getIngredName, getIngredQuant, getFornoType].forEach(
-      (index) => (index.selectedIndex = 0),
-    );
-    getIngredQuant.disabled = true;
-    getIngredGr.textContent = "";
-    getIngredGr.style.display = "none";
-  }
+// Faixas compiladas do PDF. Todas as porcentagens usam farinha = 100%.
+const rules = {
+  acucar: { label: 'Açúcar', ranges: { massaSalgada:[0,4,1], massaSemiDoce:[5,14,1], sobremessa:[15,25,1] } },
+  sal: { label:'Sal', values:{massaSalgada:[2], massaSemiDoce:[2], sobremessa:[1.5]} },
+  fermentoFresco:{label:'Fermento Biológico Fresco',ranges:{massaSalgada:[1,5,.5],massaSemiDoce:[1,5,.5],sobremessa:[4,10,.5]}},
+  fermentoSeco:{label:'Fermento Biológico Seco',ranges:{massaSalgada:[.1,2.5,.1],massaSemiDoce:[1,3.5,.1],sobremessa:[3,5,.1]}},
+  agua:{label:'Água',ranges:{massaSalgada:[58,60,.5],massaSemiDoce:[58,60,.5],sobremessa:[58,60,.5]}},
+  gordura:{label:'Gordura',ranges:{massaSalgada:[0,4,1],massaSemiDoce:[5,10,1],sobremessa:[5,10,1]}},
+  leite:{label:'Leite líquido',ranges:{massaSalgada:[0,60,5],massaSemiDoce:[0,60,5],sobremessa:[0,60,5]}},
+  leitePo:{label:'Leite em pó',ranges:{massaSalgada:[0,6,.5],massaSemiDoce:[0,6,.5],sobremessa:[0,6,.5]}},
+  aditivoPo:{label:'Aditivo em pó',values:{massaSalgada:[1],massaSemiDoce:[1],sobremessa:[1]}},
+  aditivoPasta:{label:'Aditivo em pasta',values:{massaSalgada:[.3],massaSemiDoce:[.3],sobremessa:[.3]}},
+  aditivoLiquido:{label:'Aditivo líquido',values:{massaSalgada:[.2],massaSemiDoce:[.2],sobremessa:[.2]}},
+  claraOvo:{label:'Ovos (clara)',ranges:{massaSalgada:[5,10,.5],massaSemiDoce:[5,10,.5],sobremessa:[5,10,.5]}},
+  gemaOvo:{label:'Ovos (gema)',ranges:{massaSalgada:[10,20,.5],massaSemiDoce:[10,20,.5],sobremessa:[10,20,.5]}}
+};
+const records = {
+  massaSalgada: {acucar:[0,4,1], sal:[2], fermentoFresco:[1,5,.5], fermentoSeco:[.1,2.5,.1], agua:[58,60,.5], gordura:[0,4,1], leite:[0,60,5], leitePo:[0,6,.5], aditivoPo:[1], aditivoPasta:[.3], aditivoLiquido:[.2], claraOvo:[5,10,.5], gemaOvo:[10,20,.5]},
+  massaSemiDoce: {acucar:[5,14,1], sal:[2], fermentoFresco:[1,5,.5], fermentoSeco:[1,3.5,.1], agua:[58,60,.5], gordura:[5,10,1], leite:[0,60,5], leitePo:[0,6,.5], aditivoPo:[1], aditivoPasta:[.3], aditivoLiquido:[.2], claraOvo:[5,10,.5], gemaOvo:[10,20,.5]},
+  sobremessa: {acucar:[15,25,1], sal:[1.5], fermentoFresco:[4,10,.5], fermentoSeco:[3,5,.1], agua:[58,60,.5], gordura:[5,10,1], leite:[0,60,5], leitePo:[0,6,.5], aditivoPo:[1], aditivoPasta:[.3], aditivoLiquido:[.2], claraOvo:[5,10,.5], gemaOvo:[10,20,.5]}
+};
+function availableValues(id) {
+  const rule = rules[id]; const category = categorySelect.value;
+  if (!rule || !category) return [];
+  if (rule.values) return rule.values[category] || [];
+  const [min,max,step] = rule.ranges[category];
+  const out=[];
+  for(let value=min; value<=max+1e-8; value=+(value+step).toFixed(4)) out.push(value);
+  return out;
+}
+function fillPercentOptions() {
+  percentSelect.innerHTML='';
+  const values=availableValues(nameSelect.value);
+  if(!values.length){percentSelect.innerHTML='<option value="">Selecione um ingrediente primeiro</option>';percentSelect.disabled=true;return;}
+  percentSelect.innerHTML='<option value="">Selecione a quantidade</option>';
+  values.forEach(value=>{const option=document.createElement('option');option.value=String(value);option.textContent=`${value}%`;percentSelect.append(option);});
+  percentSelect.disabled=false;
+}
+function totalPercent(){return 100+ingredients.reduce((sum,item)=>sum+item.percent,0);}
+function refreshSummary(){
+  const flour=Number(flourInput.value)||0; const pct=totalPercent(); const dough=flour*pct/100;
+  document.getElementById('massaTotal').textContent=flour>0?`${dough.toLocaleString('pt-BR',{maximumFractionDigits:1})} g`:'—';
+  document.getElementById('percentualTotal').textContent=`${pct.toFixed(1)}%`;
+  const unit=Number(document.getElementById('pesoUnidade').value)||0;
+  document.getElementById('rendimento').textContent=unit>0?`${Math.floor(dough/unit)} unidades`:'Informe peso cru';
+  ingredients.forEach(item=>{const cell=tablePlacement.querySelector(`[data-ingredient="${item.id}"] .grams`);if(cell)cell.textContent=`${(flour*item.percent/100).toLocaleString('pt-BR',{maximumFractionDigits:1})} g`;});
 }
 
-modalButtons.forEach((modalElement) => {
-  modalElement.addEventListener("click", () => {
-    if (modalElement.classList.contains("addIngred")) {
-      setModalState(true);
-      outsideModalBody.style.filter = "blur(5px)";
-    } else {
-      setModalState(false);
-      outsideModalBody.style.filter = "blur(0)";
-    }
+function renderTable(){
+  tablePlacement.replaceChildren();
+  const table=document.createElement('table');
+  table.innerHTML='<thead><tr><th>Nome do ingrediente</th><th>Porcentagem</th><th>Quantidade em grama</th><th>Tipo</th><th></th></tr></thead>';
+  const tbody=document.createElement('tbody'); const flour=Number(flourInput.value)||0;
+  ingredients.forEach((item,index)=>{
+    const row=document.createElement('tr');row.dataset.ingredient=item.id;
+    const cells=[item.label,`${item.percent}%`,`${(flour*item.percent/100).toLocaleString('pt-BR',{maximumFractionDigits:1})} g`,item.oven];
+    cells.forEach((value,i)=>{const cell=document.createElement('td');cell.textContent=value;if(i===2)cell.className='grams';row.append(cell);});
+    const action=document.createElement('td');const remove=document.createElement('button');remove.type='button';remove.className='remove-ingredient';remove.textContent='Remover';remove.addEventListener('click',()=>{ingredients.splice(index,1);renderTable();});action.append(remove);row.append(action);tbody.append(row);
   });
+  if(!ingredients.length){const row=document.createElement('tr');const cell=document.createElement('td');cell.colSpan=5;cell.textContent='Adicione ingredientes para calcular a massa.';row.append(cell);tbody.append(row);}
+  table.append(tbody);tablePlacement.append(table);refreshSummary();
+}
+
+function closeModal(){modal.classList.add('hidden');overlay.classList.add('hidden');document.querySelector('.hero').style.filter='';}
+openModalButton.addEventListener('click',()=>{
+  if(!categorySelect.value){alert('Selecione primeiro a categoria da massa.');return;}
+  modal.classList.remove('hidden');overlay.classList.remove('hidden');document.querySelector('.hero').style.filter='blur(5px)';
 });
 
-overlay.addEventListener("click", (event) => {
-  if (!event.target.closest(".modal-body")) {
-    setModalState(false);
-    outsideModalBody.style.filter = "blur(0)";
-  }
+closeModalButton.addEventListener('click',closeModal);
+overlay.addEventListener('click',event=>{if(!event.target.closest('.modal-body'))closeModal();});
+nameSelect.addEventListener('change',()=>{fillPercentOptions();gramsLabel.textContent='';});
+percentSelect.addEventListener('change',()=>{
+  const pct=Number(percentSelect.value),flour=Number(flourInput.value)||0;
+  gramsLabel.textContent=pct>0?`${(flour*pct/100).toLocaleString('pt-BR',{maximumFractionDigits:1})} g`:'Selecione uma porcentagem maior que zero.';
+  gramsLabel.style.display='block';gramsLabel.style.backgroundColor='#e8c9a0';
 });
 
-  /*LÓGICA PARA CADA INGREDIENTE TER SUA  PORCENTAGEM*/
-  const percentPorIngred = {
-    acucar: [0, 0.5, 1, 1.5, 2],
-    fermentoFresco: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
-    fermentoSeco: [0, 0.5, 1, 1.5, 2, 2.5],
-    sal: [0, 0.5, 1, 1.5, 2],
-    claraOvo: [5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10],
-    gemaOvo: [10, 10.5, 11, 11.5, 12, 12.5, 13, 13.5, 14, 14.5, 15, 15.5, 16, 16.5, 17, 17.5, 18, 18.5, 19, 19.5, 20]
-  };
+[flourInput,document.getElementById('pesoUnidade')].forEach(input=>input.addEventListener('input',refreshSummary));
+categorySelect.addEventListener('change',()=>{nameSelect.value='';fillPercentOptions();});
 
-  const selectedIngred = document.querySelector("#nomeIngred");
-  const percentSelectPlace = document.querySelector("#quantIngred");
-
-  selectedIngred.addEventListener("change", () => {
-    const actualIngred = selectedIngred.value;
-    const actualIngredQuant = percentPorIngred[actualIngred] || [];
-    const resultBox = document.getElementById("gramaDoIngred");
-
-    percentSelectPlace.innerHTML = "";
-
-    if (resultBox) {
-      resultBox.style.display = "none";
-    }
-
-    if (actualIngredQuant.length === 0) {
-      percentSelectPlace.innerHTML = `<option value="">Nenhuma quantidade disponível</option>`;
-
-      percentSelectPlace.disabled = true;
-      return;
-    }
-
-    percentSelectPlace.innerHTML = `<option value="">Seleciona a quantidade</option>`;
-
-    actualIngredQuant.forEach((percent) => {
-      const options = document.createElement("option");
-
-      options.value = percent;
-      options.textContent = `${percent}%`;
-
-      percentSelectPlace.appendChild(options);
-    });
-
-    percentSelectPlace.disabled = false;
-  });
-
-/*LÓGICA DO CALCÚLO PARA PORCENTAGEM ESCOLHIDA SER TRANSFORMADA EM GRAMAS */
-const percentIngred = document.getElementById("quantIngred");
-
-percentIngred.addEventListener("change", () => {
-  const percentValue = parseFloat(percentIngred.value) || 0;
-  const totalWeight = 1000;
-  const result = (percentValue / 100) * totalWeight;
-  const resultPlacement = document.getElementById("gramaDoIngred");
-
-  if (result === 0) {
-    resultPlacement.style.display = "block";
-    resultPlacement.style.backgroundColor = "#e8c9a0";
-    resultPlacement.innerText = "A porcentagem deve ser maior que 0%"
-  } else {
-    resultPlacement.style.display = "block";
-    resultPlacement.style.backgroundColor = "#e8c9a0";
-    resultPlacement.style.border = "solid ##4a2c1a"
-    resultPlacement.innerText = `${result.toFixed(2)} g`;
-  }
+document.getElementById('calcularEncomenda').addEventListener('click',()=>{
+  const units=Number(document.getElementById('qtdEncomenda').value),unit=Number(document.getElementById('pesoUnidade').value);
+  if(!(units>0&&unit>0)){alert('Informe a quantidade desejada e o peso cru por unidade.');return;}
+  const requiredFlour=units*unit*100/totalPercent();flourInput.value=requiredFlour.toFixed(1);renderTable();
+  document.getElementById('farinhaEncomenda').textContent=`${requiredFlour.toLocaleString('pt-BR',{maximumFractionDigits:1})} g`;
 });
 
-/*LÓGICA DE CRIAR E RENDERIZAR A TABELA PELO MODAL DE CADASTRAR RECEITA*/
-const tablePlacement = document.getElementById("tablePlace");
-
-saveButton.addEventListener("click", (e) => {
-  e.preventDefault();
-
-  const name = getIngredName.options[getIngredName.selectedIndex]?.text || "";
-  const quant =
-    getIngredQuant.options[getIngredQuant.selectedIndex]?.text || "";
-  const grama = getIngredGr.textContent || "0g";
-  const type = getFornoType.options[getFornoType.selectedIndex]?.text || "";
-
-  if (!getIngredName.value || !getIngredQuant.value) {
-    alert("Todos os campos precisão ser preenchidos antes de salvar");
-    return;
-  }
-
-  let table = document.createElement("table");
-  let th = document.createElement("thead");
-  let tr = document.createElement("tr");
-  let tb = tablePlacement.querySelector("tbody");
-
-  if(tb) {
-    const rows = tb.querySelectorAll("tr");
-    let isDuplicate = false;
-
-    rows.forEach((row) => {
-      const rowName = row.cells[0].textContent || "";
-      if(rowName && rowName.trim().toLowerCase() === name.trim().toLowerCase()) {
-        isDuplicate = true;
-      } 
-    });
-
-    if(isDuplicate) {
-      alert("Não é possível adicionar ingredientes duplicados. Por favor, selecione outro ingrediente.");
-      return;
-    }
-  }
-
-  if (!tb) {
-    tb = document.createElement("tbody");
-
-    th.innerHTML = `
-    <tr>
-      <th>Nome do ingrediente</th>
-      <th>Porcentagem</th>
-      <th>Quantidade em grama</th>
-      <th>Tipo</th>
-    </tr>`;
-
-    table.appendChild(th);
-    table.appendChild(tb);
-    tablePlacement.appendChild(table);
-  }
-
-  tr.innerHTML = `
-      <td>${name}</td>
-      <td>${quant}</td>
-      <td>${grama}</td>
-      <td>${type}</td>
-  `;
-
-  tb.appendChild(tr);
-
-  getIngredName.selectedIndex = 0;
-  getIngredQuant.selectedIndex = 0;
-  getIngredQuant.disabled = true;
-  getIngredGr.textContent = "";
-  getFornoType.selectedIndex = 0;
-  outsideModalBody.style.filter = "blur(0)";
-
-  setModalState(false);
+document.querySelector('.save-ingred').addEventListener('click',event=>{
+  event.preventDefault();const id=nameSelect.value,pct=Number(percentSelect.value);
+  if(!id||!pct||!ovenSelect.value){alert('Selecione ingrediente, percentual e tipo de forno.');return;}
+  if(ingredients.some(item=>item.id===id)){alert('Esse ingrediente já foi adicionado.');return;}
+  ingredients.push({id,label:rules[id].label,percent:pct,oven:ovenSelect.options[ovenSelect.selectedIndex].text});
+  renderTable();nameSelect.value='';percentSelect.innerHTML='<option value="">Selecione um ingrediente primeiro</option>';percentSelect.disabled=true;gramsLabel.textContent='';closeModal();
+});
+imageInput.addEventListener('change',()=>{
+  const file=imageInput.files[0];if(!file)return;
+  if(!['image/jpeg','image/png'].includes(file.type)){alert('Selecione uma imagem JPG ou PNG.');imageInput.value='';return;}
+  if(file.size>5*1024*1024){alert('A imagem deve ter no máximo 5 MB.');imageInput.value='';return;}
+  imagePreview.src=URL.createObjectURL(file);imagePreview.hidden=false;if(uploadPlaceholder)uploadPlaceholder.hidden=true;
 });
 
+renderTable();
 
-/*ÍCONE PARA LABEL DE ESCLHER A FOTO DA RECEITA*/
-imageInput.addEventListener("change", () => {
-  const file = imageInput.files[0];
-  if (!file) return;
-  if (!["image/jpeg", "image/png"].includes(file.type)) {
-    alert("Selecione uma imagem JPG ou PNG.");
-    imageInput.value = "";
-    return;
-  }
-  if (file.size > 5 * 1024 * 1024) {
-    alert("A imagem deve ter no máximo 5 MB.");
-    imageInput.value = "";
-    return;
-  }
-  imagePreview.src = URL.createObjectURL(file);
-  imagePreview.hidden = false;
-  uploadPlaceholder.hidden = true;
-});

@@ -721,3 +721,14 @@
       width: 40%;
     }
   }
+/* Complementos da calculadora; mantêm a paleta e os componentes existentes. */
+.maisInfoReceitas .infoBox { display:flex; flex-direction:column; gap:8px; }
+.maisInfoReceitas .infoBox label { font-size:.82em; }
+.maisInfoReceitas .infoBox input { width:100%; min-height:36px; border:1px solid var(--cor-2); border-radius:6px; background:transparent; color:var(--cor-1); padding:6px; }
+.calcResultados { display:flex; flex-wrap:wrap; align-items:center; gap:12px; padding:10px; color:var(--cor-1); font-family:var(--font-1); }
+.calcResultados span { background:#fff8ef; border:1px solid var(--cor-2); border-radius:6px; padding:8px; }
+#calcularEncomenda { background:var(--cor-1); color:var(--cor-3); border:0; border-radius:6px; padding:9px 12px; cursor:pointer; }
+.table-container table { border-collapse:collapse; width:100%; margin:12px 0; }
+.table-container th,.table-container td { border:1px solid var(--cor-2); padding:8px; text-align:left; }
+.remove-ingredient { border:0; background:transparent; color:#8b3327; cursor:pointer; font-weight:600; }
+@media(max-width:835px) { .maisInfoReceitas { flex-direction:column!important; width:100%!important; gap:10px!important; } .infoBox { width:100%!important; } }
