@@ -5,11 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Cadastro de receita</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Rufina:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Rufina:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+    />
     <link rel="stylesheet" href="../cadastro receitas/cadReceitas.css" />
     <script src="../cadastro receitas/cadReceitas.js" defer></script>
   </head>
@@ -59,7 +65,9 @@
                   <option value="sobremessa">Massa doce</option>
                 </select>
 
-                <label for="pesoBaseFarinha">PESO BASE DA FARINHA (g)</label>
+                <label for="pesoBaseFarinha"
+                  >PESO BASE DA FARINHA (1000g = 1kg)</label
+                >
                 <input
                   type="number"
                   id="pesoBaseFarinha"
@@ -77,12 +85,21 @@
                   required
                 ></textarea>
 
-                 <span class="field-label">FOTO DA RECEITA:</span>
+                <span class="field-label">FOTO DA RECEITA:</span>
                 <label class="image-upload" for="imgReceita">
                   <img id="imagePreview" alt="Prévia da receita" hidden />
-                  <span class="upload-placeholder"><i class="fa-regular fa-file"></i><span>Clique para adicionar<br />uma foto</span></span>
+                  <span class="upload-placeholder"
+                    ><i class="fa-regular fa-file"></i>Clique para adicionar<br />uma
+                    foto</span
+                  >
                 </label>
-                <input type="file" id="imgReceita" name="imgReceita" accept="image/png, image/jpeg" class="visually-hidden" />
+                <input
+                  type="file"
+                  id="imgReceita"
+                  name="imgReceita"
+                  accept="image/png, image/jpeg"
+                  class="visually-hidden"
+                />
                 <small>Formatos aceitos: JPG, PNG (máx. 5MB)</small>
               </div>
             </form>
@@ -97,7 +114,9 @@
 
               <div id="tablePlace"></div>
 
-              <button class="addIngred"><i class="fa-solid fa-plus"></i> ADICIONAR INGREDIENTE</button>
+              <button class="addIngred">
+                <i class="fa-solid fa-plus"></i> ADICIONAR INGREDIENTE
+              </button>
             </div>
           </section>
 
@@ -107,16 +126,32 @@
 
               <div class="maisInfoReceitas">
                 <div class="infoBox">
-                  <label for="tempoEstimado"><i class="fa-solid fa-scale-balanced"></i> TEMPO ESTIMO</label>
+                  <label for="tempoEstimado"
+                    ><i class="fa-solid fa-scale-balanced"></i> TEMPO DE
+                    PREPARO</label
+                  >
                   <span id="tempoEstimado"></span>
                 </div>
                 <div class="infoBox">
-                  <label for="porcoesEstimadas"><i class="fa-solid fa-bread-slice"></i> PORÇÕES ESTIMADAS</label>
+                  <label for="porcoesEstimadas"
+                    ><i class="fa-solid fa-bread-slice"></i> PORÇÕES
+                    ESTIMADAS</label
+                  >
                   <span id="porcoesEstimadas"></span>
                 </div>
                 <div class="infoBox">
-                  <label for="mCTotal"><i class="fa-solid fa-basket-shopping"></i> MASSA CRUA TOTAL</label>
-                  <span id="mCTotal"></span>
+                  <label for="pesoMassaCrua"
+                    ><i class="fa-solid fa-bread-slice"></i>PESO DA MASSA
+                    CRUA</label
+                  >
+                  <span id="pesoMassaCrua"></span>
+                </div>
+                <div class="infoBox">
+                  <label for="pesoMassaTotal"
+                    ><i class="fa-solid fa-basket-shopping"></i> MASSA CRUA
+                    TOTAL</label
+                  >
+                  <span id="pesoMassaTotal"></span>
                 </div>
               </div>
               <div class="mp-container">
@@ -153,7 +188,9 @@
                 <option value="">Clique aqui para selecionar</option>
                 <option value="farinha">Farinha de trigo</option>
                 <option value="acucar">Açúcar</option>
-                <option value="fermentoFresco">Fermento Biológico Fresco</option>
+                <option value="fermentoFresco">
+                  Fermento Biológico Fresco
+                </option>
                 <option value="fermentoSeco">Fermento Biológico Seco</option>
                 <option value="sal">Sal</option>
                 <option value="claraOvo">Ovos (clara)</option>
