@@ -1,4 +1,3 @@
-/* LÓGICA DO MODAL E ELEMENTOS DO DOM */
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const modalButtons = document.querySelectorAll(".addIngred, .close-modal");
@@ -12,8 +11,8 @@ const renderTable = document.querySelector(".save-ingred");
 const getRecipeCatogry = document.getElementById("categoriaReceita");
 const getFarinhaBase = document.getElementById("pesoBaseFarinha");
 
-/* MAPA DE PORCENTAGENS POR INGREDIENTE */
-const percentPorIngred = {
+/* PORCENTAGEM DE CADA INGREDIENTES */
+const porcentPorIngred = {
   farinha: [100],
   acucar: [0, 0.5, 1, 1.5, 2],
   fermentoFresco: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
@@ -27,7 +26,7 @@ const percentPorIngred = {
   agua: [50, 55, 60, 65, 70, 75, 80],
 };
 
-/* ABRIR E FECHAR MODAL */
+/* LÓGICA DE ABRIR  E FECHAR O MODAL*/
 function setModalState(isOpen) {
   if (isOpen) {
     if (!getRecipeCatogry || !getRecipeCatogry.value) {
@@ -153,7 +152,7 @@ function massaTotalCalc() {
 /*LÓGICA DE SELEÇÃO DOS INGREDIENTES E TROCA DOS SEUS VALORES */
 getIngredName.addEventListener("change", () => {
   const actualIngred = getIngredName.value;
-  const opcoes = percentPorIngred[actualIngred] || [];
+  const opcoes = porcentPorIngred[actualIngred] || [];
 
   getIngredQuant.innerHTML = "";
   getIngredGr.style.display = "none";
