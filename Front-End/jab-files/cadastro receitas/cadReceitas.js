@@ -11,7 +11,17 @@ const renderTable = document.querySelector(".save-ingred");
 const getRecipeCatogry = document.getElementById("categoriaReceita");
 const getFarinhaBase = document.getElementById("pesoBaseFarinha");
 
-/* PORCENTAGEM DE CADA INGREDIENTES */
+/* ELEMENTOS DO MODAL DE EDIÇÃO */
+const editNomeIngred = document.getElementById("editNomeIngred");
+const editPorcentSelect = document.getElementById("editPorcent");
+const quantEditContainer = document.getElementById("quantEdit");
+const editGramaSpan = document.getElementById("editGrama");
+const editTipoFornoSelect = document.getElementById("editTipoForno");
+const saveEditBtn = document.querySelector(".save-edit-ingred");
+
+let editingRow = null;
+
+/* PORCENTAGEM DE CADA INGREDIENTE */
 const porcentPorIngred = {
   farinha: [100],
   acucar: [0, 0.5, 1, 1.5, 2],
@@ -26,12 +36,12 @@ const porcentPorIngred = {
   agua: [50, 55, 60, 65, 70, 75, 80],
 };
 
-/* LÓGICA DE ABRIR  E FECHAR O MODAL*/
+/* LÓGICA DE ABRIR E FECHAR O MODAL DE ADICIONAR */
 function setModalState(isOpen) {
   if (isOpen) {
     if (!getRecipeCatogry || !getRecipeCatogry.value) {
       alert(
-        "Antes de adicionar os ingredientes selecione a categória da receita",
+        "Antes de adicionar os ingredientes selecione a categoria da receita",
       );
       return false;
     }
@@ -58,36 +68,45 @@ modalButtons.forEach((btn) => {
       if (setModalState(true)) outsideModalBody.style.filter = "blur(5px)";
     } else {
       setModalState(false);
+      outsideModalBody.style.filter = "blur(0)";
     }
   });
 });
 
 /* LÓGICA DE TRANSFORMAR AS PORCENTAGENS EM GRAMAS */
-function calcularGrama(percentValue) {
-  const valorFarinha = getFarinhaBase
-    ? getFarinhaBase.value.replace(",", ".").trim()
-    : "0";
+function calcularGrama(
+  percentValue,
+  outputElement = getIngredGr,
+  baseFarinhaCustom = null,
+) {
+  const valorFarinha =
+    baseFarinhaCustom !== null
+      ? String(baseFarinhaCustom).replace(",", ".").trim()
+      : getFarinhaBase
+        ? getFarinhaBase.value.replace(",", ".").trim()
+        : "0";
+
   const pesoFarinha = parseFloat(valorFarinha) || 0;
   const porcentagemNum = parseFloat(percentValue) || 0;
 
-  getIngredGr.style.display = "block";
-  getIngredGr.style.backgroundColor = "transparent";
-  getIngredGr.style.border = "solid 2px #e8c9a0";
-  getIngredGr.style.padding = "4px 8px";
-  getIngredGr.style.borderRadius = "4px";
+  outputElement.style.display = "block";
+  outputElement.style.backgroundColor = "transparent";
+  outputElement.style.border = "solid 2px #e8c9a0";
+  outputElement.style.padding = "4px 8px";
+  outputElement.style.borderRadius = "4px";
 
   if (pesoFarinha <= 0) {
-    getIngredGr.innerText = "Informe o peso da farinha no formulário!";
-    return;
+    outputElement.innerText = "Informe o peso da farinha no formulário!";
+    return 0;
   }
 
   if (porcentagemNum <= 0) {
-    getIngredGr.innerText = "A porcentagem deve ser maior que 0%";
-    return;
+    outputElement.innerText = "A porcentagem deve ser maior que 0%";
+    return 0;
   }
 
   const resultadoGrama = (porcentagemNum / 100) * pesoFarinha;
-  getIngredGr.innerText = `${resultadoGrama.toFixed(2)} g`;
+  outputElement.innerText = `${resultadoGrama.toFixed(2)} g`;
 
   return resultadoGrama;
 }
@@ -116,9 +135,7 @@ function massaCruaCalc() {
   });
 
   if (pesoMassaCrua) {
-    pesoMassaCrua.textContent = "";
-    const span = document.createTextNode(`${pesoCru.toFixed(2)} g`);
-    pesoMassaCrua.appendChild(span);
+    pesoMassaCrua.textContent = `${pesoCru.toFixed(2)} g`;
   }
 }
 
@@ -143,13 +160,11 @@ function massaTotalCalc() {
   const WeightEstimate = massaTotal * (1 - 2 / 100);
 
   if (pesoMassaTotal) {
-    pesoMassaTotal.textContent = "";
-    const span = document.createTextNode(`${WeightEstimate.toFixed(2)} g`);
-    pesoMassaTotal.appendChild(span);
+    pesoMassaTotal.textContent = `${WeightEstimate.toFixed(2)} g`;
   }
 }
 
-/*LÓGICA DE SELEÇÃO DOS INGREDIENTES E TROCA DOS SEUS VALORES */
+/* LÓGICA DE SELEÇÃO DOS INGREDIENTES E TROCA DOS SEUS VALORES */
 getIngredName.addEventListener("change", () => {
   const actualIngred = getIngredName.value;
   const opcoes = porcentPorIngred[actualIngred] || [];
@@ -170,7 +185,7 @@ getIngredName.addEventListener("change", () => {
     return;
   }
 
-  if (actualIngred) getIngredQuant.disabled = false;
+  getIngredQuant.disabled = false;
   getIngredQuant.innerHTML = `<option value="">Selecione a porcentagem</option>`;
 
   opcoes.forEach((p) => {
@@ -186,11 +201,13 @@ getIngredQuant.addEventListener("change", () => {
   calcularGrama(percentValue);
 });
 
-/* SALVAR OS INGREDIENTE DO MODAL E EXIBIR A TABELA */
+/* SALVAR OS INGREDIENTES DO MODAL E EXIBIR A TABELA */
 const tablePlacement = document.getElementById("tablePlace");
 
 renderTable.addEventListener("click", (e) => {
+  if (e.target.classList.contains("save-edit-ingred")) return;
   e.preventDefault();
+
   const ingredValue = getIngredName.value;
   const name = getIngredName.options[getIngredName.selectedIndex]?.text || "";
   const quant =
@@ -208,7 +225,6 @@ renderTable.addEventListener("click", (e) => {
 
   tableRows.forEach((row) => {
     const sameIngred = row.querySelector(".col-nome");
-
     if (sameIngred && sameIngred.textContent.trim() === name) {
       alreadyExist = true;
     }
@@ -245,11 +261,13 @@ renderTable.addEventListener("click", (e) => {
   tr.dataset.ingredValue = ingredValue;
   tr.innerHTML = `
     <td class="col-nome">${name}</td>
-    <td>${quant}</td>
+    <td class="col-quant">${quant}</td>
     <td class="col-grama">${grama}</td>
-    <td>${type}</td>
-    <td><button class="delete-item">Excluir</button></td>
-    <td><button class="edit-item">Editar</button></td>
+    <td class="col-forno">${type}</td>
+    <td>
+      <button class="delete-item">Excluir</button>
+      <button class="edit-item">Editar</button>
+    </td>
   `;
   tb.appendChild(tr);
 
@@ -263,11 +281,10 @@ renderTable.addEventListener("click", (e) => {
   setModalState(false);
 });
 
-/* FUNÇÃO DE EXCLUIR O ITEM DA TABELA */
+/* FUNÇÃO DE EXCLUIR E EDITAR O ITEM DA TABELA */
 tablePlacement.addEventListener("click", (e) => {
-  e.preventDefault();
-
   if (e.target.classList.contains("delete-item")) {
+    e.preventDefault();
     const row = e.target.closest("tr");
     const farinhaDeleted = row.dataset.ingredValue === "farinha";
 
@@ -277,27 +294,156 @@ tablePlacement.addEventListener("click", (e) => {
       getFarinhaBase.disabled = false;
     }
 
-    const rowsNumber = document.querySelectorAll("tbody tr");
-
+    const rowsNumber = document.querySelectorAll("#tablePlace tbody tr");
     if (rowsNumber.length === 0) {
       const tableLines = tablePlacement.querySelector("table");
-      if (tableLines) {
-        tableLines.remove();
-      }
+      if (tableLines) tableLines.remove();
     }
 
     massaCruaCalc();
     massaTotalCalc();
   }
-});
-
-/* FUNÇÃO DE EDITAR O ITEM DA TABELA */
-tablePlacement.addEventListener("click", (e) => {
-  e.preventDefault();
 
   if (e.target.classList.contains("edit-item")) {
+    e.preventDefault();
+    const row = e.target.closest("tr");
+    openEditModal(row);
   }
 });
+
+/* LÓGICA PARA ABRIR DO MODAL DE EDIÇÃO */
+function openEditModal(row) {
+  editingRow = row;
+  const ingredKey = row.dataset.ingredValue;
+
+  document.querySelector(".overlay-edit")?.classList.remove("hidden");
+  document.querySelector(".modal-edit-body")?.classList.remove("hidden");
+  outsideModalBody.style.filter = "blur(10px)";
+
+  editNomeIngred.value = ingredKey;
+
+  const currentQuantText = row
+    .querySelector(".col-quant")
+    .textContent.replace("%", "")
+    .trim();
+  const currentFornoText = row.querySelector(".col-forno").textContent.trim();
+
+  Array.from(editTipoFornoSelect.options).forEach((opt) => {
+    opt.selected = opt.text.trim() === currentFornoText;
+  });
+
+  renderEditFields(ingredKey, currentQuantText);
+}
+
+function closeEditModal() {
+  document.querySelector(".overlay-edit")?.classList.add("hidden");
+  document.querySelector(".modal-edit-body")?.classList.add("hidden");
+  outsideModalBody.style.filter = "blur(0)";
+  editingRow = null;
+}
+
+function renderEditFields(ingredKey, selectedPercent) {
+  quantEditContainer.innerHTML = "";
+
+  if (ingredKey === "farinha") {
+    editPorcentSelect.style.display = "none";
+    document.querySelector("label[for='editPorcent']").style.display = "none";
+
+    quantEditContainer.innerHTML = `
+      <label for="farinhaNumber">Digite o peso base da farinha (1000g = 1kg):</label>
+      <input type="number" id="farinhaNumber" value="${getFarinhaBase.value}">
+    `;
+
+    const farinhaInput = document.getElementById("farinhaNumber");
+    calcularGrama(100, editGramaSpan, farinhaInput.value);
+
+    farinhaInput.addEventListener("input", () => {
+      calcularGrama(100, editGramaSpan, farinhaInput.value);
+    });
+  } else {
+    editPorcentSelect.style.display = "block";
+    document.querySelector("label[for='editPorcent']").style.display = "block";
+
+    const opcoes = porcentPorIngred[ingredKey] || [];
+    editPorcentSelect.innerHTML = `<option value="">Selecione a porcentagem</option>`;
+
+    opcoes.forEach((p) => {
+      const opt = document.createElement("option");
+      opt.value = p;
+      opt.textContent = `${p}%`;
+      if (p === selectedPercent) opt.selected = true;
+      editPorcentSelect.appendChild(opt);
+    });
+
+    if (editPorcentSelect.value) {
+      calcularGrama(editPorcentSelect.value, editGramaSpan);
+    } else {
+      editGramaSpan.innerText = "";
+    }
+  }
+}
+
+editNomeIngred.addEventListener("change", () => {
+  renderEditFields(editNomeIngred.value);
+});
+
+editPorcentSelect.addEventListener("change", () => {
+  calcularGrama(editPorcentSelect.value, editGramaSpan);
+});
+
+/* SALVAR ALTERAÇÕES DA EDIÇÃO */
+if (saveEditBtn) {
+  saveEditBtn.addEventListener("click", (e) => {
+    e.preventDefault();
+    if (!editingRow) return;
+
+    const newIngredKey = editNomeIngred.value;
+    const newName =
+      editNomeIngred.options[editNomeIngred.selectedIndex]?.text || "";
+    const newForno =
+      editTipoFornoSelect.options[editTipoFornoSelect.selectedIndex]?.text ||
+      "";
+
+    if (!newIngredKey) {
+      alert("Selecione um ingrediente.");
+      return;
+    }
+
+    let newQuantText = "";
+    let newGramaText = "";
+
+    if (newIngredKey === "farinha") {
+      const farinhaInput = document.getElementById("farinhaNumber");
+      const novoPeso = parseFloat(farinhaInput.value) || 0;
+
+      if (novoPeso <= 0) {
+        alert("Digite um peso válido para a farinha.");
+        return;
+      }
+
+      getFarinhaBase.value = novoPeso;
+      newQuantText = "100% (Base)";
+      newGramaText = `${novoPeso.toFixed(2)} g`;
+    } else {
+      if (!editPorcentSelect.value) {
+        alert("Selecione a porcentagem.");
+        return;
+      }
+      newQuantText = `${editPorcentSelect.value}%`;
+      newGramaText = editGramaSpan.textContent;
+    }
+
+    editingRow.dataset.ingredValue = newIngredKey;
+    editingRow.querySelector(".col-nome").textContent = newName;
+    editingRow.querySelector(".col-quant").textContent = newQuantText;
+    editingRow.querySelector(".col-grama").textContent = newGramaText;
+    editingRow.querySelector(".col-forno").textContent = newForno;
+
+    massaCruaCalc();
+    massaTotalCalc();
+    closeEditModal();
+  });
+}
 
 /* PRÉVIA DA FOTO DA RECEITA */
 const imageInput = document.getElementById("imgReceita");
