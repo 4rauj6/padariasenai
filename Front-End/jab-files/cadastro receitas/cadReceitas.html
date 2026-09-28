@@ -148,7 +148,8 @@
                 </div>
                 <div class="infoBox">
                   <label for="pesoMassaTotal"
-                    ><i class="fa-solid fa-basket-shopping"></i> PESO MASSA ASSADA</label
+                    ><i class="fa-solid fa-basket-shopping"></i> PESO MASSA
+                    ASSADA</label
                   >
                   <span id="pesoMassaTotal"></span>
                 </div>
@@ -197,22 +198,13 @@
                 <option value="agua">Água</option>
               </select>
 
-              <label for="quantIngred">Selecione a quantidade (%):</label>
+              <label for="quantIngred">Selecione a porcentagem:</label>
               <select name="quantIngred" id="quantIngred" disabled>
                 <option value="">Selecione um ingrediente primeiro</option>
               </select>
 
               <label for="gramaDoIngred">Quantidade em grama:</label>
               <span id="gramaDoIngred"></span>
-
-              <!--<label for="tipoIngred">Selecione o tipo do ingrediente:</label>
-              <select name="tipoIngred" id="tipoIngred">
-                <option value="grao">Grão</option>
-                <option value="massa">Massa</option>
-                <option value="farinha1">Farinha 1</option>
-                <option value="farinha2">Farinha 2</option>
-                <option value="farinha3">Farinha 3</option>
-              </select>-->
 
               <label for="tipoForno">Selecione o tipo de forno:</label>
               <select name="tipoForno" id="tipoForno">
@@ -230,6 +222,61 @@
                 </button>
               </div>
             </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!--MODAL DE EDIÇÃO DE INGREDIENTE-->
+    <!--MODAL DE EDIÇÃO DE INGREDIENTE-->
+    <section class="edit-data">
+      <div class="overlay-edit hidden">
+        <div class="modal-edit-body hidden">
+          <button
+            type="button"
+            class="close-edit-modal close-modal"
+            onclick="closeEditModal()"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+
+          <h3>Editar Ingrediente</h3>
+
+          <div class="addingIngred modal-text" id="editingIngred">
+            <label for="editNomeIngred">Ingrediente:</label>
+            <select id="editNomeIngred">
+              <option value="">Selecione um ingrediente</option>
+              <option value="farinha">Farinha de trigo</option>
+              <option value="acucar">Açúcar</option>
+              <option value="fermentoFresco">Fermento Biológico Fresco</option>
+              <option value="fermentoSeco">Fermento Biológico Seco</option>
+              <option value="sal">Sal</option>
+              <option value="claraOvo">Ovos (clara)</option>
+              <option value="gemaOvo">Ovos (gema)</option>
+              <option value="agua">Água</option>
+            </select>
+
+            <div id="quantEdit"></div>
+
+            <label for="editPorcent">Selecione a porcentagem:</label>
+            <select name="editPorcent" id="editPorcent">
+              <option value="">Selecione a porcentagem</option>
+            </select>
+
+            <label for="editGrama">Quantidade em grama:</label>
+            <span id="editGrama"></span>
+
+            <label for="editTipoForno">Tipo de Forno:</label>
+            <select id="editTipoForno">
+              <option value="lastro">Forno lastro</option>
+              <option value="turbo">Forno turbo</option>
+            </select>
+          </div>
+
+          <div class="modal-buttons">
+            <button type="button" class="save-edit-ingred">
+              Salvar Alterações
+            </button>
           </div>
         </div>
       </div>
