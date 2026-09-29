@@ -482,10 +482,25 @@ small {
   flex-direction: column;
   background-color: var(--cor-3);
   width: 600px;
-  height: 420px;
-  padding: 5px;
+  height: 450px;
+  padding: 15px;
   border-radius: 8px;
   gap: 10px;
+}
+
+.edit-modal-header {
+  text-align: center;
+  color: var(--cor-1);
+}
+
+.edit-modal-text {
+  color: var(--cor-1);
+}
+
+#quantEdit {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
 }
 
 @media (max-width: 1540px) {

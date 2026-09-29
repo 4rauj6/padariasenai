@@ -282,67 +282,64 @@ renderTable.addEventListener("click", (e) => {
 });
 
 /* FUNÇÃO DE EXCLUIR E EDITAR O ITEM DA TABELA */
+
 tablePlacement.addEventListener("click", (e) => {
-  if (e.target.classList.contains("delete-item")) {
-    e.preventDefault();
-    const row = e.target.closest("tr");
-    const farinhaDeleted = row.dataset.ingredValue === "farinha";
+  e.preventDefault();
+
+  const deleteItem = e.target.closest(".delete-item");
+  const editItem = e.target.closest(".edit-item");
+
+  if (!deleteItem && !editItem) {
+    return;
+  }
+
+  if (deleteItem) {
+    const row = deleteItem.closest("tr");
+    const table = deleteItem.closest("table");
 
     row.remove();
 
-    if (farinhaDeleted) {
-      getFarinhaBase.disabled = false;
-    }
+    const tableIndex = table.querySelectorAll("tbody tr");
 
-    const rowsNumber = document.querySelectorAll("#tablePlace tbody tr");
-    if (rowsNumber.length === 0) {
-      const tableLines = tablePlacement.querySelector("table");
-      if (tableLines) tableLines.remove();
+    if (tableIndex.length === 0) {
+      table.remove();
     }
-
-    massaCruaCalc();
-    massaTotalCalc();
+  } else if (editItem) {
+    openEditModal(editItem.closest("tr"));
   }
 
-  if (e.target.classList.contains("edit-item")) {
-    e.preventDefault();
-    const row = e.target.closest("tr");
-    openEditModal(row);
-  }
+  massaCruaCalc();
+  massaTotalCalc();
 });
 
 /* LÓGICA PARA ABRIR DO MODAL DE EDIÇÃO */
+
 function openEditModal(row) {
   editingRow = row;
   const ingredKey = row.dataset.ingredValue;
 
   document.querySelector(".overlay-edit")?.classList.remove("hidden");
   document.querySelector(".modal-edit-body")?.classList.remove("hidden");
-  outsideModalBody.style.filter = "blur(10px)";
 
-  editNomeIngred.value = ingredKey;
-
-  const currentQuantText = row
+  const currentQuantIndex = row
     .querySelector(".col-quant")
     .textContent.replace("%", "")
     .trim();
-  const currentFornoText = row.querySelector(".col-forno").textContent.trim();
 
-  Array.from(editTipoFornoSelect.options).forEach((opt) => {
-    opt.selected = opt.text.trim() === currentFornoText;
-  });
-
-  renderEditFields(ingredKey, currentQuantText);
+  renderEditFields(ingredKey, currentQuantIndex);
 }
 
 function closeEditModal() {
   document.querySelector(".overlay-edit")?.classList.add("hidden");
   document.querySelector(".modal-edit-body")?.classList.add("hidden");
   outsideModalBody.style.filter = "blur(0)";
-  editingRow = null;
 }
 
-function renderEditFields(ingredKey, selectedPercent) {
+function renderEditFields(ingredKey) {
+  if (ingredKey) {
+    editNomeIngred.value = ingredKey;
+  }
+
   quantEditContainer.innerHTML = "";
 
   if (ingredKey === "farinha") {
@@ -367,11 +364,11 @@ function renderEditFields(ingredKey, selectedPercent) {
     const opcoes = porcentPorIngred[ingredKey] || [];
     editPorcentSelect.innerHTML = `<option value="">Selecione a porcentagem</option>`;
 
-    opcoes.forEach((p) => {
+    opcoes.forEach((percentByIngred) => {
       const opt = document.createElement("option");
-      opt.value = p;
-      opt.textContent = `${p}%`;
-      if (p === selectedPercent) opt.selected = true;
+      opt.value = percentByIngred;
+      opt.textContent = `${percentByIngred}%`;
+      if (percentByIngred === editPorcentSelect) opt.selected = true;
       editPorcentSelect.appendChild(opt);
     });
 
@@ -381,15 +378,11 @@ function renderEditFields(ingredKey, selectedPercent) {
       editGramaSpan.innerText = "";
     }
   }
+
+  editPorcentSelect.addEventListener("change", () => {
+    calcularGrama(editPorcentSelect.value, editGramaSpan);
+  });
 }
-
-editNomeIngred.addEventListener("change", () => {
-  renderEditFields(editNomeIngred.value);
-});
-
-editPorcentSelect.addEventListener("change", () => {
-  calcularGrama(editPorcentSelect.value, editGramaSpan);
-});
 
 /* SALVAR ALTERAÇÕES DA EDIÇÃO */
 if (saveEditBtn) {
