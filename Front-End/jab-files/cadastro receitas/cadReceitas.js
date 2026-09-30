@@ -265,8 +265,8 @@ renderTable.addEventListener("click", (e) => {
     <td class="col-grama">${grama}</td>
     <td class="col-forno">${type}</td>
     <td>
-      <button class="delete-item">Excluir</button>
-      <button class="edit-item">Editar</button>
+      <button class="delete-item" id="editionBtn"><i class="fa-solid fa-trash"></i></button>
+      <button class="edit-item" id="editionBtn"><i class="fa-solid fa-pencil"></i></button>
     </td>
   `;
   tb.appendChild(tr);
@@ -437,8 +437,8 @@ editNomeIngred.addEventListener("change", () => {
 
 /* SALVAR ALTERAÇÕES DA EDIÇÃO */
 if (saveEditBtn) {
-  saveEditBtn.addEventListener("click", (e) => {
-    e.preventDefault();
+  saveEditBtn.addEventListener("click", (saveEdition) => {
+    saveEdition.preventDefault();
     if (!editingRow) return;
 
     const newIngredKey = editNomeIngred.value;
@@ -448,13 +448,14 @@ if (saveEditBtn) {
       editTipoFornoSelect.options[editTipoFornoSelect.selectedIndex]?.text ||
       "";
 
+    let newQuantValue = "";
+    let newGramaValue = "";
+
     if (!newIngredKey) {
       alert("Selecione um ingrediente.");
       return;
     }
 
-    let newQuantText = "";
-    let newGramaText = "";
 
     if (newIngredKey === "farinha") {
       const farinhaInput = document.getElementById("farinhaNumber");
@@ -466,21 +467,21 @@ if (saveEditBtn) {
       }
 
       getFarinhaBase.value = novoPeso;
-      newQuantText = "100% (Base)";
-      newGramaText = `${novoPeso.toFixed(2)} g`;
+      newQuantValue = "100% (Base)";
+      newGramaValue = `${novoPeso.toFixed(2)} g`;
     } else {
       if (!editPorcentSelect.value) {
         alert("Selecione a porcentagem.");
         return;
       }
-      newQuantText = `${editPorcentSelect.value}%`;
-      newGramaText = editGramaSpan.textContent;
+      newQuantValue = `${editPorcentSelect.value}%`;
+      newGramaValue = editGramaSpan.textContent;
     }
 
     editingRow.dataset.ingredValue = newIngredKey;
     editingRow.querySelector(".col-nome").textContent = newName;
-    editingRow.querySelector(".col-quant").textContent = newQuantText;
-    editingRow.querySelector(".col-grama").textContent = newGramaText;
+    editingRow.querySelector(".col-quant").textContent = newQuantValue;
+    editingRow.querySelector(".col-grama").textContent = newGramaValue;
     editingRow.querySelector(".col-forno").textContent = newForno;
 
     massaCruaCalc();

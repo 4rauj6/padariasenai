@@ -514,6 +514,20 @@ small {
   gap: 7px;
 }
 
+#editionBtn {
+  background-color: transparent;
+  color: var(--cor-1);
+  border: solid 2px var(--cor-1);
+  padding: 3px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#editionBtn:hover {
+  background-color: var(--cor-1);
+  color: var(--cor-2);
+}
+
 @media (max-width: 1540px) {
   .form-content {
     gap: 15px;
