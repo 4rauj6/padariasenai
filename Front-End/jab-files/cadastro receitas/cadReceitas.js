@@ -312,7 +312,7 @@ tablePlacement.addEventListener("click", (e) => {
   massaTotalCalc();
 });
 
-/* LÓGICA PARA ABRIR DO MODAL DE EDIÇÃO */
+/* LÓGICA PARA ABRIR E FECHAR O MODAL DE EDIÇÃO */
 
 function openEditModal(row) {
   editingRow = row;
@@ -335,54 +335,105 @@ function closeEditModal() {
   outsideModalBody.style.filter = "blur(0)";
 }
 
+
 function renderEditFields(ingredKey) {
-  if (ingredKey) {
-    editNomeIngred.value = ingredKey;
-  }
+  editNomeIngred.value = ingredKey;
 
   quantEditContainer.innerHTML = "";
 
   if (ingredKey === "farinha") {
     editPorcentSelect.style.display = "none";
-    document.querySelector("label[for='editPorcent']").style.display = "none";
+
+    const porcentLabel = document.querySelector(
+      "label[for='editPorcent']",
+    );
+
+    if(porcentLabel) {
+      porcentLabel.style.display = "none";
+    }
 
     quantEditContainer.innerHTML = `
-      <label for="farinhaNumber">Digite o peso base da farinha (1000g = 1kg):</label>
-      <input type="number" id="farinhaNumber" value="${getFarinhaBase.value}">
+      <label for="farinhaNumber">
+        Digite o peso base da farinha (1000g = 1kg):
+      </label>
+
+      <input
+        type="number"
+        id="farinhaNumber"
+        value="${getFarinhaBase.value}"
+      >
     `;
 
-    const farinhaInput = document.getElementById("farinhaNumber");
-    calcularGrama(100, editGramaSpan, farinhaInput.value);
+    const farinhaInput =
+      document.getElementById("farinhaNumber");
+
+    calcularGrama(
+      100,
+      editGramaSpan,
+      farinhaInput.value,
+    );
 
     farinhaInput.addEventListener("input", () => {
-      calcularGrama(100, editGramaSpan, farinhaInput.value);
+      calcularGrama(
+        100,
+        editGramaSpan,
+        farinhaInput.value,
+      );
     });
+
   } else {
     editPorcentSelect.style.display = "block";
-    document.querySelector("label[for='editPorcent']").style.display = "block";
 
-    const opcoes = porcentPorIngred[ingredKey] || [];
-    editPorcentSelect.innerHTML = `<option value="">Selecione a porcentagem</option>`;
+    const porcentLabel = document.querySelector(
+      "label[for='editPorcent']",
+    );
+
+    if (porcentLabel) {
+      porcentLabel.style.display = "block";
+    }
+
+    const opcoes =
+      porcentPorIngred[ingredKey] || [];
+
+    editPorcentSelect.innerHTML = `
+      <option value="">
+        Selecione a porcentagem
+      </option>
+    `;
 
     opcoes.forEach((percentByIngred) => {
       const opt = document.createElement("option");
+
       opt.value = percentByIngred;
       opt.textContent = `${percentByIngred}%`;
-      if (percentByIngred === editPorcentSelect) opt.selected = true;
+
       editPorcentSelect.appendChild(opt);
     });
 
     if (editPorcentSelect.value) {
-      calcularGrama(editPorcentSelect.value, editGramaSpan);
+      calcularGrama(
+        editPorcentSelect.value,
+        editGramaSpan,
+      );
     } else {
       editGramaSpan.innerText = "";
     }
   }
-
-  editPorcentSelect.addEventListener("change", () => {
-    calcularGrama(editPorcentSelect.value, editGramaSpan);
-  });
 }
+
+editPorcentSelect.addEventListener("change", () => {
+  calcularGrama(
+    editPorcentSelect.value,
+    editGramaSpan,
+  );
+});
+
+editNomeIngred.addEventListener("change", () => {
+  const novoIngrediente = editNomeIngred.value;
+
+  renderEditFields(novoIngrediente, "");
+});
+
 
 /* SALVAR ALTERAÇÕES DA EDIÇÃO */
 if (saveEditBtn) {

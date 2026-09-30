@@ -89,7 +89,7 @@ body {
 .form-receita-inputs select,
 .form-receita-inputs textarea {
   width: 100%;
-  min-height: 50px;
+  min-height: 3px;
   border-radius: 6px;
   border: solid 2px #e8c9a0;
   outline: none;
@@ -105,7 +105,7 @@ body {
 .form-receita-inputs textarea {
   resize: none;
   min-width: 500px;
-  height: 12vh;
+  height: 70px;
 }
 
 .imgSelector {
@@ -202,7 +202,7 @@ body {
   flex-direction: column;
   background-color: var(--cor-3);
   width: 600px;
-  height: 420px;
+  height: 430px;
   padding: 5px;
   border-radius: 8px;
   gap: 10px;
@@ -222,7 +222,8 @@ body {
 
 .modal-text input,
 .modal-text select {
-  width: 45%;
+  min-width: 100%;
+  text-align: center;
 }
 
 .modal-text label {
@@ -233,13 +234,13 @@ body {
 .modal-buttons {
   display: flex;
   justify-content: space-between;
-  margin-top: 30px;
+  margin-top: 20px;
 }
 
 .addingIngred input,
 .addingIngred select {
-  background-color: transparent;
-  border: solid 2px var(--cor-2);
+  background-color: var(--cor-2);
+  border: solid 2px var(--cor-1);
   width: 60%;
   padding: 2px;
   border-radius: 5px;
@@ -486,6 +487,16 @@ small {
   padding: 15px;
   border-radius: 8px;
   gap: 10px;
+}
+
+.edit-modal-text select {
+  width: 100%;
+  text-align: center;
+}
+
+.edit-modal-text input {
+  width: 100%;
+  text-align: center;
 }
 
 .edit-modal-header {
