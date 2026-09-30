@@ -1,0 +1,480 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    min-height: 100dvh;
+    font-family: 'Poppins', sans-serif;
+    background-color: #0a0303;
+    color: #fff;
+    overflow: hidden;
+    background: #000;
+}
+
+.menu-toggle {
+    display: none;
+}
+
+.menu-lateral {
+    width: 300px;
+    min-height: 100vh;
+    background-color: #9e7547;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 24px 20px 18px;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    color: #f7e6d4;
+    border-bottom: 1px solid #b8905d;
+    padding-bottom: 20px;
+}
+
+.links-menu {
+    list-style: none;
+    margin-top: 35px;
+    flex-grow: 1;
+    padding: 14px 12px;
+}
+
+.links-menu li {
+    margin-bottom: 34px;
+}
+
+.links-menu a {
+    color: #f7e6d4;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    font-size: 20px;
+    font-weight: 500;
+    padding: 12px 14px;
+    width: 100%;
+    transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.botao-sair {
+    border-top: 1px solid #b8905d;
+    padding-top: 20px;
+}
+
+.botao-sair a {
+    color: #f7e6d4;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 14px;
+}
+
+.conteudo-principal {
+    flex: 1;
+    height: 100vh;
+    background-image: linear-gradient(rgba(0,0,0,0.35), rgba(0,0,0,0.35)), url('fotodefundo.png');
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 80px 60px 0;
+    margin: 0;
+}
+
+.quadro-centro {
+    text-align: left;
+    max-width: 760px;
+    width: min(96%, 760px);
+}
+
+.linha-detalhe {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 24px;
+    margin-bottom: 34px;
+}
+
+.linha-detalhe .linha {
+    height: 1px;
+    background-color: #cca873;
+    flex: 1;
+}
+
+h2 {
+    font-family: 'Playfair Display', serif;
+    font-weight: 400;
+    font-size: 55px;
+    letter-spacing: 2px;
+    color: #f5eedf;
+}
+
+.linha-divisoria {
+    width: 100%;
+    height: 2px;
+    background-color: #cca873;
+    margin: 40px 0;
+}
+
+p {
+    color: #dcd0c0;
+    font-size: 30px;
+    font-weight: 300;
+    line-height: 1.8;
+    margin-bottom: 42px;
+}
+
+.btn-nova-receita {
+    background-color: #9e7547;
+    color: #f7e6d4;
+    border: 1px solid #cca873;
+    padding: 20px 46px;
+    border-radius: 4px;
+    font-size: 20px;
+    letter-spacing: 1.8px;
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.btn-nova-receita:hover {
+    background-color: #b58954;
+}
+
+.DOURADO{
+    color: #cca873;
+}
+
+@media (max-width: 1100px) {
+    body {
+        flex-direction: column;
+        height: auto;
+        overflow-x: hidden;
+        overflow-y: auto;
+    }
+
+    .menu-lateral {
+        width: 100%;
+        min-height: auto;
+        padding: 24px 20px;
+    }
+
+    .links-menu {
+        margin-top: 20px;
+        padding: 8px 0;
+    }
+
+    .links-menu li {
+        margin-bottom: 18px;
+    }
+
+    .links-menu a {
+        font-size: 18px;
+        gap: 16px;
+    }
+
+    .conteudo-principal {
+        padding: 48px 28px 64px;
+        min-height: 500px;
+    }
+
+    h2 {
+        font-size: 44px;
+    }
+
+    p {
+        font-size: 24px;
+    }
+}
+
+@media (max-width: 768px) {
+    body {
+        position: relative;
+        overflow-x: hidden;
+        min-height: 100vh;
+        min-height: 100dvh;
+    }
+
+    .conteudo-principal {
+        min-height: 100vh;
+        min-height: 100dvh;
+        height: 100dvh;
+        background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(109, 60, 28, 0.45)), url('fotofundocelular.png');
+        background-position: center center;
+        background-size: cover;
+    }
+
+    .menu-toggle {
+        display: flex;
+        position: fixed;
+        top: 18px;
+        left: 18px;
+        z-index: 30;
+        width: 48px;
+        height: 48px;
+        border: 1px solid #cca873;
+        border-radius: 10px;
+        background: rgba(158, 117, 71, 0.95);
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
+    }
+
+    .menu-toggle span {
+        display: block;
+        width: 22px;
+        height: 2px;
+        background: #f7e6d4;
+        border-radius: 2px;
+    }
+
+    .menu-lateral {
+        position: fixed;
+        left: -100%;
+        top: 0;
+        width: min(82vw, 290px);
+        height: 100vh;
+        z-index: 20;
+        transition: left 0.3s ease;
+        box-shadow: 8px 0 26px rgba(0, 0, 0, 0.35);
+    }
+
+    .menu-lateral.menu-open {
+        left: 0;
+    }
+
+    .conteudo-principal {
+        width: 100%;
+        padding: 80px 20px 52px;
+    }
+
+    .logo {
+        font-size: 20px;
+        padding-bottom: 16px;
+    }
+
+    .logo img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .links-menu a {
+        font-size: 16px;
+        gap: 12px;
+        padding: 10px 8px;
+    }
+
+    .links-menu a svg,
+    .links-menu a img {
+        width: 26px;
+        height: 26px;
+    }
+
+    .linha-detalhe {
+        gap: 12px;
+        margin-bottom: 22px;
+    }
+
+    .linha-detalhe img {
+        width: 54px;
+        height: 54px;
+    }
+
+    h2 {
+        font-size: 32px;
+        letter-spacing: 1px;
+        line-height: 1.2;
+    }
+
+    .linha-divisoria {
+        margin: 26px 0;
+    }
+
+    p {
+        font-size: 20px;
+        line-height: 1.5;
+        margin-bottom: 28px;
+    }
+
+    .btn-nova-receita {
+        width: 100%;
+        justify-content: center;
+        padding: 16px 20px;
+        font-size: 16px;
+        letter-spacing: 1px;
+    }
+}
+
+@media (max-width: 480px) {
+    .menu-lateral {
+        padding: 18px 16px;
+    }
+
+    .links-menu a {
+        font-size: 14px;
+    }
+
+    .botao-sair a {
+        font-size: 12px;
+    }
+
+    .conteudo-principal {
+        padding: 28px 16px 42px;
+    }
+
+    .linha-detalhe {
+        gap: 10px;
+    }
+
+    .linha-detalhe img {
+        width: 48px;
+        height: 48px;
+    }
+
+    h2 {
+        font-size: 26px;
+    }
+
+    p {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 430px) {
+    .menu-lateral {
+        padding: 16px 14px;
+    }
+
+    .logo {
+        gap: 8px;
+        font-size: 18px;
+    }
+
+    .logo img {
+        width: 52px;
+        height: 52px;
+    }
+
+    .links-menu a {
+        font-size: 13px;
+        gap: 10px;
+    }
+
+    .links-menu a svg,
+    .links-menu a img {
+        width: 22px;
+        height: 22px;
+    }
+
+    .botao-sair {
+        padding-top: 16px;
+    }
+
+    h2 {
+        font-size: 24px;
+    }
+
+    p {
+        font-size: 17px;
+    }
+}
+
+@media (max-width: 390px) {
+    .menu-lateral {
+        padding: 14px 12px;
+    }
+
+    .links-menu li {
+        margin-bottom: 14px;
+    }
+
+    .links-menu a {
+        font-size: 12px;
+        padding: 8px 6px;
+    }
+
+    .conteudo-principal {
+        padding: 24px 14px 38px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 375px) {
+    .menu-lateral {
+        padding: 12px 10px;
+    }
+
+    .logo {
+        font-size: 16px;
+    }
+
+    .logo img {
+        width: 46px;
+        height: 46px;
+    }
+
+    .links-menu a {
+        font-size: 11px;
+    }
+
+    .btn-nova-receita {
+        font-size: 14px;
+        padding: 14px 18px;
+    }
+}
+
+@media (max-width: 360px) {
+    h2 {
+        font-size: 20px;
+        letter-spacing: 0.5px;
+    }
+
+    p {
+        font-size: 15px;
+    }
+
+    .btn-nova-receita {
+        font-size: 13px;
+    }
+}
+
+@media (max-width: 320px) {
+    .links-menu a {
+        font-size: 10px;
+        gap: 8px;
+    }
+
+    h2 {
+        font-size: 18px;
+    }
+
+    p {
+        font-size: 14px;
+    }
+}
