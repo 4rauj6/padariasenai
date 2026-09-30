@@ -158,8 +158,8 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: 15%;
-  height: 40px;
+  width: 35%;
+  height: 50px;
   will-change: transform;
 }
 
@@ -666,7 +666,7 @@ small {
 
   .form-receita-inputs textarea {
     width: 100%;
-    height: 150px;
+    height: 80px;
   }
 
   .table-container {
@@ -714,8 +714,8 @@ small {
   .saveButton button {
     width: 100%;
   }
-}
 
+}
 @media (max-width: 460px) {
   .hero {
     padding: 15px;
@@ -752,8 +752,9 @@ small {
 
   .form-receita,
   .table-container {
-    padding: 10px;
+    box-sizing: border-box;
     width: 100%;
+    padding: 10px;
   }
 
   .form-receita-inputs {
@@ -761,7 +762,7 @@ small {
   }
 
   .form-receita-inputs textarea {
-    min-width: 10%;
+    min-width: 0;
   }
 
   .table-content {
@@ -778,7 +779,21 @@ small {
   }
 
   .addIngred {
-    min-width: 10%;
+    box-sizing: border-box;
+    width: 300px;
+    min-width: 0;
+    min-height: 48px;
+    padding: 12px;
+    color: #fff;
+    background-color: #6b422b;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+  }
+
+  .addIngred:active {
+    background-color: #b86f45;
+    transform: scale(0.98);
   }
 
   .table-container-2 {
@@ -787,14 +802,12 @@ small {
   }
 
   .modal {
+    position: fixed;
+    inset: 0;
     display: flex;
-    flex-direction: column;
     justify-content: center;
     align-items: center;
-    position: fixed;
-    top: 30%;
-    left: 0;
-    right: 0;
+    padding: 12px;
   }
 
   .hidden {
@@ -802,27 +815,342 @@ small {
   }
 
   .modal-body {
+    box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    background-color: #4a2c1a;
-    width: min(440px, calc(100vw - 30px));
-    height: 600px;
-    padding: 40px;
-    border-radius: 50px 50px 0px 0px;
+    background-color: #f2e8d9;
+    color: #4a2c1a;
+    width: min(440px, calc(100vw - 24px));
+    height: auto;
+    max-height: 90vh;
+    overflow-y: auto;
+    padding: 24px;
+    border-radius: 16px;
     gap: 10px;
   }
 
+  .modal-body h3,
+  .modal-text label,
+  .addingIngred label,
+  #gramaDoIngred {
+    color: #4a2c1a;
+  }
+
   .modal-text input,
-  .modal-text select {
+  .modal-text select,
+  .addingIngred select {
+    box-sizing: border-box;
     width: 100%;
-    padding: 5px;
+    min-height: 42px;
+    padding: 8px;
+    background-color: #fffaf3;
   }
 
-  .add-mais-ingred {
-    width: 20%;
+  .modal-buttons {
+    gap: 10px;
+    margin-top: 16px;
   }
 
+  .add-mais-ingred,
   .save-ingred {
-    width: 40%;
+    box-sizing: border-box;
+    width: 50%;
+    min-height: 44px;
+    padding: 8px;
+    color: #fff;
+    background-color: #6b422b;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .add-mais-ingred:active,
+  .save-ingred:active {
+    background-color: #b86f45;
+  }
+
+  @media (max-width: 835px) {
+  .hero {
+    width: 100%;
+    min-height: auto;
+    padding: 16px;
+  }
+
+  .form-content {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-receita,
+  .table-container,
+  .table-container-2 {
+    box-sizing: border-box;
+    width: 100%;
+    height: auto;
+    min-width: 0;
+    padding: 16px;
+  }
+
+  .table-content {
+    width: 100%;
+    margin: 0;
+  }
+
+  .form-receita-inputs input,
+  .form-receita-inputs select,
+  .form-receita-inputs textarea,
+  .mp-container textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .maisInfoReceitas {
+    flex-direction: column;
+    gap: 12px;
+    padding: 0;
+  }
+
+  .infoBox {
+    box-sizing: border-box;
+    width: 100%;
+  }
+
+  #tablePlace {
+    overflow-x: auto;
+  }
+
+  #tablePlace table {
+    min-width: 520px;
+  }
+
+  .saveButton,
+  .saveButton button {
+    box-sizing: border-box;
+    width: 100%;
+  }
+}
+}
+
+@media (max-width: 460px) {
+  .hero {
+    padding: 12px;
+  }
+
+  .header {
+    align-items: flex-start;
+  }
+
+  .header-text-content h1 {
+    font-size: 1.1rem;
+  }
+
+  .header-text-content span {
+    font-size: 0.8rem;
+  }
+
+  .image-upload {
+    height: 180px;
+  }
+
+  .modal {
+    box-sizing: border-box;
+    position: fixed;
+    inset: 0;
+    padding: 12px;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal-body {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 440px;
+    height: auto;
+    max-height: 90dvh;
+    overflow-y: auto;
+    padding: 24px;
+    border-radius: 20px;
+  }
+}
+@media (max-width: 460px) {
+  #tablePlace {
+    max-height: none;
+    padding: 0;
+    overflow: visible;
+  }
+
+  #tablePlace table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    border-spacing: 0;
+  }
+
+  #tablePlace thead {
+    display: none;
+  }
+
+  #tablePlace tbody {
+    display: block;
+  }
+
+  #tablePlace tbody tr {
+    display: block;
+    margin-bottom: 12px;
+    padding: 8px 12px;
+    background-color: #fffaf3;
+    border: 1px solid #e8c9a0;
+    border-radius: 10px;
+  }
+
+  #tablePlace tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 2px;
+    text-align: right;
+    border-bottom: 1px solid #e8c9a0;
+  }
+
+  #tablePlace tbody td::before {
+    font-weight: 600;
+    color: #4a2c1a;
+    text-align: left;
+  }
+
+  #tablePlace tbody td:nth-child(1)::before {
+    content: "Ingrediente";
+  }
+
+  #tablePlace tbody td:nth-child(2)::before {
+    content: "Porcentagem";
+  }
+
+  #tablePlace tbody td:nth-child(3)::before {
+    content: "Gramas";
+  }
+
+  #tablePlace tbody td:nth-child(4)::before {
+    content: "Forno";
+  }
+
+  #tablePlace tbody td:nth-child(5) {
+    justify-content: flex-end;
+    gap: 8px;
+    border-bottom: 0;
+  }
+
+  #tablePlace tbody td:nth-child(5)::before {
+    content: "Ações";
+    margin-right: auto;
+  }
+}
+@media (max-width: 460px) {
+  .modal,
+  .overlay {
+@media (max-width: 460px) {
+  .modal,
+  .overlay {
+    position: fixed;
+    inset: 0;
+  }
+
+  .overlay {
+    display: grid;
+    place-items: end center;
+    padding: 0;
+  }
+
+  .modal-body {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 50vh;
+    max-height: 50vh;
+    overflow: hidden;
+    margin: 0;
+    padding: 10px 16px;
+    border-radius: 18px 18px 0 0;
+    gap: 4px;
+  }
+
+  .modal-text {
+    min-height: 0;
+    overflow: hidden;
+    padding: 4px 8px;
+  }
+
+  .addingIngred {
+    gap: 4px;
+    margin-top: 4px;
+  }
+
+  .addingIngred label {
+    font-size: 0.8rem;
+  }
+
+  .addingIngred select {
+    min-height: 32px;
+    padding: 4px 6px;
+    font-size: 0.85rem;
+  }
+
+  .modal-buttons {
+    gap: 8px;
+    margin-top: 8px;
+  }
+
+  .add-mais-ingred,
+  .save-ingred {
+    box-sizing: border-box;
+    width: 50%;
+    min-height: 36px;
+    padding: 5px;
+    font-size: 0.8rem;
+  }
+
+  .close-modal {
+    padding: 4px 8px;
+  }
+}
+  }
+}
+
+/* Modal de edição ajustado para telas de celular */
+@media (max-width: 460px) {
+  .overlay-edit {
+    box-sizing: border-box;
+    position: fixed;
+    inset: 0;
+    display: grid;
+    place-items: center;
+    padding: 12px;
+    overflow-y: auto;
+  }
+
+  .modal-edit-body {
+    box-sizing: border-box;
+    width: min(440px, calc(100vw - 24px));
+    height: auto;
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+    padding: 16px;
+    gap: 10px;
+  }
+
+  .edit-modal-text select,
+  #quantEdit input {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 40px;
+  }
+
+  .save-edit-ingred {
+    min-height: 44px;
+    padding: 8px 12px;
   }
 }
