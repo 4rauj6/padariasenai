@@ -1,0 +1,4 @@
+gordura: 0 - 4% (massa salgada) 5 - 10% (massa doce e semi doce)
+aditivo (po): 1%
+aditivo(liquido): 0,2%
+aditivo(pasta): 0,3%

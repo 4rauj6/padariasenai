@@ -62,7 +62,7 @@ body {
 .form-content {
   display: flex;
   width: 100%;
-  gap: 20px;
+  gap: 270px;
 }
 
 .form-receita {
@@ -71,7 +71,7 @@ body {
   background-color: #f2e8d9;
   color: #4a2c1a;
   min-height: 100px;
-  width: 110%;
+  width: 200%;
   margin-top: 10px;
   padding: 20px;
   border-radius: 6px;
@@ -126,13 +126,13 @@ body {
   background-color: #f2e8d9;
   padding: 20px;
   min-height: 40px;
-  width: 110%;
+  width: 109%;
   border-radius: 6px;
 }
 
 .table-container-2 {
   background-color: #f2e8d9;
-  width: 110%;
+  width: 109%;
   border-radius: 6px;
 }
 
@@ -526,6 +526,16 @@ small {
 #editionBtn:hover {
   background-color: var(--cor-1);
   color: var(--cor-2);
+}
+
+.tooltip {
+  display: none;
+  position: absolute;
+  background-color: var(--cor-1);
+  color: var(--cor-2);
+  padding: 5px;
+  border-radius: 5px;
+  transition: opacity 0.2s ease-in-out;
 }
 
 @media (max-width: 1540px) {

@@ -265,8 +265,8 @@ renderTable.addEventListener("click", (e) => {
     <td class="col-grama">${grama}</td>
     <td class="col-forno">${type}</td>
     <td>
-      <button class="delete-item" id="editionBtn"><i class="fa-solid fa-trash"></i></button>
-      <button class="edit-item" id="editionBtn"><i class="fa-solid fa-pencil"></i></button>
+      <button class="delete-item" id="editionBtn" data-tooltip="Excluir ingrediente"><i class="fa-solid fa-trash"></i></button>
+      <button class="edit-item" id="editionBtn" data-tooltip="Editar ingrediente"><i class="fa-solid fa-pencil"></i></button>
     </td>
   `;
   tb.appendChild(tr);
@@ -517,3 +517,35 @@ if (imageInput) {
     if (uploadPlaceholder) uploadPlaceholder.hidden = true;
   });
 }
+
+
+/* TOOLTIPS DOS BOTÕES DA TABELA*/
+document.addEventListener("DOMContentLoaded", () => {
+  const tooltip = document.createElement("div");
+  tooltip.className = "tooltip";
+  document.body.appendChild(tooltip);
+
+  document.addEventListener("mouseover", (OnHover) => {
+    const target = OnHover.target.closest("[data-tooltip]");
+    
+    if(!target) {
+      return;
+    }
+
+    tooltip.textContent = target.dataset.tooltip;
+    
+    const rect = target.getBoundingClientRect();
+    tooltip.style.left = rect.left + window.scrollX + "px";
+    tooltip.style.top = rect.bottom + window.scrollY + "px";
+    tooltip.style.display = "block";
+  }, true);
+
+  document.addEventListener("mouseout", (OnHoverOut) => {
+    const target = OnHoverOut.target.closest("[data-tooltip]");
+    if(!target) {
+      return;
+    }
+
+    tooltip.style.display = "none";
+  }, true);
+});
