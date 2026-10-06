@@ -5,6 +5,7 @@ const outsideModalBody = document.querySelector(".hero");
 
 const getIngredName = document.getElementById("nomeIngred");
 const getIngredQuant = document.getElementById("quantIngred");
+const getIngredPreco = document.getElementById("precoIngred");
 const getIngredGr = document.getElementById("gramaDoIngred");
 const getFornoType = document.getElementById("tipoForno");
 const renderTable = document.querySelector(".save-ingred");
@@ -15,6 +16,7 @@ const getFarinhaBase = document.getElementById("pesoBaseFarinha");
 const editNomeIngred = document.getElementById("editNomeIngred");
 const editPorcentSelect = document.getElementById("editPorcent");
 const quantEditContainer = document.getElementById("quantEdit");
+const editIngredPreco = document.getElementById("editPrecoIngred")
 const editGramaSpan = document.getElementById("editGrama");
 const editTipoFornoSelect = document.getElementById("editTipoForno");
 const saveEditBtn = document.querySelector(".save-edit-ingred");
@@ -34,6 +36,10 @@ const porcentPorIngred = {
     17.5, 18, 18.5, 19, 19.5, 20,
   ],
   agua: [50, 55, 60, 65, 70, 75, 80],
+  gordura: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10],
+  aditivoPo: [0, 0.5, 1],
+  aditivoLiqui: [0, 0.2],
+  aditivoPasta: [0, 0.3]
 };
 
 /* LÓGICA DE ABRIR E FECHAR O MODAL DE ADICIONAR */
@@ -164,6 +170,22 @@ function massaTotalCalc() {
   }
 }
 
+function calcPreco() {
+  const searchInTableRows = document.querySelectorAll("#tablePlace tbody tr");
+
+  let precoTotal = getIngredPreco ? parseFloat(getIngredPreco.value.replace(",", ".").trim() || 0) : 0;
+
+  searchInTableRows.forEach((row) => {
+    const precoTd = row.querySelector(".col-preco");
+
+    if(precoTd) {
+      const precoText = precoTd.textContent.replace("R$", "").replace(",", ".").trim();
+      const precoNum = parseFloat(precoText) || 0;
+      precoTotal += precoNum;
+    }
+  });
+}
+
 /* LÓGICA DE SELEÇÃO DOS INGREDIENTES E TROCA DOS SEUS VALORES */
 getIngredName.addEventListener("change", () => {
   const actualIngred = getIngredName.value;
@@ -212,6 +234,7 @@ renderTable.addEventListener("click", (e) => {
   const name = getIngredName.options[getIngredName.selectedIndex]?.text || "";
   const quant =
     getIngredQuant.options[getIngredQuant.selectedIndex]?.text || "";
+  const preco = getIngredPreco.options[getIngredPreco.selectedIndex]?.text || "";
   const grama = getIngredGr.textContent || "0 g";
   const type = getFornoType.options[getFornoType.selectedIndex]?.text || "";
 
@@ -248,6 +271,7 @@ renderTable.addEventListener("click", (e) => {
         <th>Ingrediente</th>
         <th>Porcentagem</th>
         <th>Gramas</th>
+        <th>Preço</th>
         <th>Forno</th>
         <th>Ação</th>
       </tr>`;
@@ -262,6 +286,7 @@ renderTable.addEventListener("click", (e) => {
   tr.innerHTML = `
     <td class="col-nome">${name}</td>
     <td class="col-quant">${quant}</td>
+    <td class="col-preco">${preco}</td>
     <td class="col-grama">${grama}</td>
     <td class="col-forno">${type}</td>
     <td>
@@ -313,7 +338,6 @@ tablePlacement.addEventListener("click", (e) => {
 });
 
 /* LÓGICA PARA ABRIR E FECHAR O MODAL DE EDIÇÃO */
-
 function openEditModal(row) {
   editingRow = row;
   const ingredKey = row.dataset.ingredValue;
