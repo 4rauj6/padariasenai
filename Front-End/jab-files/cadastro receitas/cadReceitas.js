@@ -117,7 +117,7 @@ function calcularGrama(
   }
 
   const resultadoGrama = (porcentagemNum / 100) * pesoFarinha;
-  outputElement.innerText = `${resultadoGrama.toFixed(2)} g`;
+  outputElement.innerText = `${resultadoGrama.toFixed(0)} g`;
 
   return resultadoGrama;
 }
@@ -149,7 +149,7 @@ function calcPpq(
   const pPg = precoPacote / 1000;
   const precoUtili = pPg * (gramasCalc || 0);
 
-  outputElement.innerText = `R$ ${precoUtili.toFixed(4)}`;
+  outputElement.innerText = `R$ ${precoUtili.toFixed(2)}`;
 
   return precoUtili;
 }
@@ -180,7 +180,7 @@ function massaCruaCalc() {
   });
 
   if (pesoMassaCrua) {
-    pesoMassaCrua.textContent = `${pesoCru.toFixed(2)} g`;
+    pesoMassaCrua.textContent = `${pesoCru.toFixed(0)} g`;
   }
 }
 
@@ -205,7 +205,7 @@ function massaTotalCalc() {
   const WeightEstimate = massaTotal * (1 - 2 / 100);
 
   if (pesoMassaTotal) {
-    pesoMassaTotal.textContent = `${WeightEstimate.toFixed(2)} g`;
+    pesoMassaTotal.textContent = `${WeightEstimate.toFixed(0)} g`;
   }
 }
 
@@ -364,6 +364,7 @@ tablePlacement.addEventListener("click", (e) => {
 
   const deleteItem = e.target.closest(".delete-item");
   const editItem = e.target.closest(".edit-item");
+  const tooltipLabel = document.getElementsByClassName("toottip");
 
   if (!deleteItem && !editItem) {
     return;
@@ -379,6 +380,7 @@ tablePlacement.addEventListener("click", (e) => {
 
     if (tableIndex.length === 0) {
       table.remove();
+      tooltipLabel.style.display = "none";
     }
   } else if (editItem) {
     openEditModal(editItem.closest("tr"));
