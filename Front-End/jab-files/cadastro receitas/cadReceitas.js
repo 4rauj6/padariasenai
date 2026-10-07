@@ -76,6 +76,7 @@ function setModalState(isOpen) {
     if (getIngredPreco) getIngredPreco.value = "";
     if (getPesoPacoteIngred) getPesoPacoteIngred.value = "1000";
     if (getPpq) getPpq.textContent = "";
+    atualizarValorTotal();
   }
   return true;
 }
@@ -113,16 +114,14 @@ function calcularGrama(percentValue, outputElement = getIngredGr, baseFarinhaCus
     outputElement.textContent = "Selecione uma porcentagem válida";
     return 0;
   }
-
-  const resultadoGrama = (porcentagemNum / 100) * pesoFarinha;
-  outputElement.innerText = `${resultadoGrama.toFixed(2)} g`;
-
-  return resultadoGrama;
+  const gramas = (porcentagem / 100) * pesoFarinha;
+  outputElement.textContent = `${gramas.toFixed(2)} g`;
+  return gramas;
 }
 function calcPpq(gramasCalc, precoInput = getIngredPreco, outputElement = getPpq, pesoInput = getPesoPacoteIngred) {
   if (!outputElement) return 0;
   const precoPacote = numeroBR(precoInput?.value);
-  const pesoPacote = numeroBR(pesoInput?.value);
+  const pesoPacote = obterPesoPacoteGramas(pesoInput);
   outputElement.style.display = "block";
   outputElement.style.backgroundColor = "transparent";
   outputElement.style.border = "solid 2px #e8c9a0";
@@ -132,13 +131,9 @@ function calcPpq(gramasCalc, precoInput = getIngredPreco, outputElement = getPpq
     outputElement.textContent = "Informe o preço do pacote e seu peso";
     return 0;
   }
-
-  const pPg = precoPacote / 1000;
-  const precoUtili = pPg * (gramasCalc || 0);
-
-  outputElement.innerText = `R$ ${precoUtili.toFixed(4)}`;
-
-  return precoUtili;
+  const custo = (precoPacote * (Number(gramasCalc) || 0)) / pesoPacote;
+  outputElement.textContent = formatarReais(custo);
+  return custo;
 }
 const timeEstimative = document.getElementById("tempoEstimado");
 const porcoesEstimative = document.getElementById("porcoesEstimadas");
@@ -146,77 +141,26 @@ const pesoMassaTotal = document.getElementById("pesoMassaTotal");
 const pesoMassaCrua = document.getElementById("pesoMassaCrua");
 
 function massaCruaCalc() {
-  const searchInTableRows = document.querySelectorAll("#tablePlace tbody tr");
-  let pesoCru = 0;
-
-  searchInTableRows.forEach((row) => {
-    const gramsTd = row.querySelector(".col-grama");
-
-    if (gramsTd) {
-      const textCleaner = gramsTd.textContent
-        .replace("g", "")
-        .replace(",", ".")
-        .trim();
-
-      const gramsNum = parseFloat(textCleaner) || 0;
-      pesoCru += gramsNum;
-    }
-  });
-
-  if (pesoMassaCrua) {
-    pesoMassaCrua.textContent = `${pesoCru.toFixed(2)} g`;
+  const linhas = document.querySelectorAll("#tablePlace tbody tr");
+  const pesoCru = [...linhas].reduce((total, linha) => {
+    return total + numeroBR(linha.querySelector(".col-grama")?.textContent);
+  }, 0);
+  if (pesoMassaCrua) pesoMassaCrua.textContent = `${pesoCru.toFixed(2)} g`;
+  const pesoUnidade = numeroBR(getPesoUnidadeCrua?.value);
+  if (porcoesEstimative) {
+    porcoesEstimative.textContent = pesoUnidade > 0
+      ? `${Math.floor(pesoCru / pesoUnidade)} unidades`
+      : "";
   }
 }
 function massaTotalCalc() {
-  const searchInTableRows = document.querySelectorAll("#tablePlace tbody tr");
-  let massaTotal = 0;
-
-  searchInTableRows.forEach((row) => {
-    const GramsTd = row.querySelector(".col-grama");
-
-    if (GramsTd) {
-      const textCleaner = GramsTd.textContent
-        .replace("g", "")
-        .replace(",", ".")
-        .trim();
-
-      const gramsNum = parseFloat(textCleaner) || 0;
-      massaTotal += gramsNum;
-    }
-  });
-
-  const WeightEstimate = massaTotal * (1 - 2 / 100);
-
-  if (pesoMassaTotal) {
-    pesoMassaTotal.textContent = `${WeightEstimate.toFixed(2)} g`;
-  }
+  const linhas = document.querySelectorAll("#tablePlace tbody tr");
+  const massaCrua = [...linhas].reduce((total, linha) => {
+    return total + numeroBR(linha.querySelector(".col-grama")?.textContent);
+  }, 0);
+  const perdaAssamento = 0.10;
+  if (pesoMassaTotal) pesoMassaTotal.textContent = `${(massaCrua * (1 - perdaAssamento)).toFixed(2)} g`;
 }
-
-// function calcPrecoTotal() {
-//   const searchInTableRows = document.querySelectorAll("#tablePlace tbody tr");
-
-//   let actualPpq = 0;
-
-//   searchInTableRows.forEach((row) => {
-//     const ppqTd = row.querySelector(".col-ppq");
-
-//     if (ppqTd) {
-//       const textCleaner =
-//         ppqTd.textContent.replace("R$", "").replace(",", ".") || 0;
-
-//       const ppqNum = parseFloat(textCleaner);
-
-//       actualPpq += ppqNum;
-//     }
-//   });
-
-//   const estimatePpq = getIngredGr / actualPpq;
-
-//   if (ppqInTable) {
-//     ppqInTable.textContent = `${estimatePpq.toFixed(2)}`;
-//   }
-// }
-
 /* LÓGICA DE SELEÇÃO DOS INGREDIENTES E TROCA DOS SEUS VALORES */
 getIngredName.addEventListener("change", () => {
   const actualIngred = getIngredName.value;
@@ -266,12 +210,19 @@ renderTable.addEventListener("click", (e) => {
   const quant =
     getIngredQuant.options[getIngredQuant.selectedIndex]?.text || "";
   const preco = String(numeroBR(getIngredPreco.value));
-  const pesoPacote = numeroBR(getPesoPacoteIngred?.value);
+  const pesoPacote = obterPesoPacoteGramas(getPesoPacoteIngred);
   const grama = getIngredGr.textContent || "0 g";
   const precoQuant = getPpq.textContent || "R$ 0,0000";
 
-  if (!getIngredName.value || !getIngredQuant.value || getIngredPreco.value.trim() === "" || numeroBR(getIngredPreco.value) < 0 || pesoPacote <= 0) {
-    alert("Informe o ingrediente, a porcentagem, o preço do pacote e o peso da embalagem.");
+  const camposPendentes = [];
+  if (!getIngredName?.value) camposPendentes.push("selecione o ingrediente");
+  if (!getIngredQuant || getIngredQuant.value === "") camposPendentes.push("selecione a porcentagem");
+  if (!getIngredPreco || getIngredPreco.value.trim() === "" || numeroBR(getIngredPreco.value) < 0) {
+    camposPendentes.push("informe um preço válido");
+  }
+  if (pesoPacote <= 0) camposPendentes.push("informe o peso da embalagem em gramas");
+  if (camposPendentes.length) {
+    alert(`Confira os campos: ${camposPendentes.join(", ")}.`);
     return;
   }
 
@@ -302,9 +253,10 @@ renderTable.addEventListener("click", (e) => {
       <tr>
         <th>Ingrediente</th>
         <th>Porcentagem</th>
-        <th>Preço</th>
-        <th>Gramas</th>
-        <th>Preço por quant.</th>
+        <th>Preço do pacote</th>
+        <th>Embalagem (g)</th>
+        <th>Gramas usadas</th>
+        <th>Custo usado</th>
         <th>Ação</th>
       </tr>`;
 
@@ -348,7 +300,6 @@ tablePlacement.addEventListener("click", (e) => {
 
   const deleteItem = e.target.closest(".delete-item");
   const editItem = e.target.closest(".edit-item");
-  const tooltipLabel = document.getElementsByClassName("toottip");
 
   if (!deleteItem && !editItem) {
     return;
@@ -364,7 +315,6 @@ tablePlacement.addEventListener("click", (e) => {
 
     if (tableIndex.length === 0) {
       table.remove();
-      tooltipLabel.style.display = "none";
     }
   } else if (editItem) {
     openEditModal(editItem.closest("tr"));
@@ -403,6 +353,7 @@ function closeEditModal() {
   document.querySelector(".overlay-edit")?.classList.add("hidden");
   document.querySelector(".modal-edit-body")?.classList.add("hidden");
   outsideModalBody.style.filter = "blur(0)";
+  atualizarValorTotal();
 }
 
 function renderEditFields(ingredKey, newPreco = "") {
@@ -560,10 +511,7 @@ const uploadPlaceholder = document.querySelector(".upload-placeholder");
 if (imageInput) {
   imageInput.addEventListener("change", () => {
     const file = imageInput.files[0];
-    
-    if (!file) {
-      return;
-    }
+    if (!file) return;
 
     if (!["image/jpeg", "image/png"].includes(file.type)) {
       alert("Selecione uma imagem JPG ou PNG.");
@@ -579,9 +527,7 @@ if (imageInput) {
 
     imagePreview.src = URL.createObjectURL(file);
     imagePreview.hidden = false;
-    if (uploadPlaceholder) {
-      uploadPlaceholder.hidden = true;
-    }
+    if (uploadPlaceholder) uploadPlaceholder.hidden = true;
   });
 }
 
@@ -634,12 +580,18 @@ function numeroBR(valor) {
   return Number.isFinite(numero) ? numero : 0;
 }
 
+function obterPesoPacoteGramas(campo) {
+  const valor = String(campo?.value ?? "").trim();
+  return valor === "" ? 1000 : numeroBR(valor);
+}
+
 function atualizarPreviaIngrediente() {
   if (!getIngredQuant || !getIngredPreco || !getPpq || !getIngredGr) return;
   if (!getIngredName?.value) {
     getIngredGr.style.display = "none";
     getIngredGr.textContent = "";
     getPpq.textContent = "";
+    atualizarValorTotal();
     return;
   }
   if (getIngredName.value !== "farinha" && getIngredQuant.value === "") {
@@ -647,10 +599,12 @@ function atualizarPreviaIngrediente() {
     getIngredGr.textContent = "";
     getPpq.style.display = "block";
     getPpq.textContent = "Selecione a porcentagem";
+    atualizarValorTotal();
     return;
   }
   const gramas = calcularGrama(getIngredQuant.value);
   calcPpq(gramas, getIngredPreco, getPpq, getPesoPacoteIngred);
+  atualizarValorTotal();
 }
 getIngredPreco?.addEventListener("input", atualizarPreviaIngrediente);
 getPesoPacoteIngred?.addEventListener("input", atualizarPreviaIngrediente);
@@ -664,11 +618,13 @@ function atualizarPreviaEdicao() {
   const chave = editNomeIngred?.value;
   if (!chave) {
     editPpq.textContent = "";
+    atualizarValorTotal();
     return;
   }
   if (chave !== "farinha" && (!editPorcentSelect || editPorcentSelect.value === "")) {
     if (editGramaSpan) editGramaSpan.textContent = "";
     editPpq.textContent = "Selecione a porcentagem";
+    atualizarValorTotal();
     return;
   }
   let gramas = 0;
@@ -679,6 +635,7 @@ function atualizarPreviaEdicao() {
     gramas = calcularGrama(editPorcentSelect?.value || 0, editGramaSpan);
   }
   calcPpq(gramas, editIngredPreco, editPpq, editPesoPacoteIngred);
+  atualizarValorTotal();
 }
 editIngredPreco?.addEventListener("input", atualizarPreviaEdicao);
 editPesoPacoteIngred?.addEventListener("input", atualizarPreviaEdicao);
@@ -692,7 +649,7 @@ quantEditContainer?.addEventListener("input", (e) => {
 saveEditBtn?.addEventListener("click", () => {
   if (!editingRow || !editIngredPreco || !editPesoPacoteIngred) return;
   const precoPacote = numeroBR(editIngredPreco.value);
-  const pesoPacote = numeroBR(editPesoPacoteIngred.value);
+  const pesoPacote = obterPesoPacoteGramas(editPesoPacoteIngred);
   editingRow.dataset.pesoPacote = String(pesoPacote);
   editingRow.querySelector(".col-preco").textContent = formatarReais(precoPacote, 2);
   editingRow.querySelector(".col-pacote").textContent = `${pesoPacote.toFixed(2)} g`;
@@ -712,7 +669,7 @@ renderTable?.addEventListener("click", (e) => {
   if (!linhas.length || linhas.length <= e.__linhasAntes) return;
   const linha = linhas[linhas.length - 1];
   const precoPacote = numeroBR(e.__precoPacote);
-  const pesoPacote = numeroBR(e.__pesoPacote);
+  const pesoPacote = obterPesoPacoteGramas({ value: e.__pesoPacote });
   linha.dataset.pesoPacote = String(pesoPacote);
   linha.querySelector(".col-preco").textContent = formatarReais(precoPacote, 2);
   linha.querySelector(".col-pacote").textContent = `${pesoPacote.toFixed(2)} g`;
@@ -738,13 +695,43 @@ function atualizarValorTotal() {
   const campoTotal = document.getElementById("valorTotal");
   if (!campoTotal) return;
   const linhas = document.querySelectorAll("#tablePlace tbody tr");
-  const total = [...linhas].reduce((soma, linha) => {
+  let total = [...linhas].reduce((soma, linha) => {
     const armazenado = Number(linha.dataset.custoIngrediente);
     const custo = Number.isFinite(armazenado)
       ? armazenado
       : numeroBR(linha.querySelector(".col-ppq")?.textContent);
     return soma + custo;
   }, 0);
+
+  const modalEdicao = document.querySelector(".modal-edit-body");
+  if (
+    modalEdicao &&
+    !modalEdicao.classList.contains("hidden") &&
+    editingRow &&
+    editPpq?.textContent.trim().startsWith("R$")
+  ) {
+    const gramas = numeroBR(editGramaSpan?.textContent);
+    const pesoPacote = obterPesoPacoteGramas(editPesoPacoteIngred);
+    const custoSalvo = Number(editingRow.dataset.custoIngrediente);
+    const custoAnterior = Number.isFinite(custoSalvo)
+      ? custoSalvo
+      : numeroBR(editingRow.querySelector(".col-ppq")?.textContent);
+    if (pesoPacote > 0) {
+      total += (numeroBR(editIngredPreco?.value) * gramas) / pesoPacote - custoAnterior;
+    }
+  } else if (
+    modal &&
+    !modal.classList.contains("hidden") &&
+    getIngredName?.value &&
+    getPpq?.textContent.trim().startsWith("R$")
+  ) {
+    const gramas = numeroBR(getIngredGr?.textContent);
+    const pesoPacote = obterPesoPacoteGramas(getPesoPacoteIngred);
+    if (pesoPacote > 0) {
+      total += (numeroBR(getIngredPreco?.value) * gramas) / pesoPacote;
+    }
+  }
+
   campoTotal.textContent = formatarReais(total, 2);
 }
 
