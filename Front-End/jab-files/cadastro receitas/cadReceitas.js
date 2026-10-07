@@ -302,10 +302,9 @@ renderTable.addEventListener("click", (e) => {
       <tr>
         <th>Ingrediente</th>
         <th>Porcentagem</th>
-        <th>Preço do pacote</th>
-        <th>Embalagem (g)</th>
-        <th>Gramas usadas</th>
-        <th>Custo usado</th>
+        <th>Preço</th>
+        <th>Gramas</th>
+        <th>Preço por quant.</th>
         <th>Ação</th>
       </tr>`;
 
@@ -561,7 +560,10 @@ const uploadPlaceholder = document.querySelector(".upload-placeholder");
 if (imageInput) {
   imageInput.addEventListener("change", () => {
     const file = imageInput.files[0];
-    if (!file) return;
+    
+    if (!file) {
+      return;
+    }
 
     if (!["image/jpeg", "image/png"].includes(file.type)) {
       alert("Selecione uma imagem JPG ou PNG.");
@@ -577,7 +579,9 @@ if (imageInput) {
 
     imagePreview.src = URL.createObjectURL(file);
     imagePreview.hidden = false;
-    if (uploadPlaceholder) uploadPlaceholder.hidden = true;
+    if (uploadPlaceholder) {
+      uploadPlaceholder.hidden = true;
+    }
   });
 }
 
