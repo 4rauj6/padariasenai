@@ -113,9 +113,11 @@ function calcularGrama(percentValue, outputElement = getIngredGr, baseFarinhaCus
     outputElement.textContent = "Selecione uma porcentagem válida";
     return 0;
   }
-  const gramas = (porcentagem / 100) * pesoFarinha;
-  outputElement.textContent = `${gramas.toFixed(2)} g`;
-  return gramas;
+
+  const resultadoGrama = (porcentagemNum / 100) * pesoFarinha;
+  outputElement.innerText = `${resultadoGrama.toFixed(2)} g`;
+
+  return resultadoGrama;
 }
 function calcPpq(gramasCalc, precoInput = getIngredPreco, outputElement = getPpq, pesoInput = getPesoPacoteIngred) {
   if (!outputElement) return 0;
@@ -130,9 +132,13 @@ function calcPpq(gramasCalc, precoInput = getIngredPreco, outputElement = getPpq
     outputElement.textContent = "Informe o preço do pacote e seu peso";
     return 0;
   }
-  const custo = (precoPacote * (Number(gramasCalc) || 0)) / pesoPacote;
-  outputElement.textContent = formatarReais(custo);
-  return custo;
+
+  const pPg = precoPacote / 1000;
+  const precoUtili = pPg * (gramasCalc || 0);
+
+  outputElement.innerText = `R$ ${precoUtili.toFixed(4)}`;
+
+  return precoUtili;
 }
 const timeEstimative = document.getElementById("tempoEstimado");
 const porcoesEstimative = document.getElementById("porcoesEstimadas");
@@ -140,26 +146,77 @@ const pesoMassaTotal = document.getElementById("pesoMassaTotal");
 const pesoMassaCrua = document.getElementById("pesoMassaCrua");
 
 function massaCruaCalc() {
-  const linhas = document.querySelectorAll("#tablePlace tbody tr");
-  const pesoCru = [...linhas].reduce((total, linha) => {
-    return total + numeroBR(linha.querySelector(".col-grama")?.textContent);
-  }, 0);
-  if (pesoMassaCrua) pesoMassaCrua.textContent = `${pesoCru.toFixed(2)} g`;
-  const pesoUnidade = numeroBR(getPesoUnidadeCrua?.value);
-  if (porcoesEstimative) {
-    porcoesEstimative.textContent = pesoUnidade > 0
-      ? `${Math.floor(pesoCru / pesoUnidade)} unidades`
-      : "";
+  const searchInTableRows = document.querySelectorAll("#tablePlace tbody tr");
+  let pesoCru = 0;
+
+  searchInTableRows.forEach((row) => {
+    const gramsTd = row.querySelector(".col-grama");
+
+    if (gramsTd) {
+      const textCleaner = gramsTd.textContent
+        .replace("g", "")
+        .replace(",", ".")
+        .trim();
+
+      const gramsNum = parseFloat(textCleaner) || 0;
+      pesoCru += gramsNum;
+    }
+  });
+
+  if (pesoMassaCrua) {
+    pesoMassaCrua.textContent = `${pesoCru.toFixed(2)} g`;
   }
 }
 function massaTotalCalc() {
-  const linhas = document.querySelectorAll("#tablePlace tbody tr");
-  const massaCrua = [...linhas].reduce((total, linha) => {
-    return total + numeroBR(linha.querySelector(".col-grama")?.textContent);
-  }, 0);
-  const perdaAssamento = 0.10;
-  if (pesoMassaTotal) pesoMassaTotal.textContent = `${(massaCrua * (1 - perdaAssamento)).toFixed(2)} g`;
+  const searchInTableRows = document.querySelectorAll("#tablePlace tbody tr");
+  let massaTotal = 0;
+
+  searchInTableRows.forEach((row) => {
+    const GramsTd = row.querySelector(".col-grama");
+
+    if (GramsTd) {
+      const textCleaner = GramsTd.textContent
+        .replace("g", "")
+        .replace(",", ".")
+        .trim();
+
+      const gramsNum = parseFloat(textCleaner) || 0;
+      massaTotal += gramsNum;
+    }
+  });
+
+  const WeightEstimate = massaTotal * (1 - 2 / 100);
+
+  if (pesoMassaTotal) {
+    pesoMassaTotal.textContent = `${WeightEstimate.toFixed(2)} g`;
+  }
 }
+
+// function calcPrecoTotal() {
+//   const searchInTableRows = document.querySelectorAll("#tablePlace tbody tr");
+
+//   let actualPpq = 0;
+
+//   searchInTableRows.forEach((row) => {
+//     const ppqTd = row.querySelector(".col-ppq");
+
+//     if (ppqTd) {
+//       const textCleaner =
+//         ppqTd.textContent.replace("R$", "").replace(",", ".") || 0;
+
+//       const ppqNum = parseFloat(textCleaner);
+
+//       actualPpq += ppqNum;
+//     }
+//   });
+
+//   const estimatePpq = getIngredGr / actualPpq;
+
+//   if (ppqInTable) {
+//     ppqInTable.textContent = `${estimatePpq.toFixed(2)}`;
+//   }
+// }
+
 /* LÓGICA DE SELEÇÃO DOS INGREDIENTES E TROCA DOS SEUS VALORES */
 getIngredName.addEventListener("change", () => {
   const actualIngred = getIngredName.value;
@@ -292,6 +349,7 @@ tablePlacement.addEventListener("click", (e) => {
 
   const deleteItem = e.target.closest(".delete-item");
   const editItem = e.target.closest(".edit-item");
+  const tooltipLabel = document.getElementsByClassName("toottip");
 
   if (!deleteItem && !editItem) {
     return;
@@ -307,6 +365,7 @@ tablePlacement.addEventListener("click", (e) => {
 
     if (tableIndex.length === 0) {
       table.remove();
+      tooltipLabel.style.display = "none";
     }
   } else if (editItem) {
     openEditModal(editItem.closest("tr"));
