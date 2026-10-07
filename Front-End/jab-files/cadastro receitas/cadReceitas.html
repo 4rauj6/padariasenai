@@ -195,7 +195,12 @@
               </select>
 
               <label for="precoIngred">preço do ingrediente:</label>
-              <input type="number" name="precoIngred" id="precoIngred" placeholder="Ex: R$ 15,00">
+              <input
+                type="number"
+                name="precoIngred"
+                id="precoIngred"
+                placeholder="Ex: R$ 15,00"
+              />
 
               <label for="quantIngred">Selecione a porcentagem:</label>
               <select name="quantIngred" id="quantIngred" disabled>
@@ -204,6 +209,9 @@
 
               <label for="gramaDoIngred">Quantidade em grama:</label>
               <span id="gramaDoIngred"></span>
+
+              <label for="precoPq">Preço por quantidade</label>
+              <span id="precoPq"></span>
 
               <label for="tipoForno">Selecione o tipo de forno:</label>
               <select name="tipoForno" id="tipoForno">
@@ -267,6 +275,17 @@
 
             <label for="editGrama">Quantidade em grama:</label>
             <span id="editGrama"></span>
+
+            <label for="editPrecoPq">Preço por grama:</label>
+            <span id="editPrecoPq"></span>
+
+            <label for="editPrecoIngred">Preço do ingrediente:</label>
+            <input
+              type="number"
+              name="editPrecoIngred"
+              id="editPrecoIngred"
+              placeholder="Ex: R$ 15,00"
+            />
 
             <label for="editTipoForno">Tipo de Forno:</label>
             <select id="editTipoForno">
