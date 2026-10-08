@@ -39,11 +39,9 @@
         </div>
       </div>
 
-      <!--FORMULÁRO DE INFORMAÇÕES BÁSICAS (À ESQUERDA)-->
       <div class="form-content">
         <section class="form-section">
           <div class="form-receita">
-            <!--NÃO MEXER NO ACTION DO FORMULARIO-->
             <form action="#">
               <h3>INFORMAÇÕES BÁSICAS</h3>
 
@@ -98,7 +96,6 @@
           </div>
         </section>
 
-        <!--BOX DE ADICIONAR INGRED. E INFO DA RECEITA (À DIREITA)-->
         <div class="table-content">
           <section class="table-box">
             <div class="table-container">
@@ -119,7 +116,8 @@
               <div class="maisInfoReceitas">
                 <div class="infoBox">
                   <label for="valorTotal"
-                    ><i class="fa-solid fa-scale-balanced"></i> VALOR TOTAL</label
+                    ><i class="fa-solid fa-scale-balanced"></i> VALOR
+                    TOTAL</label
                   >
                   <span id="valorTotal"></span>
                 </div>
@@ -164,7 +162,6 @@
       </div>
     </div>
 
-    <!--MODAL PARA ADICIONAR OS INGREDIENTES-->
     <section class="modal hidden">
       <div class="overlay hidden">
         <div class="modal-body">
@@ -174,55 +171,79 @@
             </button>
             <h3>Adicionando ingredientes</h3>
             <div class="addingIngred">
-              <label for="nomeIngred">Selecione do ingrediente:</label>
-              <select name="nomeIngred" id="nomeIngred">
-                <option value="">Clique aqui para selecionar</option>
-                <option value="farinha">Farinha de trigo</option>
-                <option value="acucar">Açúcar</option>
-                <option value="fermentoFresco">
-                  Fermento Biológico Fresco
-                </option>
-                <option value="fermentoSeco">Fermento Biológico Seco</option>
-                <option value="sal">Sal</option>
-                <option value="claraOvo">Ovos (clara)</option>
-                <option value="gemaOvo">Ovos (gema)</option>
-                <option value="agua">Água</option>
-                <option value="gordura">Gordura</option>
-                <option value="aditivoPo">Aditivo em Pó</option>
-                <option value="aditivoLiqui">Aditivo Líquido</option>
-                <option value="aditivoPasta">Aditivo em Pasta</option>
-              </select>
+              <div class="modal-form-grid">
+                <!-- PRIMEIRA COLUNA (3 CAMPOS) -->
+                <div class="items-grid">
+                  <div class="input-group">
+                    <label for="nomeIngred">Selecione o ingrediente:</label>
+                    <select name="nomeIngred" id="nomeIngred">
+                      <option value="">Clique aqui para selecionar</option>
+                      <option value="farinha">Farinha de trigo</option>
+                      <option value="acucar">Açúcar</option>
+                      <option value="fermentoFresco">
+                        Fermento Biológico Fresco
+                      </option>
+                      <option value="fermentoSeco">
+                        Fermento Biológico Seco
+                      </option>
+                      <option value="sal">Sal</option>
+                      <option value="claraOvo">Ovos (clara)</option>
+                      <option value="gemaOvo">Ovos (gema)</option>
+                      <option value="agua">Água</option>
+                      <option value="gordura">Gordura</option>
+                      <option value="aditivoPo">Aditivo em Pó</option>
+                      <option value="aditivoLiqui">Aditivo Líquido</option>
+                      <option value="aditivoPasta">Aditivo em Pasta</option>
+                    </select>
+                  </div>
 
-              <label for="precoIngred">preço do ingrediente:</label>
-              <input
-                type="number"
-                name="precoIngred"
-                id="precoIngred"
-                placeholder="Ex: R$ 15,00"
-              />
+                  <div class="input-group">
+                    <label for="quantIngred">Selecione a porcentagem:</label>
+                    <select name="quantIngred" id="quantIngred" disabled>
+                      <option value="">
+                        Selecione um ingrediente primeiro
+                      </option>
+                    </select>
+                  </div>
 
-              <label for="quantIngred">Selecione a porcentagem:</label>
-              <select name="quantIngred" id="quantIngred" disabled>
-                <option value="">Selecione um ingrediente primeiro</option>
-              </select>
+                  <div class="input-group">
+                    <label for="gramaDoIngred">Quantidade em /g:</label>
+                    <span id="gramaDoIngred"></span>
+                  </div>
+                </div>
 
-              <label for="gramaDoIngred">Quantidade em grama:</label>
-              <span id="gramaDoIngred"></span>
+                <!-- SEGUNDA COLUNA (3 CAMPOS) -->
+                <div class="items-grid-2">
+                  <div class="input-group">
+                    <label for="pesoPacote">Peso do pacote (g)</label>
+                    <input
+                      type="number"
+                      id="pesoPacote"
+                      name="pesoPacote"
+                      placeholder="Ex: 1000"
+                    />
+                  </div>
 
-              <label for="precoPq">Preço por quantidade</label>
-              <span id="precoPq"></span>
+                  <div class="input-group">
+                    <label for="precoPacote">Preço do pacote</label>
+                    <input
+                      type="number"
+                      id="precoPacote"
+                      name="precoPacote"
+                      placeholder="Ex: 15,99"
+                    />
+                  </div>
 
-              <label for="tipoForno">Selecione o tipo de forno:</label>
-              <select name="tipoForno" id="tipoForno">
-                <option value="turbo">Forno turbo</option>
-                <option value="lastro">Forno lastro</option>
-              </select>
-
+                  <div class="input-group">
+                    <label for="precoPq">Preço por /g</label>
+                    <span id="precoPq"></span>
+                  </div>
+                </div>
+              </div>
               <div class="modal-buttons">
                 <button class="add-mais-ingred">
                   <i class="fa-solid fa-plus"></i> Mais
                 </button>
-
                 <button class="save-ingred">
                   <i class="fa-solid fa-check"></i> Salvar ingrediente
                 </button>
@@ -233,7 +254,6 @@
       </div>
     </section>
 
-    <!--MODAL DE EDIÇÃO DE INGREDIENTE-->
     <section class="edit-data">
       <div class="overlay-edit hidden">
         <div class="modal-edit-body hidden">
@@ -275,16 +295,24 @@
             <label for="editGrama">Quantidade em grama:</label>
             <span id="editGrama"></span>
 
-            <label for="editPrecoPq">Preço por grama:</label>
-            <span id="editPrecoPq"></span>
+            <label for="editPesoPacote">Peso do pacote (g):</label>
+            <input
+              type="number"
+              name="editPesoPacote"
+              id="editPesoPacote"
+              placeholder="Ex: 1000"
+            />
 
             <label for="editPrecoIngred">Preço do ingrediente:</label>
             <input
               type="number"
               name="editPrecoIngred"
               id="editPrecoIngred"
-              placeholder="Ex: R$ 15,00"
+              placeholder="Ex: 15.00"
             />
+
+            <label for="editPrecoPq">Preço por grama:</label>
+            <span id="editPrecoPq"></span>
 
             <label for="editTipoForno">Tipo de Forno:</label>
             <select id="editTipoForno">

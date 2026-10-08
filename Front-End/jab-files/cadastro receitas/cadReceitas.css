@@ -137,6 +137,8 @@ body {
 }
 
 .addIngred {
+  display: flex;
+  flex-direction: row;
   appearance: none;
   background-color: transparent;
   border: 2px solid var(--cor-1);
@@ -202,10 +204,9 @@ body {
   flex-direction: column;
   background-color: var(--cor-3);
   width: 600px;
-  height: 435px;
+  height: 350px;
   padding: 5px;
   border-radius: 8px;
-  gap: 10px;
 }
 
 .modal-body h3 {
@@ -220,21 +221,22 @@ body {
   border-radius: 8px;
 }
 
-.modal-text input,
-.modal-text select {
+.modal-body input,
+.modal-body select {
   min-width: 100%;
   text-align: center;
 }
 
-.modal-text label {
+.modal-body label {
   font-family: var(--font-1);
   color: var(--cor-1);
 }
 
 .modal-buttons {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   margin-top: 20px;
+  gap: 20px;
 }
 
 .addingIngred input,
@@ -244,6 +246,44 @@ body {
   width: 60%;
   padding: 2px;
   border-radius: 5px;
+}
+
+.modal-form-grid {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+  width: 100%;
+  text-align: center;
+}
+
+.items-grid,
+.items-grid-2 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 30px;
+}
+
+.input-group {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.input-group label {
+  font-family: var(--font-1);
+  font-size: 0.85rem;
+  color: var(--cor-1);
+}
+
+.input-group input,
+.input-group select {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 5px;
+  border: 2px solid var(--cor-1);
+  background-color: var(--cor-2);
+  outline: none;
 }
 
 #gramaDoIngred {
@@ -270,11 +310,9 @@ body {
   color: var(--cor-2);
 }
 
-.addingIngred {
+.inputs-grid {
   display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 25px;
+  flex-direction: row;
 }
 
 .close-modal {
@@ -815,201 +853,6 @@ small {
     gap: 5px;
   }
 
-  .addIngred {
-    box-sizing: border-box;
-    width: 360px;
-    min-width: 0;
-    min-height: 48px;
-    padding: 12px;
-    color: #fff;
-    background-color: #6b422b;
-    border: none;
-    border-radius: 8px;
-    font-size: 0.95rem;
-  }
-
-  .addIngred:active {
-    background-color: #b86f45;
-    transform: scale(0.98);
-  }
-
-  .table-container-2 {
-    min-width: 100%;
-    padding: 10px;
-  }
-
-  .modal {
-    position: fixed;
-    inset: 0;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
-  }
-
-  .hidden {
-    display: none;
-  }
-
-  .modal-body {
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    background-color: #f2e8d9;
-    color: #4a2c1a;
-    width: min(440px, calc(100vw - 24px));
-    height: auto;
-    max-height: 90vh;
-    overflow-y: auto;
-    padding: 24px;
-    border-radius: 16px;
-    gap: 10px;
-  }
-
-  .modal-body h3,
-  .modal-text label,
-  .addingIngred label,
-  #gramaDoIngred {
-    color: #4a2c1a;
-  }
-
-  .modal-text input,
-  .modal-text select,
-  .addingIngred select {
-    box-sizing: border-box;
-    width: 100%;
-    min-height: 42px;
-    padding: 8px;
-    background-color: #fffaf3;
-  }
-
-  .modal-buttons {
-    gap: 10px;
-    margin-top: 16px;
-  }
-
-  .add-mais-ingred,
-  .save-ingred {
-    box-sizing: border-box;
-    width: 50%;
-    min-height: 44px;
-    padding: 8px;
-    color: #fff;
-    background-color: #6b422b;
-    border: none;
-    border-radius: 8px;
-  }
-
-  .add-mais-ingred:active,
-  .save-ingred:active {
-    background-color: #b86f45;
-  }
-
-  @media (max-width: 835px) {
-    .hero {
-      width: 100%;
-      min-height: auto;
-      padding: 16px;
-    }
-
-    .form-content {
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .form-receita,
-    .table-container,
-    .table-container-2 {
-      box-sizing: border-box;
-      width: 100%;
-      height: auto;
-      min-width: 0;
-      padding: 16px;
-    }
-
-    .table-content {
-      width: 100%;
-      margin: 0;
-    }
-
-    .form-receita-inputs input,
-    .form-receita-inputs select,
-    .form-receita-inputs textarea,
-    .mp-container textarea {
-      box-sizing: border-box;
-      width: 100%;
-      min-width: 0;
-    }
-
-    .maisInfoReceitas {
-      flex-direction: column;
-      gap: 12px;
-      padding: 0;
-    }
-
-    .infoBox {
-      box-sizing: border-box;
-      width: 100%;
-    }
-
-    #tablePlace {
-      overflow-x: auto;
-    }
-
-    #tablePlace table {
-      min-width: 520px;
-    }
-
-    .saveButton,
-    .saveButton button {
-      box-sizing: border-box;
-      width: 100%;
-    }
-  }
-}
-
-@media (max-width: 460px) {
-  .hero {
-    padding: 12px;
-  }
-
-  .header {
-    align-items: flex-start;
-  }
-
-  .header-text-content h1 {
-    font-size: 1.25rem;
-  }
-
-  .header-text-content span {
-    font-size: 1.1rem;
-  }
-
-  .image-upload {
-    height: 180px;
-  }
-
-  .modal {
-    box-sizing: border-box;
-    position: fixed;
-    inset: 0;
-    padding: 12px;
-    justify-content: center;
-    align-items: center;
-  }
-
-  .modal-body {
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 440px;
-    height: auto;
-    max-height: 90dvh;
-    overflow-y: auto;
-    padding: 24px;
-    border-radius: 20px;
-  }
-}
-@media (max-width: 460px) {
   #tablePlace {
     max-height: none;
     padding: 0;
@@ -1067,11 +910,21 @@ small {
   }
 
   #tablePlace tbody td:nth-child(3)::before {
-    content: "Gramas";
+    content: "Preço do pacote";
   }
 
   #tablePlace tbody td:nth-child(4)::before {
-    content: "Forno";
+    content: "Gramas";
+  }
+
+  #tablePlace tbody td:nth-child(5)::before {
+    content: "Preço por /g";
+    margin-right: auto;
+  }
+
+  #tablePlace tbody td:nth-child(6)::before {
+    content: "Ações";
+    margin-right: auto;
   }
 
   #tablePlace tbody td:nth-child(5) {
@@ -1080,85 +933,101 @@ small {
     border-bottom: 0;
   }
 
-  #tablePlace tbody td:nth-child(5)::before {
-    content: "Ações";
-    margin-right: auto;
+  .addIngred {
+    box-sizing: border-box;
+    width: 360px;
+    min-width: 0;
+    min-height: 48px;
+    padding: 12px;
+    color: #fff;
+    background-color: #6b422b;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
   }
-}
-@media (max-width: 460px) {
-  .modal,
-  .overlay {
-    @media (max-width: 460px) {
-      .modal,
-      .overlay {
-        position: fixed;
-        inset: 0;
-      }
 
-      .overlay {
-        display: grid;
-        place-items: end center;
-        padding: 0;
-      }
-
-      .modal-body {
-        box-sizing: border-box;
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        height: 100%;
-        max-height: 500px;
-        overflow: hidden;
-        margin: 0;
-        padding: 10px 16px;
-        border-radius: 18px 18px 0 0;
-        gap: 10px;
-      }
-
-      .modal-text {
-        min-height: 100px;
-        overflow: hidden;
-        padding: 4px 8px;
-      }
-
-      .addingIngred {
-        gap: 20px;
-        margin-top: 4px;
-      }
-
-      .addingIngred label {
-        font-size: 0.8rem;
-      }
-
-      .addingIngred select {
-        min-height: 32px;
-        padding: 4px 6px;
-        font-size: 0.85rem;
-      }
-
-      .modal-buttons {
-        gap: 8px;
-        margin-top: 8px;
-      }
-
-      .add-mais-ingred,
-      .save-ingred {
-        box-sizing: border-box;
-        width: 50%;
-        min-height: 36px;
-        padding: 5px;
-        font-size: 0.8rem;
-      }
-
-      .close-modal {
-        padding: 4px 8px;
-      }
-    }
+  .addIngred:active {
+    background-color: #b86f45;
+    transform: scale(0.98);
   }
-}
 
-/* Modal de edição ajustado para telas de celular */
-@media (max-width: 460px) {
+  .table-container-2 {
+    min-width: 100%;
+    padding: 10px;
+  }
+
+  .maisInfoReceitas {
+    justify-content: center;
+    align-items: center;
+  }
+
+  .modal {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 12px;
+  }
+
+  .hidden {
+    display: none;
+  }
+
+  .modal-body {
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    background-color: #f2e8d9;
+    color: #4a2c1a;
+    width: min(440px, calc(100vw - 24px));
+    height: auto;
+    max-height: 100vh;
+    overflow-y: auto;
+    padding: 24px;
+    border-radius: 16px;
+    gap: 10px;
+  }
+
+  .modal-body h3,
+  .modal-text label,
+  .addingIngred label,
+  #gramaDoIngred {
+    color: #4a2c1a;
+  }
+
+  .modal-text input,
+  .modal-text select,
+  .addingIngred select {
+    box-sizing: border-box;
+    width: 100%;
+    min-height: 42px;
+    padding: 8px;
+    background-color: #fffaf3;
+  }
+
+  .modal-buttons {
+    gap: 10px;
+    margin-top: 16px;
+  }
+
+  .add-mais-ingred,
+  .save-ingred {
+    box-sizing: border-box;
+    width: 50%;
+    min-height: 44px;
+    padding: 8px;
+    color: #fff;
+    background-color: #6b422b;
+    border: none;
+    border-radius: 8px;
+  }
+
+  .add-mais-ingred:active,
+  .save-ingred:active {
+    background-color: #b86f45;
+  }
+
   .overlay-edit {
     box-sizing: border-box;
     position: fixed;
