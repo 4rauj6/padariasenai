@@ -1,0 +1,15 @@
+ordem tabela
+
+1 - porcentagem
+2 - quantidade utilizada
+3 - preço compra kg/ml
+4 - preço 
+
+* - mudar valor total para custo da receita
+
+
+calculo para quantidade produzida: massa total : peso cru
+
+
+leite liquido - input number
+leite po - input number
