@@ -576,14 +576,14 @@ small {
   transition: opacity 0.2s ease-in-out;
 }
 
-/* @media (max-width: 1540px) {
+@media (max-width: 1540px) {
   .form-content {
     gap: 15px;
   }
 
   .form-receita {
     width: 500px;
-    height: 770px;
+    height: 660px;
   }
 
   .table-content {
@@ -630,7 +630,7 @@ small {
   .image-upload {
     height: 270px;
   }
-} */
+}
 
 /* Responsivo para notebook de até 15 polegadas  */
 

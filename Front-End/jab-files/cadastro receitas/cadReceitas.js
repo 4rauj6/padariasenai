@@ -14,6 +14,9 @@ const renderTable = document.querySelector(".save-ingred");
 const getRecipeCatogry = document.getElementById("categoriaReceita");
 const getFarinhaBase = document.getElementById("pesoBaseFarinha");
 
+const inputNum = document.querySelector(".inputNumber");
+const inputNumField = document.getElementById("inputNumber");
+
 const editNomeIngred = document.getElementById("editNomeIngred");
 const editPorcentSelect = document.getElementById("editPorcent");
 const quantEditContainer = document.getElementById("quantEdit");
@@ -27,7 +30,8 @@ const saveEditBtn = document.querySelector(".save-edit-ingred");
 let editingRow = null;
 
 const porcentPorIngred = {
-  farinha: [100],
+  farinha: [100, 50],
+  fariIntegral: [50],
   acucar: [0, 0.5, 1, 1.5, 2],
   fermentoFresco: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5],
   fermentoSeco: [0, 0.5, 1, 1.5, 2, 2.5],
@@ -90,6 +94,8 @@ function calcularGrama(
   percentValue,
   screenRender = getIngredGr,
   baseFarinhaCustom = null,
+  ingredKey = null,
+  leiteQuantidade = null,
 ) {
   const valorFarinha =
     baseFarinhaCustom !== null
@@ -101,10 +107,35 @@ function calcularGrama(
   const pesoFarinha = parseFloat(valorFarinha) || 0;
   const porcentagemNum = parseFloat(percentValue) || 0;
 
+  const actualIngred = ingredKey || getIngredName.value;
+
+  if (actualIngred === "leiteLiq" || actualIngred === "leitePo") {
+    const inputNumValue =
+      leiteQuantidade !== null && leiteQuantidade !== undefined
+        ? parseFloat(String(leiteQuantidade).replace(",", ".")) || 0
+        : parseFloat(inputNumField.value) || 0;
+    screenRender.style.display = "block";
+    screenRender.style.backgroundColor = "#e8c9a0";
+    screenRender.style.border = "solid 2px #4a2c1a";
+    screenRender.style.padding = "4px 8px";
+    screenRender.style.width = "100%";
+    screenRender.style.borderRadius = "4px";
+
+    if (inputNumValue <= 0) {
+      const caseMssg = actualIngred === "leitePo" ? "em gramas" : "em ML";
+      screenRender.innerText = `informe a quantidade ${caseMssg}`;
+      return 0;
+    }
+
+    screenRender.innerText = `${inputNumValue.toFixed(0)} g`;
+    return inputNumValue;
+  }
+
   screenRender.style.display = "block";
-  screenRender.style.backgroundColor = "transparent";
-  screenRender.style.border = "solid 2px #e8c9a0";
+  screenRender.style.backgroundColor = "#e8c9a0";
+  screenRender.style.border = "solid 2px #4a2c1a";
   screenRender.style.padding = "4px 8px";
+  screenRender.style.width = "100%";
   screenRender.style.borderRadius = "4px";
 
   if (pesoFarinha <= 0) {
@@ -142,8 +173,8 @@ function calcPpq(
     parseFloat(rowPeso.replace("g", "").replace(",", ".").trim()) || 0;
 
   screenRender.style.display = "block";
-  screenRender.style.backgroundColor = "transparent";
-  screenRender.style.border = "solid 2px #e8c9a0";
+  screenRender.style.backgroundColor = "#e8c9a0";
+  screenRender.style.border = "solid 2px #4a2c1a";
   screenRender.style.padding = "4px 8px";
   screenRender.style.borderRadius = "4px";
 
@@ -160,8 +191,6 @@ function calcPpq(
   return precoUtili;
 }
 
-const timeEstimative = document.getElementById("tempoEstimado");
-const porcoesEstimative = document.getElementById("porcoesEstimadas");
 const pesoMassaTotal = document.getElementById("pesoMassaTotal");
 const pesoMassaCrua = document.getElementById("pesoMassaCrua");
 const valorTotalSpan = document.getElementById("valorTotal");
@@ -237,11 +266,14 @@ function valorTotalCalc() {
 
 getIngredName.addEventListener("change", () => {
   const actualIngred = getIngredName.value;
-  const opcoes = porcentPorIngred[actualIngred] || [];
+  const options = porcentPorIngred[actualIngred];
 
   getIngredQuant.innerHTML = "";
   getIngredGr.style.display = "none";
-  if (getPpq) getPpq.style.display = "none";
+
+  if (getPpq) {
+    getPpq.style.display = "none";
+  }
 
   if (!actualIngred) {
     getIngredQuant.innerHTML = `<option value="">Selecione um ingrediente primeiro</option>`;
@@ -249,23 +281,36 @@ getIngredName.addEventListener("change", () => {
     return;
   }
 
-  if (actualIngred === "farinha") {
-    getIngredQuant.innerHTML = `<option value="100" selected>100% (Base)</option>`;
-    getIngredQuant.disabled = true;
-    const g = calcularGrama(100);
+  if (actualIngred === "leiteLiq" || actualIngred === "leitePo") {
+    if (inputNum.classList.contains("hidden")) {
+      inputNum.classList.remove("hidden");
+      getIngredQuant.classList.add("hidden");
+    }
+  } else {
+    if (inputNum) {
+      inputNumField.value = "";
+      inputNum.classList.add("hidden");
+      getIngredQuant.classList.remove("hidden");
+    }
+    const g = calcularGrama(0);
     calcPpq(g, getIngredPreco, getPctPeso, getPpq);
-    return;
   }
 
-  getIngredQuant.disabled = false;
-  getIngredQuant.innerHTML = `<option value="">Selecione a porcentagem</option>`;
+  if (options) {
+    getIngredQuant.disabled = false;
+    getIngredQuant.innerHTML = `<option value="">Selecione a porcentagem</option>`;
 
-  opcoes.forEach((p) => {
-    const opt = document.createElement("option");
-    opt.value = p;
-    opt.textContent = `${p}%`;
-    getIngredQuant.appendChild(opt);
-  });
+    options.forEach((option) => {
+      const optPlace = document.createElement("option");
+      optPlace.value = option;
+      optPlace.textContent = `${option}%`;
+
+      if (actualIngred === "farinha" && optPlace.value === "50") {
+        optPlace.textContent = `${option}% (para pão integral)`;
+      }
+      getIngredQuant.appendChild(optPlace);
+    });
+  }
 });
 
 getIngredQuant.addEventListener("change", () => {
@@ -290,6 +335,13 @@ if (getPctPeso) {
   });
 }
 
+if (inputNum) {
+  inputNum.addEventListener("input", () => {
+    const g = calcularGrama(0);
+    calcPpq(g, getIngredPreco, getPctPeso, getPpq);
+  });
+}
+
 const tablePlacement = document.getElementById("tablePlace");
 
 renderTable.addEventListener("click", (e) => {
@@ -298,16 +350,27 @@ renderTable.addEventListener("click", (e) => {
 
   const ingredValue = getIngredName.value;
   const name = getIngredName.options[getIngredName.selectedIndex]?.text || "";
-  const quant =
-    getIngredQuant.options[getIngredQuant.selectedIndex]?.text || "";
+  let quant = "";
   const preco = getIngredPreco.value.replace("R$", "").replace(",", ".") || "0";
   const pesoPacoteVal = getPctPeso.value.replace(",", ".") || "0";
   const grama = getIngredGr.textContent || "0 g";
   const precoQuant = getPpq ? getPpq.textContent : "R$ 0,00";
 
+  const leiteFill = ingredValue === "leiteLiq" || ingredValue === "leitePo";
+  const leiteChecking = leiteFill ? inputNumField.value : getIngredQuant.value;
+
+  if (leiteFill) {
+    const ml = parseFloat(inputNumField.value) || 0;
+    const farinhaPeso = parseFloat(getFarinhaBase ? getFarinhaBase.value : 100);
+    const leitePercent = (ml / farinhaPeso) * 100;
+    quant = `${leitePercent.toFixed(0)}%`;
+  } else {
+    quant = getIngredQuant.value + "%";
+  }
+
   if (
     !getIngredName.value ||
-    !getIngredQuant.value ||
+    !leiteChecking ||
     !getPctPeso.value ||
     !getIngredPreco.value
   ) {
@@ -347,6 +410,7 @@ renderTable.addEventListener("click", (e) => {
         <th>Gramas utilizadas</th>
         <th>Preço utilizado</th>
         <th>Ação</th>
+        <th>Filtro</th>
       </tr>`;
 
     table.appendChild(th);
@@ -367,6 +431,10 @@ renderTable.addEventListener("click", (e) => {
     <td>
       <button class="delete-item" id="editionBtn" data-tooltip="Excluir ingrediente"><i class="fa-solid fa-trash"></i></button>
       <button class="edit-item" id="editionBtn" data-tooltip="Editar ingrediente"><i class="fa-solid fa-pencil"></i></button>
+    </td>
+    <td>
+      <button class"filter-table id="filterUpper"></button>
+      <button class"filter-table id="filterDown"></button>
     </td>
   `;
   tb.appendChild(tr);
@@ -403,7 +471,15 @@ tablePlacement.addEventListener("click", (e) => {
 
     if (tableIndex.length === 0) {
       table.remove();
-      if (tooltipLabel.length > 0) tooltipLabel[0].style.display = "none";
+
+      if (tooltipLabel.length > 0) {
+        tooltipLabel[0].style.display = "none";
+      }
+    }
+
+    if (getFarinhaBase) {
+      getFarinhaBase.disabled = false;
+      getFarinhaBase.value = "";
     }
   } else if (editItem) {
     openEditModal(editItem.closest("tr"));
@@ -413,6 +489,75 @@ tablePlacement.addEventListener("click", (e) => {
   massaTotalCalc();
   valorTotalCalc();
 });
+
+function isLeiteIngred(ingredKey) {
+  return ingredKey === "leiteLiq" || ingredKey === "leitePo";
+}
+
+function selecionarPorcentagem(selectEl, percentValue) {
+  const percentNum = parseFloat(percentValue);
+  if (Number.isNaN(percentNum)) return;
+
+  for (const opt of selectEl.options) {
+    if (parseFloat(opt.value) === percentNum) {
+      selectEl.value = opt.value;
+      return;
+    }
+  }
+}
+
+function popularPorcentagensEdit(ingredKey, selectedPercent) {
+  const options = porcentPorIngred[ingredKey] || [];
+
+  editPorcentSelect.innerHTML = `
+    <option value="">
+      Selecione a porcentagem
+    </option>
+  `;
+
+  options.forEach((percentByIngred) => {
+    const opt = document.createElement("option");
+    opt.value = percentByIngred;
+    opt.textContent = `${percentByIngred}%`;
+
+    if (ingredKey === "farinha" && String(percentByIngred) === "50") {
+      opt.textContent = `${percentByIngred}% (para pão integral)`;
+    }
+
+    editPorcentSelect.appendChild(opt);
+  });
+
+  selecionarPorcentagem(editPorcentSelect, selectedPercent);
+}
+
+function recalcularEdicao() {
+  const ingredKey = editNomeIngred.value;
+  let gramas = 0;
+
+  if (isLeiteIngred(ingredKey)) {
+    const leiteNumber = document.getElementById("leiteNumber");
+    const quantidade = leiteNumber ? leiteNumber.value : 0;
+    gramas = calcularGrama(0, editGramaSpan, null, ingredKey, quantidade);
+  } else if (ingredKey === "farinha") {
+    const farinhaInput = document.getElementById("farinhaNumber");
+    gramas = calcularGrama(
+      editPorcentSelect.value,
+      editGramaSpan,
+      farinhaInput ? farinhaInput.value : null,
+      ingredKey,
+    );
+  } else {
+    gramas = calcularGrama(
+      editPorcentSelect.value,
+      editGramaSpan,
+      null,
+      ingredKey,
+    );
+  }
+
+  calcPpq(gramas, editIngredPreco, editPesoPacote, editPpq);
+  return gramas;
+}
 
 function openEditModal(row) {
   editingRow = row;
@@ -431,6 +576,12 @@ function openEditModal(row) {
     .textContent.replace("R$", "")
     .trim();
 
+  const currentGrama = row
+    .querySelector(".col-grama")
+    .textContent.replace("g", "")
+    .replace(",", ".")
+    .trim();
+
   const currentPesoPacote = row.dataset.pesoPacote || "1000";
 
   if (editIngredPreco) {
@@ -441,7 +592,7 @@ function openEditModal(row) {
     editPesoPacote.value = currentPesoPacote;
   }
 
-  renderEditFields(ingredKey, currentQuantIndex, currentPrecoIndex);
+  renderEditFields(ingredKey, currentQuantIndex, currentGrama);
 }
 
 function closeEditModal() {
@@ -450,18 +601,49 @@ function closeEditModal() {
   outsideModalBody.style.filter = "blur(0)";
 }
 
-function renderEditFields(ingredKey) {
+function renderEditFields(ingredKey, currentQuant = "", currentGrama = "") {
   editNomeIngred.value = ingredKey;
 
   quantEditContainer.innerHTML = "";
 
-  if (ingredKey === "farinha") {
-    editPorcentSelect.style.display = "none";
+  const porcentLabel = document.querySelector("label[for='editPorcent']");
 
-    const porcentLabel = document.querySelector("label[for='editPorcent']");
-
+  if (isLeiteIngred(ingredKey)) {
     if (porcentLabel) {
       porcentLabel.style.display = "none";
+    }
+
+    const leiteInicial =
+      parseFloat(String(currentGrama).replace(",", ".")) || "";
+
+    quantEditContainer.innerHTML = `
+      <label for="leiteNumber">
+        Informe a quantidade de leite (ML ou g)
+      </label>
+
+      <input
+        type="number"
+        id="leiteNumber"
+        value="${leiteInicial}"
+      >
+    `;
+
+    editPorcentSelect.innerHTML = `
+      <option value="">
+        Selecione a porcentagem
+      </option>
+    `;
+    editPorcentSelect.style.display = "none";
+
+    const leiteNumber = document.getElementById("leiteNumber");
+    leiteNumber.addEventListener("input", () => {
+      recalcularEdicao();
+    });
+
+    recalcularEdicao();
+  } else if (ingredKey === "farinha") {
+    if (porcentLabel) {
+      porcentLabel.style.display = "block";
     }
 
     quantEditContainer.innerHTML = `
@@ -472,48 +654,30 @@ function renderEditFields(ingredKey) {
       <input
         type="number"
         id="farinhaNumber"
-        value="${getFarinhaBase.value}"
+        value="${getFarinhaBase ? getFarinhaBase.value : ""}"
       >
     `;
 
+    editPorcentSelect.style.display = "block";
+    popularPorcentagensEdit(ingredKey, currentQuant);
+
     const farinhaInput = document.getElementById("farinhaNumber");
-
-    const g = calcularGrama(100, editGramaSpan, farinhaInput.value);
-    calcPpq(g, editIngredPreco, editPesoPacote, editPpq);
-
     farinhaInput.addEventListener("input", () => {
-      const gCalc = calcularGrama(100, editGramaSpan, farinhaInput.value);
-      calcPpq(gCalc, editIngredPreco, editPesoPacote, editPpq);
+      recalcularEdicao();
     });
+
+    recalcularEdicao();
   } else {
     editPorcentSelect.style.display = "block";
-
-    const porcentLabel = document.querySelector("label[for='editPorcent']");
 
     if (porcentLabel) {
       porcentLabel.style.display = "block";
     }
 
-    const opcoes = porcentPorIngred[ingredKey] || [];
-
-    editPorcentSelect.innerHTML = `
-      <option value="">
-        Selecione a porcentagem
-      </option>
-    `;
-
-    opcoes.forEach((percentByIngred) => {
-      const opt = document.createElement("option");
-
-      opt.value = percentByIngred;
-      opt.textContent = `${percentByIngred}%`;
-
-      editPorcentSelect.appendChild(opt);
-    });
+    popularPorcentagensEdit(ingredKey, currentQuant);
 
     if (editPorcentSelect.value) {
-      const g = calcularGrama(editPorcentSelect.value, editGramaSpan);
-      calcPpq(g, editIngredPreco, editPesoPacote, editPpq);
+      recalcularEdicao();
     } else {
       editGramaSpan.innerText = "";
       if (editPpq) {
@@ -524,48 +688,24 @@ function renderEditFields(ingredKey) {
 }
 
 editPorcentSelect.addEventListener("change", () => {
-  const g = calcularGrama(editPorcentSelect.value, editGramaSpan);
-  calcPpq(g, editIngredPreco, editPesoPacote, editPpq);
+  recalcularEdicao();
 });
 
 if (editIngredPreco) {
   editIngredPreco.addEventListener("input", () => {
-    let gramas = 0;
-    if (editNomeIngred.value === "farinha") {
-      const farinhaInput = document.getElementById("farinhaNumber");
-      gramas = calcularGrama(
-        100,
-        editGramaSpan,
-        farinhaInput ? farinhaInput.value : null,
-      );
-    } else {
-      gramas = calcularGrama(editPorcentSelect.value, editGramaSpan);
-    }
-    calcPpq(gramas, editIngredPreco, editPesoPacote, editPpq);
+    recalcularEdicao();
   });
 }
 
 if (editPesoPacote) {
   editPesoPacote.addEventListener("input", () => {
-    let gramas = 0;
-    if (editNomeIngred.value === "farinha") {
-      const farinhaInput = document.getElementById("farinhaNumber");
-      gramas = calcularGrama(
-        100,
-        editGramaSpan,
-        farinhaInput ? farinhaInput.value : null,
-      );
-    } else {
-      gramas = calcularGrama(editPorcentSelect.value, editGramaSpan);
-    }
-    calcPpq(gramas, editIngredPreco, editPesoPacote, editPpq);
+    recalcularEdicao();
   });
 }
 
 editNomeIngred.addEventListener("change", () => {
   const novoIngrediente = editNomeIngred.value;
-
-  renderEditFields(novoIngrediente, "");
+  renderEditFields(novoIngrediente, "", "");
 });
 
 if (saveEditBtn) {
@@ -584,44 +724,80 @@ if (saveEditBtn) {
 
     let newQuantValue = "";
     let newGramaValue = "";
-    let newPrecoValue = `R$ ${newPreco.toFixed(2)}`;
-    let newPpqValue = editPpq ? editPpq.textContent : "R$ 0,00";
+    const newPrecoValue = `R$ ${newPreco.toFixed(2)}`;
 
     if (!newIngredKey) {
-      alert("Selecione um ingrediente.");
+      alert("Selecione um ingrediente");
       return;
     }
 
-    if (newIngredKey === "farinha") {
+    if (newPreco <= 0 || newPesoPacote <= 0) {
+      alert("Informe o preço e o peso do pacote.");
+      return;
+    }
+
+    recalcularEdicao();
+    const newPpqValue = editPpq ? editPpq.textContent : "R$ 0,00";
+
+    if (isLeiteIngred(newIngredKey)) {
+      const leiteNumber = document.getElementById("leiteNumber");
+      const ml = parseFloat(leiteNumber ? leiteNumber.value : 0) || 0;
+
+      if (ml <= 0) {
+        alert("Informe a quantidade de leite.");
+        return;
+      }
+
+      const farinhaPeso =
+        parseFloat(getFarinhaBase ? getFarinhaBase.value : 0) || 0;
+      const leitePercent = farinhaPeso > 0 ? (ml / farinhaPeso) * 100 : 0;
+      newQuantValue = `${leitePercent.toFixed(0)}%`;
+      newGramaValue = editGramaSpan.textContent;
+    } else if (newIngredKey === "farinha") {
       const farinhaInput = document.getElementById("farinhaNumber");
-      const novoPeso = parseFloat(farinhaInput.value) || 0;
+      const novoPeso = parseFloat(farinhaInput ? farinhaInput.value : 0) || 0;
+      const farinhaPercent = editPorcentSelect.value;
 
       if (novoPeso <= 0) {
         alert("Digite um peso válido para a farinha.");
         return;
       }
 
+      if (!farinhaPercent) {
+        alert("Selecione a porcentagem para continuar");
+        return;
+      }
+
       getFarinhaBase.value = novoPeso;
-      newQuantValue = "100% (Base)";
-      newGramaValue = `${novoPeso.toFixed(0)} g`;
+      newQuantValue = `${farinhaPercent}%`;
+      newGramaValue = editGramaSpan.textContent;
     } else {
       if (!editPorcentSelect.value) {
         alert("Selecione a porcentagem.");
         return;
       }
+
       newQuantValue = `${editPorcentSelect.value}%`;
       newGramaValue = editGramaSpan.textContent;
     }
 
-    editingRow.dataset.ingredValue = newIngredKey;
-    editingRow.dataset.pesoPacote = newPesoPacote;
-    editingRow.querySelector(".col-nome").textContent = newName;
-    editingRow.querySelector(".col-quant").textContent = newQuantValue;
-    editingRow.querySelector(".col-preco").textContent = newPrecoValue;
-    editingRow.querySelector(".col-peso-pacote").textContent =
-      `${newPesoPacote} g`;
-    editingRow.querySelector(".col-grama").textContent = newGramaValue;
-    editingRow.querySelector(".col-ppq").textContent = newPpqValue;
+    Object.assign(editingRow.dataset, {
+      ingredValue: newIngredKey,
+      pesoPacote: newPesoPacote,
+    });
+
+    const updateTableData = {
+      ".col-nome": newName,
+      ".col-quant": newQuantValue,
+      ".col-preco": newPrecoValue,
+      ".col-peso-pacote": `${newPesoPacote} g`,
+      ".col-grama": newGramaValue,
+      ".col-ppq": newPpqValue,
+    };
+
+    for (const [classe, valor] of Object.entries(updateTableData)) {
+      editingRow.querySelector(classe).textContent = valor;
+    }
 
     massaCruaCalc();
     massaTotalCalc();

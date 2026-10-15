@@ -128,8 +128,7 @@
                 </div>
                 <div class="infoBox">
                   <label for="pesoMassaCrua"
-                    ><i class="fa-solid fa-scale-balanced"></i> PESO
-                    CRU</label
+                    ><i class="fa-solid fa-scale-balanced"></i> PESO CRU</label
                   >
                   <span id="pesoMassaCrua"></span>
                 </div>
@@ -177,7 +176,7 @@
                     <select name="nomeIngred" id="nomeIngred">
                       <option value="">Clique aqui para selecionar</option>
                       <option value="farinha">Farinha de trigo</option>
-                      <option value="farinhaInteg">Farinha Integral</option>
+                      <option value="fariIntegral">Farinha Integral</option>
                       <option value="acucar">Açúcar</option>
                       <option value="fermentoFresco">
                         Fermento Biológico Fresco
@@ -205,6 +204,16 @@
                         Selecione um ingrediente primeiro
                       </option>
                     </select>
+
+                    <div class="inputNumber hidden">
+                      <input
+                        type="number"
+                        name="inputNumber"
+                        id="inputNumber"
+                        step="any"
+                        min="0"
+                      />
+                    </div>
                   </div>
 
                   <div class="input-group">
@@ -273,12 +282,15 @@
             <select id="editNomeIngred">
               <option value="">Selecione um ingrediente</option>
               <option value="farinha">Farinha de trigo</option>
+              <option value="fariIntegral">Farinha Integral</option>
               <option value="acucar">Açúcar</option>
               <option value="fermentoFresco">Fermento Biológico Fresco</option>
               <option value="fermentoSeco">Fermento Biológico Seco</option>
               <option value="sal">Sal</option>
-              <option value="claraOvo">Ovos (clara)</option>
+              <option value="claraOvo">Ovos</option>
               <option value="gemaOvo">Ovos (gema)</option>
+              <option value="leiteLiq">Leite Líquido</option>
+              <option value="leitePo">Leite em Pó</option>
               <option value="agua">Água</option>
               <option value="gordura">Gordura</option>
               <option value="aditivoPo">Aditivo em Pó</option>
