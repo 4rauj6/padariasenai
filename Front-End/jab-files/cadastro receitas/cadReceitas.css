@@ -264,6 +264,19 @@ body {
   gap: 30px;
 }
 
+.edit-modal-text {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.edit-items-grid-1, .edit-items-grid-2 {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  gap: 10px;
+}
+
 .input-group {
   display: flex;
   flex-direction: column;

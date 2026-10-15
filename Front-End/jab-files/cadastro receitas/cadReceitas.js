@@ -49,6 +49,10 @@ const porcentPorIngred = {
   aditivoPo: [0, 0.5, 1],
   aditivoLiqui: [0, 0.2],
   aditivoPasta: [0, 0.3],
+  essencia: [0.5],
+  corante: [0.5],
+  leitePo: [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6],
+  leiteLiq: [10, 20, 30, 40, 50, 60, 70, 80]
 };
 
 function setModalState(isOpen) {
@@ -106,31 +110,7 @@ function calcularGrama(
 
   const pesoFarinha = parseFloat(valorFarinha) || 0;
   const porcentagemNum = parseFloat(percentValue) || 0;
-
-  const actualIngred = ingredKey || getIngredName.value;
-
-  if (actualIngred === "leiteLiq" || actualIngred === "leitePo") {
-    const inputNumValue =
-      leiteQuantidade !== null && leiteQuantidade !== undefined
-        ? parseFloat(String(leiteQuantidade).replace(",", ".")) || 0
-        : parseFloat(inputNumField.value) || 0;
-    screenRender.style.display = "block";
-    screenRender.style.backgroundColor = "#e8c9a0";
-    screenRender.style.border = "solid 2px #4a2c1a";
-    screenRender.style.padding = "4px 8px";
-    screenRender.style.width = "100%";
-    screenRender.style.borderRadius = "4px";
-
-    if (inputNumValue <= 0) {
-      const caseMssg = actualIngred === "leitePo" ? "em gramas" : "em ML";
-      screenRender.innerText = `informe a quantidade ${caseMssg}`;
-      return 0;
-    }
-
-    screenRender.innerText = `${inputNumValue.toFixed(0)} g`;
-    return inputNumValue;
-  }
-
+  
   screenRender.style.display = "block";
   screenRender.style.backgroundColor = "#e8c9a0";
   screenRender.style.border = "solid 2px #4a2c1a";
@@ -281,21 +261,6 @@ getIngredName.addEventListener("change", () => {
     return;
   }
 
-  if (actualIngred === "leiteLiq" || actualIngred === "leitePo") {
-    if (inputNum.classList.contains("hidden")) {
-      inputNum.classList.remove("hidden");
-      getIngredQuant.classList.add("hidden");
-    }
-  } else {
-    if (inputNum) {
-      inputNumField.value = "";
-      inputNum.classList.add("hidden");
-      getIngredQuant.classList.remove("hidden");
-    }
-    const g = calcularGrama(0);
-    calcPpq(g, getIngredPreco, getPctPeso, getPpq);
-  }
-
   if (options) {
     getIngredQuant.disabled = false;
     getIngredQuant.innerHTML = `<option value="">Selecione a porcentagem</option>`;
@@ -356,7 +321,7 @@ renderTable.addEventListener("click", (e) => {
   const grama = getIngredGr.textContent || "0 g";
   const precoQuant = getPpq ? getPpq.textContent : "R$ 0,00";
 
-  const leiteFill = ingredValue === "leiteLiq" || ingredValue === "leitePo";
+  const leiteFill = ingredValue === "leitePo"; // Apenas leite em pó continua manual se necessário
   const leiteChecking = leiteFill ? inputNumField.value : getIngredQuant.value;
 
   if (leiteFill) {
@@ -433,8 +398,8 @@ renderTable.addEventListener("click", (e) => {
       <button class="edit-item" id="editionBtn" data-tooltip="Editar ingrediente"><i class="fa-solid fa-pencil"></i></button>
     </td>
     <td>
-      <button class"filter-table id="filterUpper"></button>
-      <button class"filter-table id="filterDown"></button>
+      <button class="filter-table" id="filterUpper"></button>
+      <button class="filter-table" id="filterDown"></button>
     </td>
   `;
   tb.appendChild(tr);
@@ -491,7 +456,7 @@ tablePlacement.addEventListener("click", (e) => {
 });
 
 function isLeiteIngred(ingredKey) {
-  return ingredKey === "leiteLiq" || ingredKey === "leitePo";
+  return ingredKey === "leitePo";
 }
 
 function selecionarPorcentagem(selectEl, percentValue) {

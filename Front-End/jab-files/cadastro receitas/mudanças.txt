@@ -2,8 +2,8 @@ ordem tabela
 
 1 - porcentagem
 2 - quantidade utilizada
-3 - preço compra kg/ml
-4 - preço 
+3 - preço compra kg/ml/g
+4 - custo / receita
 
 * - mudar valor total para custo da receita
 
@@ -13,3 +13,6 @@ calculo para quantidade produzida: massa total : peso cru
 
 leite liquido - input number
 leite po - input number
+
+
+colocar % no segundo input. trocar nomes do quarto e quinto.

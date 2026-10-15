@@ -187,6 +187,8 @@
                       <option value="sal">Sal</option>
                       <option value="claraOvo">Ovo</option>
                       <option value="gemaOvo">Ovos (gema)</option>
+                      <option value="essencia">Essência</option>
+                      <option value="corante">Corante</option>
                       <option value="leiteLiq">Leite Líquido</option>
                       <option value="leitePo">Leite em Pó</option>
                       <option value="agua">Água</option>
@@ -217,7 +219,7 @@
                   </div>
 
                   <div class="input-group">
-                    <label for="gramaDoIngred">Quantidade em /g:</label>
+                    <label for="gramaDoIngred">Quantidade em g/ml:</label>
                     <span id="gramaDoIngred"></span>
                   </div>
                 </div>
@@ -225,7 +227,7 @@
                 <!-- SEGUNDA COLUNA (3 CAMPOS) -->
                 <div class="items-grid-2">
                   <div class="input-group">
-                    <label for="pesoPacote">Peso do pacote (g)</label>
+                    <label for="pesoPacote">Peso do pacote g/ml</label>
                     <input
                       type="number"
                       id="pesoPacote"
@@ -245,7 +247,7 @@
                   </div>
 
                   <div class="input-group">
-                    <label for="precoPq">Preço por /g</label>
+                    <label for="precoPq">Preço por g/ml</label>
                     <span id="precoPq"></span>
                   </div>
                 </div>
@@ -276,8 +278,8 @@
           </button>
 
           <h3 class="edit-modal-header">Editar Ingrediente</h3>
-
           <div class="addingIngred edit-modal-text" id="editingIngred">
+            <div class="edit-items-grid-1">
             <label for="editNomeIngred">Ingrediente:</label>
             <select id="editNomeIngred">
               <option value="">Selecione um ingrediente</option>
@@ -307,7 +309,8 @@
 
             <label for="editGrama">Quantidade em grama:</label>
             <span id="editGrama"></span>
-
+            </div>
+            <div class="edit-items-grid-2">
             <label for="editPesoPacote">Peso do pacote (g):</label>
             <input
               type="number"
@@ -332,6 +335,7 @@
               <option value="lastro">Forno lastro</option>
               <option value="turbo">Forno turbo</option>
             </select>
+            </div>
           </div>
 
           <div class="modal-buttons">
