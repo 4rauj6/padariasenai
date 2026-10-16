@@ -420,13 +420,18 @@ tablePlacement.addEventListener("click", (e) => {
 
   const deleteItem = e.target.closest(".delete-item");
   const editItem = e.target.closest(".edit-item");
-  const tooltipLabel = document.getElementsByClassName("toottip");
 
   if (!deleteItem && !editItem) {
     return;
   }
 
   if (deleteItem) {
+    // Esconde o balão antes de remover o botão que está sendo apontado
+    const tooltip = document.querySelector(".tooltip");
+    if (tooltip) {
+      tooltip.style.display = "none";
+    }
+
     const row = deleteItem.closest("tr");
     const table = deleteItem.closest("table");
 
@@ -436,10 +441,6 @@ tablePlacement.addEventListener("click", (e) => {
 
     if (tableIndex.length === 0) {
       table.remove();
-
-      if (tooltipLabel.length > 0) {
-        tooltipLabel[0].style.display = "none";
-      }
     }
 
     if (getFarinhaBase) {
