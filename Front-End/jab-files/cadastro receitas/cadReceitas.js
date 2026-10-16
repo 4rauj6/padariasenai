@@ -98,8 +98,6 @@ function calcularGrama(
   percentValue,
   screenRender = getIngredGr,
   baseFarinhaCustom = null,
-  ingredKey = null,
-  leiteQuantidade = null,
 ) {
   const valorFarinha =
     baseFarinhaCustom !== null
@@ -309,33 +307,36 @@ if (inputNum) {
 
 const tablePlacement = document.getElementById("tablePlace");
 
+function FilterByQuant(tb, tableDisplay) {
+  const rows = Array.from(tb.querySelectorAll("tr"));
+
+  rows.sort((a, b) => {
+    const readQuant = (rowsData) => {
+      const getLQData = rowsData.querySelector(".col-quant").textContent;
+      return parseFloat(getLQData.replace("%", "").replace(",", "."));
+    };
+
+    return tableDisplay ? readQuant(a) - readQuant(b) : readQuant(b) - readQuant(a);
+  });
+
+  tb.appendChild(...rows);
+};
+
 renderTable.addEventListener("click", (e) => {
   if (e.target.classList.contains("save-edit-ingred")) return;
   e.preventDefault();
 
   const ingredValue = getIngredName.value;
   const name = getIngredName.options[getIngredName.selectedIndex]?.text || "";
-  let quant = "";
+  let quant = getIngredQuant.value ? `${getIngredQuant.value}%` : "";
   const preco = getIngredPreco.value.replace("R$", "").replace(",", ".") || "0";
   const pesoPacoteVal = getPctPeso.value.replace(",", ".") || "0";
   const grama = getIngredGr.textContent || "0 g";
   const precoQuant = getPpq ? getPpq.textContent : "R$ 0,00";
 
-  const leiteFill = ingredValue === "leitePo"; // Apenas leite em pó continua manual se necessário
-  const leiteChecking = leiteFill ? inputNumField.value : getIngredQuant.value;
-
-  if (leiteFill) {
-    const ml = parseFloat(inputNumField.value) || 0;
-    const farinhaPeso = parseFloat(getFarinhaBase ? getFarinhaBase.value : 100);
-    const leitePercent = (ml / farinhaPeso) * 100;
-    quant = `${leitePercent.toFixed(0)}%`;
-  } else {
-    quant = getIngredQuant.value + "%";
-  }
-
   if (
     !getIngredName.value ||
-    !leiteChecking ||
+    !quant ||
     !getPctPeso.value ||
     !getIngredPreco.value
   ) {
@@ -375,7 +376,10 @@ renderTable.addEventListener("click", (e) => {
         <th>Gramas utilizadas</th>
         <th>Preço utilizado</th>
         <th>Ação</th>
-        <th>Filtro</th>
+        <th>Filtro
+          <button class="filter-table" id="filterUpper">up</button>
+          <button class="filter-table" id="filterDown">down</button>
+        </th>
       </tr>`;
 
     table.appendChild(th);
@@ -383,30 +387,35 @@ renderTable.addEventListener("click", (e) => {
     tablePlacement.appendChild(table);
   }
 
-  let tr = document.createElement("tr");
-  tr.dataset.ingredValue = ingredValue;
-  tr.dataset.pesoPacote = pesoPacoteVal;
-  tr.innerHTML = `
-    <td class="col-nome">${name}</td>
-    <td class="col-quant">${quant}</td>
-    <td class="col-preco">R$ ${parseFloat(preco || 0).toFixed(2)}</td>
-    <td class="col-peso-pacote">${pesoPacoteVal} g</td>
-    <td class="col-grama">${grama}</td>
-    <td class="col-ppq">${precoQuant}</td>
-    <td>
-      <button class="delete-item" id="editionBtn" data-tooltip="Excluir ingrediente"><i class="fa-solid fa-trash"></i></button>
-      <button class="edit-item" id="editionBtn" data-tooltip="Editar ingrediente"><i class="fa-solid fa-pencil"></i></button>
-    </td>
-    <td>
-      <button class="filter-table" id="filterUpper"></button>
-      <button class="filter-table" id="filterDown"></button>
-    </td>
-  `;
-  tb.appendChild(tr);
+    let tr = document.createElement("tr");
+    tr.dataset.ingredValue = ingredValue;
+    tr.dataset.pesoPacote = pesoPacoteVal;
+    tr.innerHTML = `
+      <td class="col-nome">${name}</td>
+      <td class="col-quant">${quant}</td>
+      <td class="col-preco">R$ ${parseFloat(preco || 0).toFixed(2)}</td>
+      <td class="col-peso-pacote">${pesoPacoteVal} g</td>
+      <td class="col-grama">${grama}</td>
+      <td class="col-ppq">${precoQuant}</td>
+      <td>
+        <button class="delete-item" id="editionBtn" data-tooltip="Excluir ingrediente"><i class="fa-solid fa-trash"></i></button>
+        <button class="edit-item" id="editionBtn" data-tooltip="Editar ingrediente"><i class="fa-solid fa-pencil"></i></button>
+      </td>
+    `;
 
-  if (ingredValue === "farinha") {
-    getFarinhaBase.disabled = true;
-  }
+    tr.querySelector("#filterUpper").addEventListener("click", () => {
+      FilterByQuant(tb, true);
+    });
+
+    tr.querySelector("#filterDown").addEventListener("click", () => {
+      FilterByQuant(tb, false);
+    });
+
+    tb.appendChild(tr);
+
+    if (ingredValue === "farinha") {
+      getFarinhaBase.disabled = true;
+    }
 
   massaCruaCalc();
   massaTotalCalc();
@@ -420,18 +429,13 @@ tablePlacement.addEventListener("click", (e) => {
 
   const deleteItem = e.target.closest(".delete-item");
   const editItem = e.target.closest(".edit-item");
+  const tooltipLabel = document.getElementsByClassName("toottip");
 
   if (!deleteItem && !editItem) {
     return;
   }
 
   if (deleteItem) {
-    // Esconde o balão antes de remover o botão que está sendo apontado
-    const tooltip = document.querySelector(".tooltip");
-    if (tooltip) {
-      tooltip.style.display = "none";
-    }
-
     const row = deleteItem.closest("tr");
     const table = deleteItem.closest("table");
 
@@ -441,6 +445,10 @@ tablePlacement.addEventListener("click", (e) => {
 
     if (tableIndex.length === 0) {
       table.remove();
+
+      if (tooltipLabel.length > 0) {
+        tooltipLabel[0].style.display = "none";
+      }
     }
 
     if (getFarinhaBase) {
@@ -500,11 +508,7 @@ function recalcularEdicao() {
   const ingredKey = editNomeIngred.value;
   let gramas = 0;
 
-  if (isLeiteIngred(ingredKey)) {
-    const leiteNumber = document.getElementById("leiteNumber");
-    const quantidade = leiteNumber ? leiteNumber.value : 0;
-    gramas = calcularGrama(0, editGramaSpan, null, ingredKey, quantidade);
-  } else if (ingredKey === "farinha") {
+  if (ingredKey === "farinha") {
     const farinhaInput = document.getElementById("farinhaNumber");
     gramas = calcularGrama(
       editPorcentSelect.value,
@@ -567,47 +571,14 @@ function closeEditModal() {
   outsideModalBody.style.filter = "blur(0)";
 }
 
-function renderEditFields(ingredKey, currentQuant = "", currentGrama = "") {
+function renderEditFields(ingredKey, currentQuant = "") {
   editNomeIngred.value = ingredKey;
 
   quantEditContainer.innerHTML = "";
 
   const porcentLabel = document.querySelector("label[for='editPorcent']");
 
-  if (isLeiteIngred(ingredKey)) {
-    if (porcentLabel) {
-      porcentLabel.style.display = "none";
-    }
-
-    const leiteInicial =
-      parseFloat(String(currentGrama).replace(",", ".")) || "";
-
-    quantEditContainer.innerHTML = `
-      <label for="leiteNumber">
-        Informe a quantidade de leite (ML ou g)
-      </label>
-
-      <input
-        type="number"
-        id="leiteNumber"
-        value="${leiteInicial}"
-      >
-    `;
-
-    editPorcentSelect.innerHTML = `
-      <option value="">
-        Selecione a porcentagem
-      </option>
-    `;
-    editPorcentSelect.style.display = "none";
-
-    const leiteNumber = document.getElementById("leiteNumber");
-    leiteNumber.addEventListener("input", () => {
-      recalcularEdicao();
-    });
-
-    recalcularEdicao();
-  } else if (ingredKey === "farinha") {
+ if (ingredKey === "farinha") {
     if (porcentLabel) {
       porcentLabel.style.display = "block";
     }
