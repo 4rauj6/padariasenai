@@ -21,21 +21,19 @@
   </head>
   <body>
     <div class="hero">
-      <div class="hero-header">
-        <div class="header">
-          <div class="header-text">
-            <i class="fa-regular fa-file"></i>
-            <div class="header-text-content">
-              <h1>CADASTRAR NOVA RECEITA</h1>
-              <span>PREENCHA AS INFORMAÇÕES DA NOVA RECEITA</span>
-            </div>
+      <div class="header">
+        <div class="header-text">
+          <img src="/Front-End/src/assets/pao 1.png" class="header-img" />
+          <div class="header-text-content">
+            <h1>CADASTRANDO RECEITA</h1>
+            <span>CRIE, EDITE E CALCULE OS CUSTOS DA SUA RECEITA</span>
           </div>
+        </div>
 
-          <div class="exit-button">
-            <button>
-              <i class="fa-solid fa-xmark"></i>
-            </button>
-          </div>
+        <div class="exit-button">
+          <button>
+            <i class="fa-solid fa-xmark"></i>
+          </button>
         </div>
       </div>
 
@@ -43,9 +41,9 @@
         <section class="form-section">
           <div class="form-receita">
             <form action="#">
-              <span class="infoHeader">INFORMAÇÕES BÁSICAS</span>
+              <span class="infoHeader">INFORMAÇÕES BÁSICAS:</span>
               <div class="form-receita-inputs">
-                <label for="receitaNome">NOME DA RECEITA</label>
+                <label for="receitaNome">NOME DA RECEITA:</label>
                 <input
                   type="text"
                   name="receitaNome"
@@ -54,7 +52,7 @@
                   required
                 />
 
-                <label for="categoriaReceita">CATEGORIA</label>
+                <label for="categoriaReceita">CATEGORIA:</label>
                 <select name="categoriaReceita" id="categoriaReceita" required>
                   <option value="">Seleciona uma categoria</option>
                   <option value="massaSalgada">Massa salgada</option>
@@ -62,7 +60,7 @@
                   <option value="sobremessa">Massa doce</option>
                 </select>
 
-                <label for="uniDesejadas">UNIDADES DESEJADAS</label>
+                <label for="uniDesejadas">UNIDADES DESEJADAS:</label>
                 <input
                   type="text"
                   id="uniDesejadas"
@@ -72,7 +70,7 @@
                 />
 
                 <label for="pesoBaseFarinha"
-                  >PESO BASE DA FARINHA (1000g = 1kg)</label
+                  >PESO DA FARINHA DE TRIGO (1000g = 1kg):</label
                 >
                 <input
                   type="number"
@@ -83,7 +81,6 @@
                   placeholder="Ex: 1000"
                 />
 
-                <div class=""></div>
                 <p class="field-label">FOTO DA RECEITA:</p>
                 <label class="image-upload" for="imgReceita">
                   <img id="imagePreview" alt="Prévia da receita" hidden />

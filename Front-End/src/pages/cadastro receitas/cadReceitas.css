@@ -40,15 +40,13 @@ body {
   flex-direction: row;
   font-family: var(--font-2);
   color: #4a2c1a;
-}
-
-.header .fa-file {
-  font-size: 3.5em;
+  gap: 15px;
 }
 
 .header-text-content {
   display: flex;
   flex-direction: column;
+  margin-top: 20px;
 }
 
 .exit-button button {
@@ -170,8 +168,8 @@ body {
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
-  width: 200px;
-  height: 50px;
+  width: 170px;
+  height: 35px;
   will-change: transform;
 }
 
@@ -602,12 +600,12 @@ button {
 
 @media (max-width: 1540px) {
   .form-content {
-    gap: 15px;
+    gap: 13px;
   }
 
   .form-receita {
     width: 500px;
-    height: 650px;
+    height: 620px;
   }
 
   .table-content {
@@ -626,14 +624,16 @@ button {
     padding: 8px;
   }
 
-  .form-receita-inputs textarea,
-  .mp-container textarea {
+  .form-receita-inputs textarea {
     min-width: auto;
     width: 100%;
   }
 
+  .mp-container textarea {
+  }
+
   .form-receita-inputs textarea {
-    height: 40px;
+    height: 20px;
   }
 
   .form-receita-inputs input {
@@ -652,7 +652,7 @@ button {
   }
 
   .image-upload {
-    height: 230px;
+    height: 220px;
   }
 }
 

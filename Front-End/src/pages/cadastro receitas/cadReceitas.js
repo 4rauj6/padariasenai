@@ -56,13 +56,13 @@ const porcentPorIngred = {
 function setModalState(isOpen) {
   if (isOpen) {
     if (!getRecipeCatogry.value.trim()) {
-      alert("Selecionae");
+      alert("Selecione uma categoria primeiro!");
       return false;
     } else if (!getRequiredUnit.value.trim()) {
-      alert("Informe quantas unidades deseja produzir");
+      alert("Informe quantas unidades deseja produzir!");
       return false;
     } else if (!getFarinhaBase.value.trim()) {
-      alert("Informe o peso base da farinha de trigo");
+      alert("Informe o peso base da farinha de trigo!");
       return false;
     }
   }
