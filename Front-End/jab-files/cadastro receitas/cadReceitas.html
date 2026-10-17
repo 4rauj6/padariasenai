@@ -43,8 +43,7 @@
         <section class="form-section">
           <div class="form-receita">
             <form action="#">
-              <h3>INFORMAÇÕES BÁSICAS</h3>
-
+              <span class="infoHeader">INFORMAÇÕES BÁSICAS</span>
               <div class="form-receita-inputs">
                 <label for="receitaNome">NOME DA RECEITA</label>
                 <input
@@ -63,6 +62,15 @@
                   <option value="sobremessa">Massa doce</option>
                 </select>
 
+                <label for="uniDesejadas">UNIDADES DESEJADAS</label>
+                <input
+                  type="text"
+                  id="uniDesejadas"
+                  name="uniDesejadas"
+                  placeholder="Ex: 50 unidades"
+                  required
+                />
+
                 <label for="pesoBaseFarinha"
                   >PESO BASE DA FARINHA (1000g = 1kg)</label
                 >
@@ -75,7 +83,8 @@
                   placeholder="Ex: 1000"
                 />
 
-                <span class="field-label">FOTO DA RECEITA:</span>
+                <div class=""></div>
+                <p class="field-label">FOTO DA RECEITA:</p>
                 <label class="image-upload" for="imgReceita">
                   <img id="imagePreview" alt="Prévia da receita" hidden />
                   <span class="upload-placeholder"
@@ -90,7 +99,6 @@
                   accept="image/png, image/jpeg"
                   class="visually-hidden"
                 />
-                <small>Formatos aceitos: JPG, PNG (máx. 5MB)</small>
               </div>
             </form>
           </div>
@@ -121,10 +129,10 @@
                   <span id="valorTotal"></span>
                 </div>
                 <div class="infoBox">
-                  <label for="porcoesEstimadas"
+                  <label for="quantidadeProduzida"
                     ><i class="fa-solid fa-chart-column"></i> RENDIMENTO</label
                   >
-                  <span id="porcoesEstimadas"></span>
+                  <span id="quantidadeProduzida"></span>
                 </div>
                 <div class="infoBox">
                   <label for="pesoMassaCrua"
@@ -224,7 +232,6 @@
                   </div>
                 </div>
 
-                <!-- SEGUNDA COLUNA (3 CAMPOS) -->
                 <div class="items-grid-2">
                   <div class="input-group">
                     <label for="pesoPacote">Peso do pacote g/ml</label>
@@ -253,9 +260,6 @@
                 </div>
               </div>
               <div class="modal-buttons">
-                <button class="add-mais-ingred">
-                  <i class="fa-solid fa-plus"></i> Mais
-                </button>
                 <button class="save-ingred">
                   <i class="fa-solid fa-check"></i> Salvar ingrediente
                 </button>
@@ -280,61 +284,63 @@
           <h3 class="edit-modal-header">Editar Ingrediente</h3>
           <div class="addingIngred edit-modal-text" id="editingIngred">
             <div class="edit-items-grid-1">
-            <label for="editNomeIngred">Ingrediente:</label>
-            <select id="editNomeIngred">
-              <option value="">Selecione um ingrediente</option>
-              <option value="farinha">Farinha de trigo</option>
-              <option value="fariIntegral">Farinha Integral</option>
-              <option value="acucar">Açúcar</option>
-              <option value="fermentoFresco">Fermento Biológico Fresco</option>
-              <option value="fermentoSeco">Fermento Biológico Seco</option>
-              <option value="sal">Sal</option>
-              <option value="claraOvo">Ovos</option>
-              <option value="gemaOvo">Ovos (gema)</option>
-              <option value="leiteLiq">Leite Líquido</option>
-              <option value="leitePo">Leite em Pó</option>
-              <option value="agua">Água</option>
-              <option value="gordura">Gordura</option>
-              <option value="aditivoPo">Aditivo em Pó</option>
-              <option value="aditivoLiqui">Aditivo em Líquido</option>
-              <option value="aditivoPasta">Aditivo em Pasta</option>
-            </select>
+              <label for="editNomeIngred">Ingrediente:</label>
+              <select id="editNomeIngred">
+                <option value="">Selecione um ingrediente</option>
+                <option value="farinha">Farinha de trigo</option>
+                <option value="fariIntegral">Farinha Integral</option>
+                <option value="acucar">Açúcar</option>
+                <option value="fermentoFresco">
+                  Fermento Biológico Fresco
+                </option>
+                <option value="fermentoSeco">Fermento Biológico Seco</option>
+                <option value="sal">Sal</option>
+                <option value="claraOvo">Ovos</option>
+                <option value="gemaOvo">Ovos (gema)</option>
+                <option value="leiteLiq">Leite Líquido</option>
+                <option value="leitePo">Leite em Pó</option>
+                <option value="agua">Água</option>
+                <option value="gordura">Gordura</option>
+                <option value="aditivoPo">Aditivo em Pó</option>
+                <option value="aditivoLiqui">Aditivo em Líquido</option>
+                <option value="aditivoPasta">Aditivo em Pasta</option>
+              </select>
 
-            <div id="quantEdit"></div>
+              <div id="quantEdit"></div>
 
-            <label for="editPorcent">Selecione a porcentagem:</label>
-            <select name="editPorcent" id="editPorcent">
-              <option value="">Selecione a porcentagem</option>
-            </select>
+              <label for="editPorcent">Selecione a porcentagem:</label>
+              <select name="editPorcent" id="editPorcent">
+                <option value="">Selecione a porcentagem</option>
+              </select>
 
-            <label for="editGrama">Quantidade em grama:</label>
-            <span id="editGrama"></span>
+              <label for="editGrama">Quantidade em grama:</label>
+              <span id="editGrama"></span>
             </div>
             <div class="edit-items-grid-2">
-            <label for="editPesoPacote">Peso do pacote (g):</label>
-            <input
-              type="number"
-              name="editPesoPacote"
-              id="editPesoPacote"
-              placeholder="Ex: 1000"
-            />
+              <label for="editPesoPacote">Peso do pacote (g):</label>
+              <input
+                type="number"
+                name="editPesoPacote"
+                id="editPesoPacote"
+                placeholder="Ex: 1000"
+              />
 
-            <label for="editPrecoIngred">Preço do ingrediente:</label>
-            <input
-              type="number"
-              name="editPrecoIngred"
-              id="editPrecoIngred"
-              placeholder="Ex: 15.00"
-            />
+              <label for="editPrecoIngred">Preço do ingrediente:</label>
+              <input
+                type="number"
+                name="editPrecoIngred"
+                id="editPrecoIngred"
+                placeholder="Ex: 15.00"
+              />
 
-            <label for="editPrecoPq">Preço por grama:</label>
-            <span id="editPrecoPq"></span>
+              <label for="editPrecoPq">Preço por grama:</label>
+              <span id="editPrecoPq"></span>
 
-            <label for="editTipoForno">Tipo de Forno:</label>
-            <select id="editTipoForno">
-              <option value="lastro">Forno lastro</option>
-              <option value="turbo">Forno turbo</option>
-            </select>
+              <label for="editTipoForno">Tipo de Forno:</label>
+              <select id="editTipoForno">
+                <option value="lastro">Forno lastro</option>
+                <option value="turbo">Forno turbo</option>
+              </select>
             </div>
           </div>
 
