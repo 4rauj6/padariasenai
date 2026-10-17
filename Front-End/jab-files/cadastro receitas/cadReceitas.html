@@ -1,0 +1,356 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Cadastro de receita</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Rufina:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../cadastro receitas/cadReceitas.css" />
+    <script src="../cadastro receitas/cadReceitas.js" defer></script>
+  </head>
+  <body>
+    <div class="hero">
+      <div class="hero-header">
+        <div class="header">
+          <div class="header-text">
+            <i class="fa-regular fa-file"></i>
+            <div class="header-text-content">
+              <h1>CADASTRAR NOVA RECEITA</h1>
+              <span>PREENCHA AS INFORMAÇÕES DA NOVA RECEITA</span>
+            </div>
+          </div>
+
+          <div class="exit-button">
+            <button>
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="form-content">
+        <section class="form-section">
+          <div class="form-receita">
+            <form action="#">
+              <span class="infoHeader">INFORMAÇÕES BÁSICAS</span>
+              <div class="form-receita-inputs">
+                <label for="receitaNome">NOME DA RECEITA</label>
+                <input
+                  type="text"
+                  name="receitaNome"
+                  id="receitaNome"
+                  placeholder="Pão Francês"
+                  required
+                />
+
+                <label for="categoriaReceita">CATEGORIA</label>
+                <select name="categoriaReceita" id="categoriaReceita" required>
+                  <option value="">Seleciona uma categoria</option>
+                  <option value="massaSalgada">Massa salgada</option>
+                  <option value="massaDoce">Massa semi doce</option>
+                  <option value="sobremessa">Massa doce</option>
+                </select>
+
+                <label for="uniDesejadas">UNIDADES DESEJADAS</label>
+                <input
+                  type="text"
+                  id="uniDesejadas"
+                  name="uniDesejadas"
+                  placeholder="Ex: 50 unidades"
+                  required
+                />
+
+                <label for="pesoBaseFarinha"
+                  >PESO BASE DA FARINHA (1000g = 1kg)</label
+                >
+                <input
+                  type="number"
+                  id="pesoBaseFarinha"
+                  value="1000"
+                  min="100"
+                  step="100"
+                  placeholder="Ex: 1000"
+                />
+
+                <div class=""></div>
+                <p class="field-label">FOTO DA RECEITA:</p>
+                <label class="image-upload" for="imgReceita">
+                  <img id="imagePreview" alt="Prévia da receita" hidden />
+                  <span class="upload-placeholder"
+                    ><i class="fa-regular fa-file"></i>Clique para adicionar<br />uma
+                    foto</span
+                  >
+                </label>
+                <input
+                  type="file"
+                  id="imgReceita"
+                  name="imgReceita"
+                  accept="image/png, image/jpeg"
+                  class="visually-hidden"
+                />
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <div class="table-content">
+          <section class="table-box">
+            <div class="table-container">
+              <h3>INGREDIENTES</h3>
+
+              <div id="tablePlace"></div>
+
+              <button class="addIngred">
+                <i class="fa-solid fa-plus"></i> ADICIONAR INGREDIENTE
+              </button>
+            </div>
+          </section>
+
+          <div class="table-container-2">
+            <div class="infoReceitas">
+              <h3>INFORMAÇÕES DA RECEITA</h3>
+
+              <div class="maisInfoReceitas">
+                <div class="infoBox">
+                  <label for="valorTotal"
+                    ><i class="fa-solid fa-dollar-sign"></i> CUSTO TOTAL</label
+                  >
+                  <span id="valorTotal"></span>
+                </div>
+                <div class="infoBox">
+                  <label for="quantidadeProduzida"
+                    ><i class="fa-solid fa-chart-column"></i> RENDIMENTO</label
+                  >
+                  <span id="quantidadeProduzida"></span>
+                </div>
+                <div class="infoBox">
+                  <label for="pesoMassaCrua"
+                    ><i class="fa-solid fa-scale-balanced"></i> PESO CRU</label
+                  >
+                  <span id="pesoMassaCrua"></span>
+                </div>
+                <div class="infoBox">
+                  <label for="pesoMassaTotal"
+                    ><i class="fa-solid fa-scale-balanced"></i> PESO
+                    ASSADO</label
+                  >
+                  <span id="pesoMassaTotal"></span>
+                </div>
+              </div>
+              <div class="mp-container">
+                <h4>MODO DE PREPARO</h4>
+                <textarea
+                  name="modoPreparo"
+                  id="modoPreparo"
+                  placeholder="Descreva o modo de preparo da receita"
+                  required
+                ></textarea>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <br />
+      <div class="saveButton">
+        <button>SALVAR RECEITA</button>
+      </div>
+    </div>
+
+    <section class="modal hidden">
+      <div class="overlay hidden">
+        <div class="modal-body">
+          <div class="modal-text">
+            <button class="close-modal">
+              <i class="fa-solid fa-xmark"></i>
+            </button>
+            <h3>Adicionando ingredientes</h3>
+            <div class="addingIngred">
+              <div class="modal-form-grid">
+                <!-- PRIMEIRA COLUNA (3 CAMPOS) -->
+                <div class="items-grid">
+                  <div class="input-group">
+                    <label for="nomeIngred">Selecione o ingrediente:</label>
+                    <select name="nomeIngred" id="nomeIngred">
+                      <option value="">Clique aqui para selecionar</option>
+                      <option value="farinha">Farinha de trigo</option>
+                      <option value="fariIntegral">Farinha Integral</option>
+                      <option value="acucar">Açúcar</option>
+                      <option value="fermentoFresco">
+                        Fermento Biológico Fresco
+                      </option>
+                      <option value="fermentoSeco">
+                        Fermento Biológico Seco
+                      </option>
+                      <option value="sal">Sal</option>
+                      <option value="claraOvo">Ovo</option>
+                      <option value="gemaOvo">Ovos (gema)</option>
+                      <option value="essencia">Essência</option>
+                      <option value="corante">Corante</option>
+                      <option value="leiteLiq">Leite Líquido</option>
+                      <option value="leitePo">Leite em Pó</option>
+                      <option value="agua">Água</option>
+                      <option value="gordura">Gordura</option>
+                      <option value="aditivoPo">Aditivo em Pó</option>
+                      <option value="aditivoLiqui">Aditivo Líquido</option>
+                      <option value="aditivoPasta">Aditivo em Pasta</option>
+                    </select>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="quantIngred">Selecione a porcentagem:</label>
+                    <select name="quantIngred" id="quantIngred" disabled>
+                      <option value="">
+                        Selecione um ingrediente primeiro
+                      </option>
+                    </select>
+
+                    <div class="inputNumber hidden">
+                      <input
+                        type="number"
+                        name="inputNumber"
+                        id="inputNumber"
+                        step="any"
+                        min="0"
+                      />
+                    </div>
+                  </div>
+
+                  <div class="input-group">
+                    <label for="gramaDoIngred">Quantidade em g/ml:</label>
+                    <span id="gramaDoIngred"></span>
+                  </div>
+                </div>
+
+                <div class="items-grid-2">
+                  <div class="input-group">
+                    <label for="pesoPacote">Peso do pacote g/ml</label>
+                    <input
+                      type="number"
+                      id="pesoPacote"
+                      name="pesoPacote"
+                      placeholder="Ex: 1000"
+                    />
+                  </div>
+
+                  <div class="input-group">
+                    <label for="precoPacote">Preço do pacote</label>
+                    <input
+                      type="number"
+                      id="precoPacote"
+                      name="precoPacote"
+                      placeholder="Ex: 15,99"
+                    />
+                  </div>
+
+                  <div class="input-group">
+                    <label for="precoPq">Preço por g/ml</label>
+                    <span id="precoPq"></span>
+                  </div>
+                </div>
+              </div>
+              <div class="modal-buttons">
+                <button class="save-ingred">
+                  <i class="fa-solid fa-check"></i> Salvar ingrediente
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="edit-data">
+      <div class="overlay-edit hidden">
+        <div class="modal-edit-body hidden">
+          <button
+            type="button"
+            class="close-edit-modal close-modal"
+            onclick="closeEditModal()"
+          >
+            <i class="fa-solid fa-xmark"></i>
+          </button>
+
+          <h3 class="edit-modal-header">Editar Ingrediente</h3>
+          <div class="addingIngred edit-modal-text" id="editingIngred">
+            <div class="edit-items-grid-1">
+              <label for="editNomeIngred">Ingrediente:</label>
+              <select id="editNomeIngred">
+                <option value="">Selecione um ingrediente</option>
+                <option value="farinha">Farinha de trigo</option>
+                <option value="fariIntegral">Farinha Integral</option>
+                <option value="acucar">Açúcar</option>
+                <option value="fermentoFresco">
+                  Fermento Biológico Fresco
+                </option>
+                <option value="fermentoSeco">Fermento Biológico Seco</option>
+                <option value="sal">Sal</option>
+                <option value="claraOvo">Ovos</option>
+                <option value="gemaOvo">Ovos (gema)</option>
+                <option value="leiteLiq">Leite Líquido</option>
+                <option value="leitePo">Leite em Pó</option>
+                <option value="agua">Água</option>
+                <option value="gordura">Gordura</option>
+                <option value="aditivoPo">Aditivo em Pó</option>
+                <option value="aditivoLiqui">Aditivo em Líquido</option>
+                <option value="aditivoPasta">Aditivo em Pasta</option>
+              </select>
+
+              <div id="quantEdit"></div>
+
+              <label for="editPorcent">Selecione a porcentagem:</label>
+              <select name="editPorcent" id="editPorcent">
+                <option value="">Selecione a porcentagem</option>
+              </select>
+
+              <label for="editGrama">Quantidade em grama:</label>
+              <span id="editGrama"></span>
+            </div>
+            <div class="edit-items-grid-2">
+              <label for="editPesoPacote">Peso do pacote (g):</label>
+              <input
+                type="number"
+                name="editPesoPacote"
+                id="editPesoPacote"
+                placeholder="Ex: 1000"
+              />
+
+              <label for="editPrecoIngred">Preço do ingrediente:</label>
+              <input
+                type="number"
+                name="editPrecoIngred"
+                id="editPrecoIngred"
+                placeholder="Ex: 15.00"
+              />
+
+              <label for="editPrecoPq">Preço por grama:</label>
+              <span id="editPrecoPq"></span>
+
+              <label for="editTipoForno">Tipo de Forno:</label>
+              <select id="editTipoForno">
+                <option value="lastro">Forno lastro</option>
+                <option value="turbo">Forno turbo</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="modal-buttons">
+            <button type="button" class="save-edit-ingred">
+              Salvar Alterações
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
