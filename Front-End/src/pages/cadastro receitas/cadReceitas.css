@@ -61,7 +61,7 @@ body {
 .form-content {
   display: flex;
   width: 100%;
-  gap: 270px;
+  gap: 300px;
 }
 
 .form-receita {
@@ -134,13 +134,13 @@ body {
   background-color: #f2e8d9;
   padding: 20px;
   min-height: 40px;
-  width: 109%;
+  width: 104%;
   border-radius: 6px;
 }
 
 .table-container-2 {
   background-color: #f2e8d9;
-  width: 109%;
+  width: 104%;
   border-radius: 6px;
 }
 
@@ -483,7 +483,7 @@ button {
 }
 
 .field-label p {
-  font-familly: var(--font-1);
+  font-family: var(--font-1);
 }
 
 .upload-placeholder {
@@ -629,8 +629,6 @@ button {
     width: 100%;
   }
 
-  .mp-container textarea {
-  }
 
   .form-receita-inputs textarea {
     height: 20px;
