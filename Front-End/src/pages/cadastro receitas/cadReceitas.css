@@ -600,12 +600,12 @@ button {
 
 @media (max-width: 1540px) {
   .form-content {
-    gap: 13px;
+    gap: 10px;
   }
 
   .form-receita {
-    width: 500px;
-    height: 620px;
+    width: 350px;
+    height: 615px;
   }
 
   .table-content {
@@ -613,11 +613,11 @@ button {
   }
 
   .table-container {
-    width: 960px;
+    width: 83%;
   }
 
   .table-container-2 {
-    width: 960px;
+    width: 83%;
   }
 
   .mp-container {
@@ -650,7 +650,7 @@ button {
   }
 
   .image-upload {
-    height: 220px;
+    height: 210px;
   }
 }
 
@@ -665,8 +665,8 @@ button {
   }
 
   .form-receita {
-    width: 400px;
-    height: auto;
+    width: 350px;
+    height: 616px;
   }
 
   .table-content {
@@ -675,11 +675,11 @@ button {
 
   .table-container {
     overflow-x: auto;
-    width: 72%;
+    width: 54%;
   }
 
   .table-container-2 {
-    width: 72%;
+    width: 54%;
     overflow-x: auto;
   }
 
@@ -703,7 +703,7 @@ button {
   }
 
   .image-upload {
-    height: 185px;
+    height: 190px;
   }
 }
 
