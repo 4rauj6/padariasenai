@@ -38,7 +38,7 @@ body {
 .header-text {
   display: flex;
   flex-direction: row;
-  font-family: var(--font-2);
+  font-family: var(--font-1);
   color: #4a2c1a;
   gap: 15px;
 }
@@ -79,6 +79,7 @@ body {
 .form-receita .infoHeader {
   font-size: 1.3em;
   font-family: var(--font-1);
+  font-weight: 600;
 }
 
 .form-receita-inputs {
@@ -128,6 +129,7 @@ body {
   color: #4a2c1a;
   margin-top: 10px;
   margin-left: 50px;
+  font-family: var(--font-1);
 }
 
 .table-container {
@@ -212,7 +214,7 @@ body {
   flex-direction: column;
   background-color: var(--cor-3);
   width: 600px;
-  height: 350px;
+  height: 370px;
   padding: 5px;
   border-radius: 8px;
 }
@@ -220,6 +222,7 @@ body {
 .modal-body h3 {
   text-align: center;
   color: var(--cor-1);
+  font-family: var(--font-1);
 }
 
 .modal-text {
@@ -247,6 +250,10 @@ body {
   gap: 20px;
 }
 
+.addingIngred {
+  margin-top: 20px;
+}
+
 .addingIngred input,
 .addingIngred select {
   background-color: var(--cor-2);
@@ -269,7 +276,7 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 30px;
+  gap: 20px;
 }
 
 .edit-modal-text {
@@ -610,14 +617,7 @@ button {
 
   .table-content {
     margin-left: 0;
-  }
-
-  .table-container {
-    width: 83%;
-  }
-
-  .table-container-2 {
-    width: 83%;
+    width: 72.7%;
   }
 
   .mp-container {
@@ -628,7 +628,6 @@ button {
     min-width: auto;
     width: 100%;
   }
-
 
   .form-receita-inputs textarea {
     height: 20px;
@@ -654,7 +653,7 @@ button {
   }
 }
 
-@media (max-width: 1290px) {
+@media (min-width: 1366px) and (max-width: 1440px) {
   .hero {
     min-height: auto;
   }
@@ -671,8 +670,9 @@ button {
 
   .table-content {
     margin-left: 0;
+    width: 69%;
   }
-
+  /* 
   .table-container {
     overflow-x: auto;
     width: 54%;
@@ -681,7 +681,61 @@ button {
   .table-container-2 {
     width: 54%;
     overflow-x: auto;
+  } */
+
+  .table-container table {
+    width: 100%;
+    height: auto;
   }
+
+  .form-receita-inputs textarea,
+  .mp-container textarea {
+    width: 100%;
+    min-height: 120px;
+  }
+
+  .maisInfoReceitas {
+    flex-direction: row;
+    width: 100%;
+    height: auto;
+    text-align: center;
+    justify-content: center;
+  }
+
+  .image-upload {
+    height: 190px;
+  }
+}
+
+@media (max-width: 1280px) {
+  .hero {
+    min-height: auto;
+  }
+
+  .form-content {
+    flex-direction: row;
+    gap: 12px;
+  }
+
+  .form-receita {
+    width: 350px;
+    height: 616px;
+  }
+
+  .table-content {
+    margin-left: 0;
+    width: 68%;
+  }
+  /* 
+  .table-container {
+    overflow-x: auto;
+    width: 54%;
+  }
+
+  .table-container-2 {
+    width: 54%;
+    overflow-x: auto;
+  } */
 
   .table-container table {
     width: 100%;
@@ -811,6 +865,7 @@ button {
     width: 100%;
   }
 }
+
 @media (max-width: 460px) {
   .hero {
     padding: 15px;
@@ -865,6 +920,10 @@ button {
     margin-left: 0;
   }
 
+  .table-container {
+    width: 147%;
+  }
+
   .table-container table {
     min-width: 500px;
   }
@@ -915,34 +974,34 @@ button {
     border-bottom: 1px solid #e8c9a0;
   }
 
-  #tablePlace tbody td::before {
+  #tablePlace tbody td:before {
     font-weight: 600;
     color: #4a2c1a;
     text-align: left;
   }
 
-  #tablePlace tbody td:nth-child(1)::before {
+  #tablePlace tbody td:nth-child(1):before {
     content: "Ingrediente";
   }
 
-  #tablePlace tbody td:nth-child(2)::before {
+  #tablePlace tbody td:nth-child(2):before {
     content: "Porcentagem";
   }
 
-  #tablePlace tbody td:nth-child(3)::before {
+  #tablePlace tbody td:nth-child(3):before {
     content: "Preço do pacote";
   }
 
-  #tablePlace tbody td:nth-child(4)::before {
+  #tablePlace tbody td:nth-child(4):before {
     content: "Gramas";
   }
 
-  #tablePlace tbody td:nth-child(5)::before {
+  #tablePlace tbody td:nth-child(5):before {
     content: "Preço por /g";
     margin-right: auto;
   }
 
-  #tablePlace tbody td:nth-child(6)::before {
+  #tablePlace tbody td:nth-child(6):before {
     content: "Ações";
     margin-right: auto;
   }
@@ -954,16 +1013,19 @@ button {
   }
 
   .addIngred {
+    display: flex;
     box-sizing: border-box;
-    width: 360px;
+    width: 250px;
     min-width: 0;
-    min-height: 48px;
+    min-height: 45px;
     padding: 12px;
     color: #fff;
     background-color: #6b422b;
     border: none;
     border-radius: 8px;
     font-size: 0.95rem;
+    margin-top: 5px;
+    align-self: center !important;
   }
 
   .addIngred:active {
@@ -972,7 +1034,7 @@ button {
   }
 
   .table-container-2 {
-    min-width: 100%;
+    min-width: 147%;
     padding: 10px;
   }
 
@@ -982,22 +1044,19 @@ button {
   }
 
   .modal {
+    display: flex;
+    flex-direction: column;
     position: fixed;
     inset: 0;
-    display: flex;
     justify-content: center;
     align-items: center;
     padding: 12px;
   }
 
-  .hidden {
-    display: none;
-  }
-
   .modal-body {
+    display: flex !important;
+    flex-direction: column !important;
     box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
     background-color: #f2e8d9;
     color: #4a2c1a;
     width: min(440px, calc(100vw - 24px));
@@ -1007,6 +1066,22 @@ button {
     padding: 24px;
     border-radius: 16px;
     gap: 10px;
+  }
+
+  .modal-form-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .edit-modal-text {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+
+  .hidden {
+    display: none !important;
   }
 
   .modal-body h3,
@@ -1021,9 +1096,9 @@ button {
   .addingIngred select {
     box-sizing: border-box;
     width: 100%;
-    min-height: 42px;
+    min-height: 1px !important;
     padding: 8px;
-    background-color: #fffaf3;
+    background-color: var(--cor-2);
   }
 
   .modal-buttons {
@@ -1047,36 +1122,75 @@ button {
   .save-ingred:active {
     background-color: #b86f45;
   }
-
   .overlay-edit {
     box-sizing: border-box;
     position: fixed;
     inset: 0;
-    display: grid;
-    place-items: center;
-    padding: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
     overflow-y: auto;
   }
 
   .modal-edit-body {
     box-sizing: border-box;
-    width: min(440px, calc(100vw - 24px));
+    display: flex;
+    flex-direction: column;
+    width: min(420px, calc(100vw - 16px));
     height: auto;
-    max-height: calc(100dvh - 24px);
+    max-height: calc(100dvh - 16px);
     overflow-y: auto;
-    padding: 16px;
-    gap: 10px;
+    padding: 12px;
+    gap: 6px;
+    background-color: var(--cor-3);
+    color: #4a2c1a;
+    border-radius: 12px;
+    font-family: var(--font-1);
   }
 
-  .edit-modal-text select,
+  .edit-modal-text {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 6px !important;
+  }
+
+  .edit-modal-text label {
+    font-family: var(--font-2);
+  }
+
+  .edit-modal-text select {
+    box-sizing: border-box;
+    width: 100%;
+    height: 25px;
+    padding: 2px 6px;
+    background-color: var(--cor-2);
+  }
+
+  #quantEdit {
+    gap: 4px;
+  }
+
   #quantEdit input {
     box-sizing: border-box;
     width: 100%;
-    min-height: 40px;
+    height: 23px;
+    padding: 2px 6px;
+    background-color: var(--cor-2);
   }
 
+  #editGrama {
+    height: 25px;
+    font-size: 0.9em;
+    text-align: center;
+  }
+
+  #editPrecoPq {
+    height: 25px;
+  }
   .save-edit-ingred {
-    min-height: 44px;
-    padding: 8px 12px;
+    min-height: 36px;
+    padding: 6px 10px;
+    font-size: 0.9rem;
   }
 }

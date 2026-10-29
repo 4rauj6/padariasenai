@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prata&family=Quicksand:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prata&family=Quicksand:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
 @import url('https: //fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet');
 
 .font1 {
-  font-family: 'Prata', serif;
+  font-family: "Prata", serif;
 }
 
 .font2 {
-  font-family: 'Outfit', sans-serif;
+  font-family: "Outfit", sans-serif;
 }
 
 body,
@@ -18,12 +18,15 @@ html {
 }
 
 .home {
-  background-image: linear-gradient(to right,
+  background-image:
+    linear-gradient(
+      to right,
       #000000 0%,
       #000000 25%,
       rgba(0, 0, 0, 0.85) 45%,
       rgba(0, 0, 0, 0.3) 65%,
-      transparent 78%),
+      transparent 78%
+    ),
     url(../../src/assets/paoTelaInicia.png);
   background-repeat: no-repeat;
   background-color: #000000;
@@ -69,11 +72,11 @@ spam {
 }
 
 .home-descript spam {
-  color: #BD8944;
+  color: #bd8944;
 }
 
 .home-descript p:first-of-type {
-  color: #BD8944;
+  color: #bd8944;
   margin-bottom: 2rem;
   text-transform: uppercase;
   font-size: 15px;
@@ -93,12 +96,12 @@ spam {
   white-space: nowrap;
 }
 
-.home-cards>.card {
+.home-cards > .card {
   background-color: rgba(58, 59, 67, 0.51);
   transition: 0.5s ease-in-out;
 }
 
-.home-cards>.card:hover {
+.home-cards > .card:hover {
   transform: scale(1.05);
 }
 
@@ -110,7 +113,7 @@ spam {
 }
 
 .home-cards h5 {
-  color: #FFFFFF;
+  color: #ffffff;
   font-size: 14px;
 }
 
@@ -121,7 +124,7 @@ spam {
 }
 
 @property --angle {
-  syntax: '<angle>';
+  syntax: "<angle>";
   initial-value: 0deg;
   inherits: false;
 }
@@ -134,21 +137,23 @@ spam {
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  background-color: #D9A157;
+  background-color: #d9a157;
   margin-top: 4.5rem;
   border-radius: 25px;
   cursor: pointer;
   overflow: hidden;
   z-index: 1;
-  transition: background-color 0.3s ease, transform 0.2s ease;
+  transition:
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
 .home-info:active {
   transform: scale(0.98);
 }
 
-.home-info::before {
-  content: '';
+.home-info:before {
+  content: "";
   position: absolute;
   z-index: 1;
   top: 50%;
@@ -156,15 +161,15 @@ spam {
   width: 110px;
   height: 110px;
   border-radius: 50%;
-  background-color: #E6A23C;
+  background-color: #e6a23c;
   filter: blur(8px);
   opacity: 0;
   transition: opacity 0.3s ease;
   pointer-events: none;
 }
 
-.home-info::after {
-  content: '';
+.home-info:after {
+  content: "";
   position: absolute;
   top: 3px;
   left: 3px;
@@ -184,7 +189,9 @@ spam {
   z-index: 10 !important;
   opacity: 1 !important;
   visibility: visible !important;
-  transition: color 0.3s ease, filter 0.3s ease;
+  transition:
+    color 0.3s ease,
+    filter 0.3s ease;
 }
 
 .home-info a {
@@ -204,7 +211,7 @@ spam {
 }
 
 .home-info:hover {
-  background-color: #BD8944;
+  background-color: #bd8944;
 }
 
 .home-info:hover::before {
@@ -217,7 +224,7 @@ spam {
 }
 
 .home-info:hover a {
-  color: #FFFFFF !important;
+  color: #ffffff !important;
 }
 
 .home-info:hover img {
@@ -247,12 +254,12 @@ spam {
 }
 
 /* RESPONSIVO- Telas Pequenas Portait*/
-@media (max-width:375px) {
+@media (max-width: 375px) {
   .home-descript p:first-of-type {
     font-size: 10px;
   }
 
-  .home-cards>.card {
+  .home-cards > .card {
     width: 8.4rem !important;
     height: 7rem !important;
   }
@@ -278,7 +285,7 @@ spam {
   }
 }
 
-@media (max-width:670px) {
+@media (max-width: 670px) {
   .home-logo {
     display: flex;
     align-items: center;
@@ -335,7 +342,7 @@ spam {
     gap: 2rem;
   }
 
-  .home-cards>.card {
+  .home-cards > .card {
     height: 10.9rem !important;
   }
 
@@ -395,7 +402,7 @@ spam {
     font-size: 21px;
   }
 
-  .home-cards>.card {
+  .home-cards > .card {
     width: 9.5rem !important;
     height: 12.5rem !important;
   }
@@ -414,7 +421,7 @@ spam {
     margin-top: 17rem;
   }
 
-  .home-cards>.card {
+  .home-cards > .card {
     width: 9.5rem !important;
     height: 12.5rem !important;
   }
