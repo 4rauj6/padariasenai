@@ -485,7 +485,7 @@ button {
 }
 
 .field-label p {
-  font-familly: var(--font-1);
+  font-family: var(--font-1);
 }
 
 .upload-placeholder {
@@ -1082,3 +1082,188 @@ button {
     padding: 8px 12px;
   }
 }
+
+/*responsivo dos tablets*/
+
+@media (max-width: 1366px) {
+  .hero {
+    min-height: 100vh;
+    padding: clamp(12px, 2.5vw, 24px);
+  }
+
+  .form-content {
+    width: 100%;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .form-receita {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+    margin-top: 10px;
+  }
+
+  .form-receita-inputs input,
+  .form-receita-inputs select,
+  .form-receita-inputs textarea {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .table-content {
+    width: 100%;
+    margin: 0;
+  }
+
+  .table-container,
+  .table-container-2 {
+    box-sizing: border-box;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .table-container {
+    padding: clamp(10px, 2vw, 18px);
+  }
+
+  #tablePlace {
+    width: 100%;
+    max-height: none;
+    padding: 0;
+    overflow: visible;
+  }
+
+  #tablePlace table {
+    display: block;
+    width: 100%;
+    min-width: 0;
+    border: 0;
+    border-spacing: 0;
+  }
+
+  #tablePlace thead {
+    display: none;
+  }
+
+  #tablePlace tbody {
+    display: block;
+    width: 100%;
+  }
+
+  #tablePlace tbody tr {
+    display: block;
+    width: 100%;
+    margin: 0 0 12px;
+    padding: 8px 12px;
+    background-color: #fffaf3;
+    border: 1px solid #e8c9a0;
+    border-radius: 10px;
+  }
+
+  #tablePlace tbody td {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+    padding: 10px 2px;
+    text-align: right;
+    overflow-wrap: anywhere;
+    border-bottom: 1px solid #e8c9a0;
+  }
+
+  #tablePlace tbody td::before {
+    flex: 0 0 auto;
+    font-weight: 600;
+    color: #4a2c1a;
+    text-align: left;
+  }
+
+  #tablePlace tbody td:nth-child(1)::before { content: "Ingrediente"; }
+  #tablePlace tbody td:nth-child(2)::before { content: "Porcentagem"; }
+  #tablePlace tbody td:nth-child(3)::before { content: "Preço do pacote"; }
+  #tablePlace tbody td:nth-child(4)::before { content: "Peso do pacote"; }
+  #tablePlace tbody td:nth-child(5)::before { content: "Gramas utilizadas"; }
+  #tablePlace tbody td:nth-child(6)::before { content: "Preço utilizado"; }
+  #tablePlace tbody td:nth-child(7)::before { content: "Ações"; }
+
+  #tablePlace tbody td:nth-child(5) {
+    justify-content: space-between;
+    border-bottom: 1px solid #e8c9a0;
+  }
+
+  #tablePlace tbody td:nth-child(7) {
+    justify-content: space-between;
+    border-bottom: 0;
+  }
+
+  #tablePlace tbody td:nth-child(8) {
+    display: none;
+  }
+
+  .addIngred {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 360px;
+  }
+
+  .saveButton,
+  .saveButton button {
+    box-sizing: border-box;
+    max-width: 100%;
+  }
+
+  .modal-body {
+    box-sizing: border-box;
+    width: min(600px, calc(100vw - 24px));
+    height: auto;
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+  }
+
+  .modal-form-grid {
+    flex-wrap: wrap;
+  }
+
+  .items-grid,
+  .items-grid-2 {
+    min-width: min(220px, 100%);
+  }
+
+  .modal-edit-body {
+    box-sizing: border-box;
+    width: min(600px, calc(100vw - 24px));
+    height: auto;
+    max-height: calc(100dvh - 24px);
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 600px) {
+  .header-text-content h1 {
+    font-size: clamp(1rem, 4vw, 1.2rem);
+  }
+
+  .header-text-content span {
+    font-size: 0.75rem;
+  }
+
+  .modal-form-grid,
+  .edit-modal-text {
+    flex-direction: column;
+  }
+
+  .items-grid,
+  .items-grid-2,
+  .edit-items-grid-1,
+  .edit-items-grid-2 {
+    width: 100%;
+    min-width: 0;
+  }
+}
+
+
+
+
