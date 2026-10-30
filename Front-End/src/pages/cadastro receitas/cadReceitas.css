@@ -935,6 +935,7 @@ button {
   .form-receita {
     height: 70vh;
   }
+  
   .maisInfoReceitas {
     display: grid;
     grid-template-columns: auto auto;
