@@ -424,22 +424,32 @@ body {
   align-items: center;
   justify-content: center;
   gap: 8px;
-  text-align: center;
 }
 
 .infoReceitas .maisInfoReceitas .infoBox label,
 .infoReceitas .maisInfoReceitas .infoBox span {
   display: block;
   width: 100%;
-  text-align: center;
 }
 
 .infoBox {
-  border: solid 2px #e8c9a0;
-  width: 250px;
+  width: 220px;
   min-height: 6vh;
   padding: 10px;
-  border-radius: 6px;
+  border-radius: 10px;
+  background-color: white;
+}
+
+.descInfoBox {
+  font-size: 0.9em;
+  font-weight: 400;
+}
+
+.valueIB {
+  display: flex;
+  text-align: start;
+  font-size: 1.8em;
+  font-weight: 600;
 }
 
 .mp-container textarea {
@@ -617,7 +627,7 @@ button {
 
   .table-content {
     margin-left: 0;
-    width: 72.7%;
+    width: 72.8%;
   }
 
   .mp-container {
@@ -645,7 +655,7 @@ button {
     flex-direction: row;
     justify-content: center;
     width: 100%;
-    text-align: center;
+    text-align: start;
   }
 
   .image-upload {
@@ -670,7 +680,7 @@ button {
 
   .table-content {
     margin-left: 0;
-    width: 69%;
+    width: 70%;
   }
   /* 
   .table-container {
@@ -757,7 +767,23 @@ button {
   }
 
   .image-upload {
-    height: 190px;
+    height: 210px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .form-receita {
+    width: 300px;
+    height: 570px;
+  }
+
+  .table-content {
+    margin-left: 0;
+    width: 65%;
+  }
+
+  .image-upload {
+    height: 150px;
   }
 }
 
@@ -801,6 +827,7 @@ button {
 
   .form-receita {
     padding: 15px;
+    width: 100%;
   }
 
   .form-receita-inputs {
@@ -822,6 +849,7 @@ button {
   .table-container {
     padding: 15px;
     overflow-x: auto;
+    width: 147%;
   }
 
   .table-container table {
@@ -840,11 +868,35 @@ button {
 
   .table-container-2 {
     overflow: hidden;
+    width: 147%;
   }
 
   .maisInfoReceitas {
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: auto auto;
     gap: 15px;
+  }
+
+  .infoBox {
+    width: 340px;
+    height: 150px;
+    text-align: start;
+  }
+
+  .descInfoBox {
+    font-size: 1.3em;
+    font-weight: 400;
+  }
+
+  .valueIB {
+    display: flex;
+    text-align: start;
+    font-size: 2.2em;
+    font-weight: 600;
+  }
+
+  .infoIcons {
+    font-size: 1.5em;
   }
 
   .mp-container {
@@ -863,6 +915,24 @@ button {
 
   .saveButton button {
     width: 100%;
+  }
+
+  .image-upload {
+    height: 225px;
+  }
+}
+
+@media (min-width: 712px) and (max-width: 744px) {
+  .maisInfoReceitas {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: 15px;
+  }
+
+  .infoBox {
+    width: 300px;
+    height: 150px;
+    text-align: start;
   }
 }
 
@@ -1039,8 +1109,14 @@ button {
   }
 
   .maisInfoReceitas {
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+  }
+
+  .infoBox {
+    width: 290px;
   }
 
   .modal {
