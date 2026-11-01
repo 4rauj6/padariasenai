@@ -1,0 +1,193 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <link rel="stylesheet" href="./style/style.css" />
+    <link rel="stylesheet" href="rendimento.css" />
+
+    <title>Rendimento | PaniCale</title>
+  </head>
+
+  <body>
+    <button id="btn-menu">
+      <span>☰</span>
+    </button>
+
+    <div class="coluna_lateral escondida">
+      <ul>
+        <li>
+          <a href=""><img src="../rendimento/image/images-header/receita.svg" alt="" /></a>
+        </li>
+        <li>
+          <a href=""
+            ><img src="../rendimento/image/images-header/formulacao-da-massa.svg" alt=""
+          /></a>
+        </li>
+        <li>
+          <a href=""
+            ><img src="../rendimento/image/images-header/rendimento.svg" alt=""
+          /></a>
+        </li>
+        <li>
+          <a href=""
+            ><img src="../rendimento/image/images-header/precificacao.svg" alt=""
+          /></a>
+        </li>
+        <li>
+          <a href=""
+            ><img src="../rendimento/image/images-header/catalogo.svg" alt=""
+          /></a>
+        </li>
+      </ul>
+
+      <section class="menu-sair menu-sair-coluna">
+        <hr />
+        <a href="#"><img src="../rendimento/image/images-header/sair.svg" alt="" /></a>
+      </section>
+    </div>
+
+    <header class="Dash_lateral" id="sidebar">
+      <article class="logo">
+        <img src="../rendimento/image/logo-pan.png" alt="Logo-Pan" />
+        <p>PaniCale</p>
+      </article>
+
+      <hr class="linha-divisora" />
+
+      <nav class="Dash_menu">
+        <ul>
+          <li>
+            <a href="#">
+              <img src="../rendimento/image/images-header/receita.svg" alt="" />
+              <span>Receita</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <img src="../rendimento/image/images-header/formulacao-da-massa.svg" alt="" />
+              <span>Formulação da massa</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <img src="../rendimento/image/images-header/rendimento.svg" alt="" />
+              <span>Rendimento</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="#">
+              <img src="../rendimento/image/images-header/precificacao.svg" alt="" />
+              <span>Precificação</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="catalogo/catalogo.html">
+              <img src="../rendimento/image/images-header/catalogo.svg" alt="" />
+              <span>Catálogo</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="menu-sair">
+        <hr />
+        <a href="#">
+          <img src="../rendimento/image/images-header/sair.svg" alt="" />
+          <span>Sair</span>
+        </a>
+      </section>
+    </header>
+
+    <div class="overlay-menu" id="overlay"></div>
+
+    <main>
+      <div class="rendimento-main">
+        <div class="input-main-rendimento">
+          <div class="input-label-rendimento">
+            <label class="label-rendimento-input" for="peso-cru">
+              PESO CRU DA PEÇA (g)
+            </label>
+
+            <input
+              type="number"
+              id="peso-cru"
+              class="input-rendimento"
+              placeholder="Ex: 50"
+              min="1"
+            />
+
+          </div>
+
+          <div class="input-label-rendimento">
+            <label class="label-rendimento-input" for="peso-assado">
+              PESO ASSADO DA PEÇA (g)
+            </label>
+
+            <input
+              type="number"
+              id="peso-assado"
+              class="input-rendimento"
+              placeholder="Ex: 40"
+              min="1"
+            />
+
+          </div>
+
+          <div class="input-label-rendimento">
+            <label class="label-rendimento-input" for="peso-assamento">
+              PESO POR ASSAMENTO (%)
+            </label>
+
+            <input
+              type="number"
+              id="peso-assamento"
+              class="input-rendimento"
+              placeholder="Ex: 10"
+              min="0"
+              max="100"
+            />
+
+          </div>
+        </div>
+
+        <div class="section-main">
+          <section class="section-rendimento">
+            <h1>Quantidade de Peças</h1>
+
+            <div class="qnt-pecas">
+              <img
+                class="img-pao"
+                src="../rendimento/image/pao-rendimento.png"
+                alt="Imagem de pão"
+              />
+              <h1 class="text-rendimento">132</h1>
+              <p>UNIDADES</p>
+            </div>
+          </section>
+
+          <section class="section-rendimento">
+            <h1>Peso Assado Total</h1>
+
+            <div class="peso-total">
+              <img
+                class="img-balanca"
+                src="../rendimento/image/balança-rendimento.png"
+                alt="Imagem de balança"
+              />
+              <h1 class="text-rendimento">14</h1>
+              <p id="mdd" class="mdd">kg</p>
+            </div>
+          </section>
+        </div>
+      </div>
+    </main>
+
+    <script src="./script/script.js" defer></script>
+  </body>
+</html>
