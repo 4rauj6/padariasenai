@@ -1,0 +1,467 @@
+@charset "UTF-8";
+    @import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&family=Rufina:wght@400;700&display=swap');
+
+    /* ==========================
+    RESET
+    ========================== */
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+:root {
+    /* Fontes */
+    --fonte-padrao: "Prata", serif;
+    --font-2: "Outfit", sans-serif;
+    --font-3: "Rufina", serif;
+
+    /* Paleta */
+    --cor-1: #D9A157;   /* dourado (destaques, botões, hover) */
+    --cor-2: #A2773F;   /* marrom médio (header, faixas) */
+    --cor-3: #4A2C1A;   /* marrom escuro (textos, rodapé) */
+    --cor-4: #F2E8D9;   /* creme (fundo do body, inputs) */
+    --cor-5: #F6E7D0;   /* creme claro (texto no header) */
+    --cor-6: #E8C9A0;   /* bege (textos/bordas no rodapé) */
+    --cor-7: #D4A574;   /* bege caramelo (bordas dos inputs) */
+    --cor-8: #BF9F63;   /* dourado oliva (fim do degradê dos cards) */
+    --cor-9: #FFFFFF;   /* branco */
+    --cor-10: #000000;  /* preto (overlay) */
+
+    /* Versões RGB para usar com transparência: rgba(var(--cor-1-rgb), 0.22) */
+    --cor-1-rgb: 217, 161, 87;
+    --cor-2-rgb: 162, 119, 63;
+    --cor-3-rgb: 74, 44, 26;
+    --cor-10-rgb: 0, 0, 0;
+}
+
+
+
+    /* ==========================
+    BOTÃO MENU (toggle)
+    ========================== */
+    #btn-menu {
+        position: fixed;
+        top: 34px;
+        left: 45px;
+        transform: translateX(-50%);
+        z-index: 10;
+        background-color: rgba(162, 119, 63, 0);
+        color: #fff;
+        border: none;
+        border-radius: 5px;
+        width: 50px;
+        padding: 10px 8px;
+        font-size: 20px;
+        cursor: pointer;
+        transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    #btn-menu.menu-aberto {
+        transform: translateX(245px);
+    }
+
+    /* ==========================
+    COLUNA LATERAL (ícones)
+    ========================== */
+    .coluna_lateral {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 90px;
+        height: 100vh;
+        background-color: rgba(162, 119, 63, 1);
+        z-index: 5;
+        transition: opacity 0.1s ease;
+    }
+    .coluna_lateral.oculta {
+        opacity: 0;
+    }
+    .coluna_lateral ul {
+        list-style: none;
+        margin-top: 138px;
+        padding: 0;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 90px;
+        align-items: center;
+        height: 70%;
+    }
+    .coluna_lateral li {
+        width: 100%;
+    }
+    .coluna_lateral a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 44px;
+        padding: 0;
+        transition: background-color 0.25s ease;
+    }
+    .coluna_lateral a:hover {
+        background-color: #fdfdfd18;
+    }
+    .coluna_lateral a:hover::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background-color: #fff;
+    }
+    .coluna_lateral a {
+        width: 100%;
+        color: #fff;
+    }
+    .coluna_lateral :hover a {
+        color: #D9A157;
+    }
+    .menu-sair-coluna {
+        position: absolute;
+        right: 0;
+        bottom: 40px;
+        left: 0;
+        width: 100%;
+        height: auto;
+    }
+    .menu-sair-coluna hr {
+        display: block;
+        width: 70%;
+        height: 2px;
+        margin: 0 auto 12px;
+        border: 0;
+        background-color: #fff;
+    }
+    .menu-sair-coluna .sair-a {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        background-color:#fff;
+    }
+
+    /* ==========================
+    DASHBOARD SIDEBAR (Dash_lateral)
+    ========================== */
+    .Dash_lateral {
+        display: flex;
+        flex-direction: column;
+        padding: 20px 50px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: min(380px, 100vw);
+        height: 100vh;
+        overflow: hidden;
+        background-color: rgba(162, 119, 63, 0.92);
+        z-index: 5;
+        transform: translateX(-100%);
+        transition: transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+    .Dash_lateral.aberto {
+        transform: translateX(0);
+    }
+
+    /* logo */
+    .logo {
+        display: flex;
+        align-items: center;
+    }
+    .logo img {
+        width: 75px;
+        height: 75px;
+    }
+    .logo p {
+        font-family: var(--font-3);
+        font-size: 20px;
+        font-weight: 300;
+        color: #F6E7D0;
+        margin-left: 25px;
+        border-radius: 5px;
+        transition: color 0.25s ease, background-color 0.25s ease;
+    }
+
+    /* linha divisora do header */
+    .linha-divisora {
+        display: block;
+        width: 100%;
+        height: 1px;
+        margin: 20px 0;
+        border: 0;
+        background-color: #D9A157;
+    }
+
+    /* menu de navegação */
+    .Dash_menu ul {
+        list-style: none;
+        width: 100%;
+        height: 100%;
+
+        display: flex;
+        flex-direction: column;
+        gap: 85px;
+        justify-content: space-evenly;
+    }
+    .Dash_menu li {
+        margin-top: px;
+    }
+    .Dash_menu a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        height: 55px;
+        padding: 12px 15px;
+        font-family: var(--font-2);
+        font-size: 20px;
+        font-weight: 200;
+        color: #fff;
+        text-decoration: none;
+    }
+    .Dash_menu a:hover {
+        background-color: rgba(217, 161, 87, 0.22);
+        color: #fff;
+    }
+    .Dash_menu a:hover::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background-color: #fff;
+    }
+    .Dash_menu img {
+        margin-right: 10px;
+    }
+
+    /* seção "sair" do header */
+    .menu-sair {
+        margin-top: auto;
+        width: 100%;
+    }
+    .menu-sair hr {
+        margin-bottom: 16px;
+        border: 0;
+        border-top: 2px solid #D9A157;
+        width: 70%;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .menu-sair > a {
+        position: relative;
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        width: 100%;
+        height: 55px;
+        padding: 12px 15px;
+        font-family: var(--font-2);
+        font-size: 20px;
+        font-weight: 200;
+        color: #fff;
+        text-decoration: none;
+        transition: color 0.25s ease, background-color 0.25s ease;
+    }
+    .menu-sair > a:hover {
+        background-color: rgba(217, 161, 87, 0.22);
+        color: #fff;
+    }
+    .menu-sair > a:hover::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 4px;
+        height: 100%;
+        background-color: #fff;
+    }
+    .menu-sair img {
+        margin-right: 10px;
+    }
+
+    /* ==========================
+    OVERLAY (bloqueia clique fora do menu)
+    ========================== */
+    .overlay-menu {
+        position: fixed;
+        inset: 0;
+        background-color: rgba(0, 0, 0, 0.35);
+        z-index: 4;
+        display: none;
+    }
+    .overlay-menu.ativo {
+        display: block;
+    }
+
+    /* ==========================
+    RESPONSIVO
+    ========================== */
+    @media (max-width: 600px) {
+        #btn-menu.menu-aberto {
+            transform: translateX(min(245px, calc(100vw - 75px)));
+        }
+        .Dash_lateral {
+            padding: 20px 24px;
+        }
+        .Dash_menu a {
+        font-size: 18px;
+    }
+}
+
+/* ==========================================================
+    RESPONSIVO DO HEADER
+   ========================================================== */
+
+/* ---------- Telas baixas: os ícones não podem bater no "Sair" ---------- */
+@media (max-height: 850px) {
+    .coluna_lateral ul {
+        gap: clamp(8px, calc((100vh - 480px) / 4), 90px);
+    }
+}
+
+/* ---------- Menu lateral aberto em telas baixas (iPhone SE, 8...) ---------- */
+@media (max-height: 850px) {
+    .Dash_lateral {
+        overflow-y: auto;
+    }
+
+    .Dash_menu {
+        flex-shrink: 0;
+    }
+
+    .Dash_menu ul {
+        height: auto;
+        gap: clamp(8px, calc((100vh - 520px) / 4), 85px);
+    }
+}
+
+/* iPhone/Safari: 100vh inclui a barra do navegador e corta o rodapé do menu */
+@supports (height: 100dvh) {
+    .Dash_lateral,
+    .coluna_lateral {
+        height: 100dvh;
+    }
+}
+
+/* botão ☰ não pode sair da tela quando o menu abre em telas bem estreitas */
+@media (max-width: 600px) {
+    #btn-menu.menu-aberto {
+        transform: translateX(min(245px, calc(100vw - 100px)));
+    }
+}
+
+/* ---------- Celular deitado: header no topo ---------- */
+@media (orientation: landscape) and (max-height: 500px) {
+    /* coluna lateral vira barra horizontal fixa no topo */
+    .coluna_lateral,
+    .coluna_lateral.oculta {
+        width: 100%;
+        height: 56px;
+        opacity: 1;
+    }
+
+    .coluna_lateral ul {
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+        gap: clamp(12px, 4vw, 48px);
+        width: 100%;
+        height: 100%;
+        margin-top: 0;
+    }
+
+    .coluna_lateral li {
+        width: auto;
+    }
+
+    .coluna_lateral a {
+        width: 52px;
+        height: 44px;
+    }
+
+    .coluna_lateral a img {
+        max-height: 32px;
+        width: auto;
+    }
+
+    .menu-sair-coluna {
+        top: 0;
+        right: 0;
+        bottom: auto;
+        left: auto;
+        display: flex;
+        align-items: center;
+        width: auto;
+        height: 100%;
+        padding-right: 10px;
+    }
+
+    .menu-sair-coluna hr {
+        display: none;
+    }
+
+    /* com a barra no topo, o botão e o menu lateral não são necessários */
+    #btn-menu,
+    .Dash_lateral,
+    .overlay-menu,
+    .overlay-menu.ativo {
+        display: none;
+    }
+}
+
+/* ---------- Caso extremo: não cabe a barra -> só o botão ---------- */
+@media (orientation: landscape) and (max-height: 500px) and (max-width: 520px),
+       (orientation: landscape) and (max-height: 260px) {
+    .coluna_lateral,
+    .coluna_lateral.oculta {
+        display: none;
+    }
+
+    #btn-menu {
+        display: block;
+        top: 6px;
+        background-color: var(--cor-2);
+    }
+
+    .Dash_lateral {
+        display: flex;
+        overflow-y: auto;
+        padding: 12px 24px;
+    }
+
+    .overlay-menu.ativo {
+        display: block;
+    }
+
+    .Dash_lateral .logo img {
+        width: 50px;
+        height: 50px;
+    }
+
+    .linha-divisora {
+        margin: 10px 0;
+    }
+
+    .Dash_menu {
+        flex-shrink: 0;
+    }
+
+    .Dash_menu ul {
+        gap: 8px;
+        height: auto;
+        justify-content: flex-start;
+    }
+
+    .Dash_menu a,
+    .menu-sair > a {
+        height: 44px;
+        font-size: 16px;
+    }
+}   
+
+
+
+
