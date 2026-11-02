@@ -17,9 +17,134 @@
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.3.1/css/all.min.css"
     />
     <link rel="stylesheet" href="../cadastro receitas/cadReceitas.css" />
+    <link rel="stylesheet" href="../../pages/rendimento/style/style.css" />
     <script src="../cadastro receitas/cadReceitas.js" defer></script>
+    <script
+      src="../../pages/rendimento/script/script.js"
+      type="module"
+      defer
+    ></script>
   </head>
   <body>
+    <button id="btn-menu">
+      <span>☰</span>
+    </button>
+
+    <div class="coluna_lateral oculta">
+      <ul>
+        <li>
+          <a href=""
+            ><img src="../rendimento/image/images-header/receita.svg" alt=""
+          /></a>
+        </li>
+        <li>
+          <a href=""
+            ><img
+              src="../rendimento/image/images-header/formulacao-da-massa.svg"
+              alt=""
+          /></a>
+        </li>
+        <li>
+          <a href=""
+            ><img src="../rendimento/image/images-header/rendimento.svg" alt=""
+          /></a>
+        </li>
+        <li>
+          <a href=""
+            ><img
+              src="../rendimento/image/images-header/precificacao.svg"
+              alt=""
+          /></a>
+        </li>
+        <li>
+          <a href=""
+            ><img src="../rendimento/image/images-header/catalogo.svg" alt=""
+          /></a>
+        </li>
+      </ul>
+
+      <section class="menu-sair menu-sair-coluna">
+        <hr />
+        <a href="#"
+          ><img src="../rendimento/image/images-header/sair.svg" alt=""
+        /></a>
+      </section>
+    </div>
+
+    <header class="Dash_lateral" id="sidebar">
+      <article class="logo">
+        <img src="../rendimento/image/logo-pan.png" alt="Logo-Pan" />
+        <p>PaniCale</p>
+      </article>
+
+      <hr class="linha-divisora" />
+
+      <nav class="Dash_menu">
+        <ul>
+          <li>
+            <a href="./cadReceitas.html">
+              <img src="../rendimento/image/images-header/receita.svg" alt="" />
+              <span>Receita</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="../rendimento/rendimento.html">
+              <img
+                src="../rendimento/image/images-header/formulacao-da-massa.svg"
+                alt=""
+              />
+              <span>Formulação da massa</span>
+            </a>
+          </li>
+
+          <li>
+            <a href="../rendimento/rendimento.html">
+              <img
+                src="../rendimento/image/images-header/rendimento.svg"
+                alt=""
+              />
+              <span>Rendimento</span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="../PaniCale--jv/Minhas-pags-Padaria/Precificação/precificacao.html"
+            >
+              <img
+                src="../rendimento/image/images-header/precificacao.svg"
+                alt=""
+              />
+              <span>Precificação</span>
+            </a>
+          </li>
+
+          <li>
+            <a
+              href="../PaniCale--jv/Minhas-pags-Padaria/catalogo/catalogo.html"
+            >
+              <img
+                src="../rendimento/image/images-header/catalogo.svg"
+                alt=""
+              />
+              <span>Catálogo</span>
+            </a>
+          </li>
+        </ul>
+      </nav>
+
+      <section class="menu-sair">
+        <hr />
+        <a href="/Front-End/src/index.html">
+          <img src="../rendimento/image/images-header/sair.svg" alt="" />
+          <span>Sair</span>
+        </a>
+      </section>
+    </header>
+
+    <div class="overlay-menu" id="overlay"></div>
+
     <div class="hero">
       <div class="header">
         <div class="header-text">
@@ -181,7 +306,6 @@
             <h3>Adicionando ingredientes</h3>
             <div class="addingIngred">
               <div class="modal-form-grid">
-                <!-- PRIMEIRA COLUNA (3 CAMPOS) -->
                 <div class="items-grid">
                   <div class="input-group">
                     <label for="nomeIngred">Selecione o ingrediente:</label>

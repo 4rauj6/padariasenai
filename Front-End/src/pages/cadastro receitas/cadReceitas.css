@@ -6,6 +6,18 @@
   --font-2: "Rufina", serif;
   --line: #e8c9a0;
   --brown: #4a2c1a;
+  --cor-4: #f2e8d9;
+  --cor-5: #f6e7d0;
+  --cor-6: #e8c9a0;
+  --cor-7: #d4a574;
+  --cor-8: #bf9f63;
+  --cor-9: #ffffff;
+  --cor-10: #000000;
+
+  --cor-1-rgb: 217, 161, 87;
+  --cor-2-rgb: 162, 119, 63;
+  --cor-3-rgb: 74, 44, 26;
+  --cor-10-rgb: 0, 0, 0;
 }
 
 * {
@@ -27,6 +39,8 @@ body {
   padding: 30px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  height: 100vh;
 }
 
 .header {
@@ -96,9 +110,9 @@ body {
   width: 100%;
   min-height: 3px;
   border-radius: 6px;
-  border: solid 2px #e8c9a0;
+  border: none;
   outline: none;
-  background-color: transparent;
+  background-color: white;
   padding: 5px;
 }
 
@@ -154,7 +168,7 @@ body {
   border: 2px solid var(--cor-1);
   border-radius: 10px;
   box-sizing: border-box;
-  color: #444040;
+  color: #4a2c1a;
   cursor: pointer;
   display: inline-block;
   font-size: 11px;
@@ -181,9 +195,10 @@ body {
 
 .addIngred:hover {
   color: #fff;
-  background-color: var(--cor-1);
+  background-color: #4a2c1a;
   box-shadow: rgba(0, 0, 0, 0.25) 0 8px 15px;
   transform: translateY(-2px);
+  border: solid 2px #4a2c1a;
 }
 
 .addIngred:active {
@@ -212,16 +227,16 @@ body {
 .modal-body {
   display: flex;
   flex-direction: column;
-  background-color: var(--cor-3);
+  background-color: var(--cor-5);
   width: 600px;
   height: 370px;
   padding: 5px;
-  border-radius: 8px;
+  border-radius: 10px;
 }
 
 .modal-body h3 {
   text-align: center;
-  color: var(--cor-1);
+  color: #4a2c1a;
   font-family: var(--font-1);
 }
 
@@ -240,7 +255,7 @@ body {
 
 .modal-body label {
   font-family: var(--font-1);
-  color: var(--cor-1);
+  color: #4a2c1a;
 }
 
 .modal-buttons {
@@ -256,8 +271,7 @@ body {
 
 .addingIngred input,
 .addingIngred select {
-  background-color: var(--cor-2);
-  border: solid 2px var(--cor-1);
+  background-color: #e8c9a0;
   width: 60%;
   padding: 2px;
   border-radius: 5px;
@@ -302,7 +316,8 @@ body {
 .input-group label {
   font-family: var(--font-1);
   font-size: 0.85rem;
-  color: var(--cor-1);
+  color: #4a2c1a;
+  font-weight: 500;
 }
 
 .input-group input,
@@ -310,15 +325,15 @@ body {
   width: 100%;
   padding: 6px 8px;
   border-radius: 5px;
-  border: 2px solid var(--cor-1);
-  background-color: var(--cor-2);
+  border: 3px solid #4a2c1a;
+  background-color: white;
   outline: none;
 }
 
 #gramaDoIngred {
   border-radius: 2px;
   width: 60%;
-  color: var(--cor-1);
+  color: #4a2c1a;
   padding: 3px;
 }
 
@@ -344,9 +359,9 @@ body {
   width: 25%;
   height: 30px;
   background-color: transparent;
-  color: var(--cor-1);
+  color: #4a2c1a;
   border-radius: 6px;
-  border: solid 2px var(--cor-1);
+  border: solid 2px #4a2c1a;
   cursor: pointer;
   transition:
     background-color 0.3s ease-in-out,
@@ -354,9 +369,10 @@ body {
 }
 
 .save-ingred:hover {
-  background-color: var(--cor-1);
-  color: var(--cor-2);
+  background-color: #4a2c1a;
+  color: #e8c9a0;
 }
+
 #tablePlace {
   width: 100%;
   max-height: 200px;
@@ -369,18 +385,20 @@ body {
   border-collapse: separate;
   border-spacing: 0;
   font-family: var(--font-1, sans-serif);
-  color: var(--cor-1, #4a2c1a);
+  color: var(-cor-3);
   text-align: center;
-  border: 2px solid var(--cor-2);
+  border: 2px solid var(--cor-3);
   border-radius: 12px;
   overflow: hidden;
+  background-color: white;
 }
 
 #tablePlace th,
 #tablePlace td {
   padding: 10px;
   font-size: 1rem;
-  border-bottom: 2px solid var(--cor-2);
+  border-bottom: 2px solid #e8c9a0;
+  color: var(-cor-3);
 }
 
 #tablePlace tr:last-child td {
@@ -389,7 +407,8 @@ body {
 
 #tablePlace th {
   font-weight: 600;
-  background-color: var(--cor-2, #e8c9a0);
+  background-color: var(--cor-3);
+  color: white;
 }
 
 #tablePlace::-webkit-scrollbar {
@@ -401,9 +420,10 @@ body {
 }
 
 #tablePlace::-webkit-scrollbar-thumb {
-  background-color: var(--cor-1, #4a2c1a);
+  background-color: #4a2c1a;
   border-radius: 4px;
 }
+
 .infoReceitas {
   display: flex;
   flex-direction: column;
@@ -457,11 +477,12 @@ body {
   min-width: 0;
   min-height: 170px;
   resize: none;
-  background-color: var(--cor-2);
+  background-color: white;
   color: black;
+  font-weight: 900;
   padding: 3px;
   border-radius: 6px;
-  border: solid 2px var(--cor-1);
+  border: none;
   outline: none;
   padding: 10px;
   margin-top: 10px;
@@ -496,11 +517,11 @@ button {
   align-items: center;
   width: 100%;
   height: 310px;
-  border: 2px solid var(--cor-2);
+  border: 2px solid #e8c9a0;
   border-radius: 6px;
   cursor: pointer;
   overflow: hidden;
-  background-color: transparent;
+  background-color: white;
 }
 
 .field-label p {
@@ -519,7 +540,7 @@ button {
 
 .upload-placeholder i {
   font-size: 3rem;
-  color: var(--brown);
+  color: #4a2c1a;
 }
 
 #imagePreview {
@@ -562,7 +583,7 @@ button {
 .modal-edit-body {
   display: flex;
   flex-direction: column;
-  background-color: var(--cor-3);
+  background-color: #f2e8d9;
   width: 600px;
   height: 450px;
   padding: 15px;
@@ -582,11 +603,11 @@ button {
 
 .edit-modal-header {
   text-align: center;
-  color: var(--cor-1);
+  color: #4a2c1a;
 }
 
 .edit-modal-text {
-  color: var(--cor-1);
+  color: #4a2c1a;
 }
 
 #quantEdit {
@@ -597,117 +618,89 @@ button {
 
 #editionBtn {
   background-color: transparent;
-  color: var(--cor-1);
-  border: solid 2px var(--cor-1);
+  color: #4a2c1a;
+  border: solid 2px #4a2c1a;
   padding: 3px;
   border-radius: 5px;
   cursor: pointer;
 }
 
 #editionBtn:hover {
-  background-color: var(--cor-1);
-  color: var(--cor-2);
+  background-color: #4a2c1a;
+  color: #e8c9a0;
 }
 
 .tooltip {
   display: none;
   position: absolute;
-  background-color: var(--cor-1);
-  color: var(--cor-2);
+  background-color: #4a2c1a;
+  color: #e8c9a0;
   padding: 5px;
   border-radius: 5px;
   transition: opacity 0.2s ease-in-out;
 }
 
+/* Responsivo */
 @media (max-width: 1540px) {
   .form-content {
     gap: 10px;
   }
-
   .form-receita {
     width: 350px;
     height: 615px;
   }
-
   .table-content {
     margin-left: 0;
-    width: 72.8%;
+    width: 65%;
   }
-
   .mp-container {
     padding: 8px;
   }
-
   .form-receita-inputs textarea {
     min-width: auto;
     width: 100%;
-  }
-
-  .form-receita-inputs textarea {
     height: 20px;
   }
-
-  .form-receita-inputs input {
-    min-height: 10px;
-  }
-
+  .form-receita-inputs input,
   .form-receita-inputs select {
     min-height: 10px;
   }
-
   .maisInfoReceitas {
     flex-direction: row;
     justify-content: center;
     width: 100%;
     text-align: start;
   }
-
   .image-upload {
     height: 210px;
   }
 }
 
-@media (min-width: 1366px) and (max-width: 1440px) {
+@media (min-width: 1364px) and (max-width: 1445px) {
   .hero {
     min-height: auto;
   }
-
   .form-content {
     flex-direction: row;
     gap: 12px;
   }
-
   .form-receita {
     width: 350px;
-    height: 616px;
+    height: 595px;
   }
-
   .table-content {
     margin-left: 0;
-    width: 70%;
+    width: 62%;
   }
-  /* 
-  .table-container {
-    overflow-x: auto;
-    width: 54%;
-  }
-
-  .table-container-2 {
-    width: 54%;
-    overflow-x: auto;
-  } */
-
   .table-container table {
     width: 100%;
     height: auto;
   }
-
   .form-receita-inputs textarea,
   .mp-container textarea {
     width: 100%;
     min-height: 120px;
   }
-
   .maisInfoReceitas {
     flex-direction: row;
     width: 100%;
@@ -715,7 +708,6 @@ button {
     text-align: center;
     justify-content: center;
   }
-
   .image-upload {
     height: 190px;
   }
@@ -725,43 +717,27 @@ button {
   .hero {
     min-height: auto;
   }
-
   .form-content {
     flex-direction: row;
     gap: 12px;
   }
-
   .form-receita {
     width: 350px;
     height: 616px;
   }
-
   .table-content {
     margin-left: 0;
-    width: 68%;
+    width: 61%;
   }
-  /* 
-  .table-container {
-    overflow-x: auto;
-    width: 54%;
-  }
-
-  .table-container-2 {
-    width: 54%;
-    overflow-x: auto;
-  } */
-
   .table-container table {
     width: 100%;
     height: auto;
   }
-
   .form-receita-inputs textarea,
   .mp-container textarea {
     width: 100%;
     min-height: 120px;
   }
-
   .maisInfoReceitas {
     flex-direction: row;
     width: 100%;
@@ -769,7 +745,6 @@ button {
     text-align: center;
     justify-content: center;
   }
-
   .image-upload {
     height: 210px;
   }
@@ -780,12 +755,10 @@ button {
     width: 300px;
     height: 570px;
   }
-
   .table-content {
     margin-left: 0;
-    width: 65%;
+    width: 59%;
   }
-
   .image-upload {
     height: 150px;
   }
@@ -794,160 +767,126 @@ button {
 @media (max-width: 835px) {
   .hero {
     padding: 20px;
-    min-height: auto;
+    height: auto;
   }
-
   .header {
     gap: 15px;
     align-items: center;
     justify-content: center;
   }
-
   .header-text {
     align-items: center;
   }
-
   .header .fa-file {
     display: none;
   }
-
   .header-text-content h1 {
     font-size: 1em;
   }
-
   .header-text-content span {
     font-size: 1em;
     min-width: 10%;
   }
-
   .exit-button button {
     padding: 5px;
     white-space: normal;
   }
-
   .form-content {
     flex-direction: column;
   }
-
-.form-receita {
-  display: flex;
-  flex-direction: column;
-  padding: 15px;
-  width: 100%;
-  height: 100%;
-}
-
+  .form-receita {
+    display: flex;
+    flex-direction: column;
+    padding: 15px;
+    width: 100%;
+    height: 100%;
+  }
   .form-receita-inputs {
     margin-top: 20px;
     font-size: 1em;
   }
-
   .form-receita-inputs input,
   .form-receita-inputs select,
   .form-receita-inputs textarea {
     width: 100%;
   }
-
   .form-receita-inputs textarea {
-    width: 100%;
     height: 80px;
   }
-
   .table-container {
     padding: 15px;
     overflow-x: auto;
     width: 154%;
   }
-
   .table-container table {
     width: 100%;
     min-width: 600px;
     height: auto;
   }
-
-  .table-container td:last-child {
-    height: auto;
-  }
-
-  .table-container input {
-    max-width: 100%;
-  }
-
   .table-container-2 {
     overflow: hidden;
     width: 154%;
   }
-
   .maisInfoReceitas {
     display: grid;
     grid-template-columns: auto auto;
     gap: 15px;
   }
-
   .infoBox {
     width: 340px;
     height: 150px;
     text-align: start;
   }
-
   .descInfoBox {
     font-size: 1.3em;
     font-weight: 400;
   }
-
   .valueIB {
     display: flex;
     text-align: start;
     font-size: 2.2em;
     font-weight: 600;
   }
-
   .infoIcons {
     font-size: 1.5em;
   }
-
   .mp-container {
     width: 100%;
   }
-
   .mp-container textarea {
     min-width: 0;
     width: 100%;
     min-height: 150px;
   }
-
   .saveButton {
     width: 100%;
   }
-
   .saveButton button {
     width: 100%;
   }
-
-  
-.image-upload {
-  height: 26vh;
-  width: 100%;
-}
+  .image-upload {
+    height: 26vh;
+    width: 100%;
+  }
 }
 
 @media (min-width: 712px) and (max-width: 768px) {
+  .hero {
+    height: auto;
+  }
   .form-receita {
     height: 70vh;
   }
-  
   .maisInfoReceitas {
     display: grid;
     grid-template-columns: auto auto;
     gap: 15px;
   }
-
   .infoBox {
     width: 300px;
     height: 150px;
     text-align: start;
   }
-
   .image-upload {
     height: 280px;
   }
@@ -957,78 +896,62 @@ button {
   .hero {
     padding: 15px;
     border-radius: 0;
+    height: auto;
   }
-
   .header {
     flex-direction: column;
   }
-
   .header-text {
     width: 100%;
   }
-
   .exit-button {
     align-self: flex-end;
   }
-
   .header .fa-file {
     font-size: 2em;
   }
-
   .header-text-content h1 {
     font-size: 1.2em;
   }
-
   .header-text-content p {
     font-size: 0.8em;
   }
-
   .form-content {
     gap: 0;
   }
-
   .form-receita,
   .table-container {
     box-sizing: border-box;
     width: 100%;
     padding: 10px;
   }
-
   .form-receita {
     height: 600px;
   }
-
   .form-receita-inputs {
     gap: 10px;
   }
-
   .form-receita-inputs textarea {
     min-width: 0;
   }
-
   .table-content {
     margin-right: 0;
     margin-left: 0;
   }
-
   .table-container {
-    width: 154%;
+    width: 160%;
   }
-
   .table-container table {
     min-width: 500px;
   }
-
   .table-container td:last-child {
     gap: 5px;
   }
-
   #tablePlace {
     max-height: none;
     padding: 0;
     overflow: visible;
   }
-
   #tablePlace table {
     display: block;
     width: 100%;
@@ -1036,15 +959,12 @@ button {
     border: 0;
     border-spacing: 0;
   }
-
   #tablePlace thead {
     display: none;
   }
-
   #tablePlace tbody {
     display: block;
   }
-
   #tablePlace tbody tr {
     display: block;
     margin-bottom: 12px;
@@ -1053,7 +973,6 @@ button {
     border: 1px solid #e8c9a0;
     border-radius: 10px;
   }
-
   #tablePlace tbody td {
     display: flex;
     justify-content: space-between;
@@ -1064,34 +983,27 @@ button {
     text-align: right;
     border-bottom: 1px solid #e8c9a0;
   }
-
   #tablePlace tbody td:before {
     font-weight: 600;
     color: #4a2c1a;
     text-align: left;
   }
-
   #tablePlace tbody td:nth-child(1):before {
     content: "Ingrediente";
   }
-
   #tablePlace tbody td:nth-child(2):before {
     content: "Porcentagem";
   }
-
   #tablePlace tbody td:nth-child(3):before {
     content: "Preço do pacote";
   }
-
   #tablePlace tbody td:nth-child(4):before {
     content: "Gramas";
   }
-
   #tablePlace tbody td:nth-child(5):before {
     content: "Preço por /g";
     margin-right: auto;
   }
-
   #tablePlace tbody td:nth-child(6):before {
     content: "Ações";
     margin-right: auto;
@@ -1102,11 +1014,9 @@ button {
     gap: 8px;
     border-bottom: 0;
   }
-
   .image-upload {
     height: 250px;
   }
-
   .addIngred {
     display: flex;
     box-sizing: border-box;
@@ -1122,28 +1032,23 @@ button {
     margin-top: 5px;
     align-self: center !important;
   }
-
   .addIngred:active {
     background-color: #b86f45;
     transform: scale(0.98);
   }
-
   .table-container-2 {
     min-width: 147%;
     padding: 10px;
   }
-
   .maisInfoReceitas {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
   }
-
   .infoBox {
     width: 290px;
   }
-
   .modal {
     display: flex;
     flex-direction: column;
@@ -1153,7 +1058,6 @@ button {
     align-items: center;
     padding: 12px;
   }
-
   .modal-body {
     display: flex !important;
     flex-direction: column !important;
@@ -1168,30 +1072,25 @@ button {
     border-radius: 16px;
     gap: 10px;
   }
-
   .modal-form-grid {
     display: flex !important;
     flex-direction: column !important;
     gap: 10px !important;
   }
-
   .edit-modal-text {
     display: flex !important;
     flex-direction: column !important;
     gap: 10px !important;
   }
-
   .hidden {
     display: none !important;
   }
-
   .modal-body h3,
   .modal-text label,
   .addingIngred label,
   #gramaDoIngred {
     color: #4a2c1a;
   }
-
   .modal-text input,
   .modal-text select,
   .addingIngred select {
@@ -1201,12 +1100,10 @@ button {
     padding: 8px;
     background-color: var(--cor-2);
   }
-
   .modal-buttons {
     gap: 10px;
     margin-top: 16px;
   }
-
   .add-mais-ingred,
   .save-ingred {
     box-sizing: border-box;
@@ -1218,7 +1115,6 @@ button {
     border: none;
     border-radius: 8px;
   }
-
   .add-mais-ingred:active,
   .save-ingred:active {
     background-color: #b86f45;
@@ -1233,7 +1129,6 @@ button {
     padding: 8px;
     overflow-y: auto;
   }
-
   .modal-edit-body {
     box-sizing: border-box;
     display: flex;
@@ -1244,48 +1139,41 @@ button {
     overflow-y: auto;
     padding: 12px;
     gap: 6px;
-    background-color: var(--cor-3);
+    background-color: #f2e8d9;
     color: #4a2c1a;
     border-radius: 12px;
     font-family: var(--font-1);
   }
-
   .edit-modal-text {
     display: flex !important;
     flex-direction: column !important;
     gap: 6px !important;
   }
-
   .edit-modal-text label {
     font-family: var(--font-2);
   }
-
   .edit-modal-text select {
     box-sizing: border-box;
     width: 100%;
     height: 25px;
     padding: 2px 6px;
-    background-color: var(--cor-2);
+    background-color: #e8c9a0;
   }
-
   #quantEdit {
     gap: 4px;
   }
-
   #quantEdit input {
     box-sizing: border-box;
     width: 100%;
     height: 23px;
     padding: 2px 6px;
-    background-color: var(--cor-2);
+    background-color: #e8c9a0;
   }
-
   #editGrama {
     height: 25px;
     font-size: 0.9em;
     text-align: center;
   }
-
   #editPrecoPq {
     height: 25px;
   }
@@ -1293,162 +1181,5 @@ button {
     min-height: 36px;
     padding: 6px 10px;
     font-size: 0.9rem;
-  }
-}
-
-/* Responsividade para tablets: acima de 1366px permanece o layout original. */
-@media (max-width: 1366px) {
-  .form-content {
-    width: 100%;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .form-receita {
-    box-sizing: border-box;
-    width: 100%;
-    height: auto;
-    min-width: 0;
-  }
-
-  .form-receita-inputs input,
-  .form-receita-inputs select,
-  .form-receita-inputs textarea {
-    box-sizing: border-box;
-    width: 100%;
-    min-width: 0;
-  }
-
-  .table-content {
-    box-sizing: border-box;
-    width: 100%;
-    margin: 0;
-  }
-
-  .table-container,
-  .table-container-2 {
-    box-sizing: border-box;
-    width: 100%;
-    min-width: 0;
-  }
-
-  .table-container {
-    overflow: visible;
-  }
-
-  .maisInfoReceitas {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
-    width: 100%;
-    height: auto;
-    gap: 12px;
-  }
-
-  .infoBox {
-    box-sizing: border-box;
-    width: 100%;
-    min-width: 0;
-    height: auto;
-    min-height: 100px;
-  }
-
-  #tablePlace {
-    width: 100%;
-    max-height: none;
-    padding: 0;
-    overflow: visible;
-  }
-
-  #tablePlace table {
-    display: block;
-    width: 100%;
-    min-width: 0;
-    border: 0;
-    border-spacing: 0;
-  }
-
-  #tablePlace thead {
-    display: none;
-  }
-
-  #tablePlace tbody {
-    display: block;
-    width: 100%;
-  }
-
-  #tablePlace tbody tr {
-    display: block;
-    width: 100%;
-    margin: 0 0 12px;
-    padding: 8px 12px;
-    background-color: #fffaf3;
-    border: 1px solid #e8c9a0;
-    border-radius: 10px;
-  }
-
-  #tablePlace tbody td {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-    width: 100%;
-    padding: 10px 2px;
-    text-align: right;
-    overflow-wrap: anywhere;
-    border-bottom: 1px solid #e8c9a0;
-  }
-
-  #tablePlace tbody td::before {
-    flex: 0 0 auto;
-    font-weight: 600;
-    color: #4a2c1a;
-    text-align: left;
-  }
-
-  #tablePlace tbody td:nth-child(1)::before { content: "Ingrediente"; }
-  #tablePlace tbody td:nth-child(2)::before { content: "Porcentagem"; }
-  #tablePlace tbody td:nth-child(3)::before { content: "Preço do pacote"; }
-  #tablePlace tbody td:nth-child(4)::before { content: "Peso do pacote"; }
-  #tablePlace tbody td:nth-child(5)::before { content: "Gramas utilizadas"; }
-  #tablePlace tbody td:nth-child(6)::before { content: "Preço utilizado"; }
-  #tablePlace tbody td:nth-child(7)::before { content: "Ações"; }
-
-  #tablePlace tbody td:nth-child(5) {
-    justify-content: space-between;
-    border-bottom: 1px solid #e8c9a0;
-  }
-
-  #tablePlace tbody td:nth-child(7) {
-    justify-content: space-between;
-    border-bottom: 0;
-  }
-
-  #tablePlace tbody td:nth-child(8) {
-    display: none;
-  }
-
-  .addIngred {
-    box-sizing: border-box;
-    width: 100%;
-    max-width: 360px;
-  }
-
-  .modal-body,
-  .modal-edit-body {
-    box-sizing: border-box;
-    width: min(720px, calc(100vw - 24px));
-    height: auto;
-    max-height: calc(100dvh - 24px);
-    overflow-y: auto;
-  }
-
-  .modal-form-grid {
-    flex-wrap: wrap;
-  }
-
-  .items-grid,
-  .items-grid-2 {
-    flex: 1 1 220px;
-    min-width: 0;
   }
 }

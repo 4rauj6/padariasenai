@@ -1,1 +1,0 @@
-Esse style.css é o css do menu em si, pegando ele apenas por causa do menu 
