@@ -74,8 +74,8 @@ body {
 
 .form-content {
   display: flex;
-  width: 100%;
-  gap: 300px;
+  width: 90%;
+  gap: 280px;
 }
 
 .form-receita {
@@ -325,7 +325,7 @@ body {
   width: 100%;
   padding: 6px 8px;
   border-radius: 5px;
-  border: 3px solid #4a2c1a;
+  border: 2px solid #4a2c1a;
   background-color: white;
   outline: none;
 }
@@ -381,7 +381,7 @@ body {
 }
 
 #tablePlace table {
-  width: 100%;
+  width: 97%;
   border-collapse: separate;
   border-spacing: 0;
   font-family: var(--font-1, sans-serif);

@@ -58,11 +58,17 @@ function setModalState(isOpen) {
     if (!getRecipeCatogry.value.trim()) {
       alert("Selecione uma categoria primeiro!");
       return false;
+
     } else if (!getRequiredUnit.value.trim()) {
       alert("Informe quantas unidades deseja produzir!");
       return false;
+
     } else if (!getFarinhaBase.value.trim()) {
       alert("Informe o peso base da farinha de trigo!");
+      return false;
+
+    } else if (Number(getRequiredUnit.value) > Number(getFarinhaBase.value)) {
+      alert("A quantidade de unidades desejadas não pode ser maior que o peso base da farinha!");
       return false;
     }
   }
@@ -81,9 +87,9 @@ function setModalState(isOpen) {
     getIngredGr.style.display = "none";
     if (getPpq) getPpq.style.display = "none";
   }
+
   return true;
 }
-
 modalButtons.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -268,20 +274,29 @@ function valorTotalCalc() {
 }
 
 function rendimentoCalc() {
-  const unity = parseFloat(getRequiredUnit ? getRequiredUnit.value : 0) || 0;
-  const getDryWeigth = massaCruaCalc();
+  const pesoPorPao = parseFloat(
+    getRequiredUnit?.value.replace(",", ".")
+  ) || 0;
+
+  const pesoTotalMassa = massaCruaCalc();
+
   const qtdProduzidaEl = document.getElementById("quantidadeProduzida");
 
-  if (unity <= 0 || getDryWeigth <= 0) {
-    if (qtdProduzidaEl) qtdProduzidaEl.style.display = "none";
+  if (!qtdProduzidaEl) return;
+
+  if (pesoPorPao <= 0 || pesoTotalMassa <= 0) {
+    qtdProduzidaEl.style.display = "none";
+    qtdProduzidaEl.innerText = "";
     return;
   }
 
-  const weigthPerUnity = Math.floor(getDryWeigth / unity);
+  const quantidadeProduzida = Math.floor(
+    pesoTotalMassa / pesoPorPao
+  );
 
-  if (qtdProduzidaEl) {
-    qtdProduzidaEl.innerText = `${weigthPerUnity} pães`;
-  }
+  qtdProduzidaEl.style.display = "block";
+
+  qtdProduzidaEl.innerText = `${quantidadeProduzida} pães`;
 }
 
 getIngredName.addEventListener("change", () => {
