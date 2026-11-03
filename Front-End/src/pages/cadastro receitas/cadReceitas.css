@@ -922,8 +922,8 @@ button {
   .form-receita,
   .table-container {
     box-sizing: border-box;
-    width: 100%;
     padding: 10px;
+    width: 111%;
   }
   .form-receita {
     height: 600px;
@@ -1036,9 +1036,14 @@ button {
     background-color: #b86f45;
     transform: scale(0.98);
   }
+
+  .table-container {
+    width: 189%;
+  }
+
   .table-container-2 {
-    min-width: 147%;
     padding: 10px;
+    width: 189%;
   }
   .maisInfoReceitas {
     display: flex;
@@ -1181,180 +1186,5 @@ button {
     min-height: 36px;
     padding: 6px 10px;
     font-size: 0.9rem;
-  }
-}
-/* modal de edição*/
-.overlay-edit {
-  z-index: 30;
-  padding: 24px;
-  overflow-y: auto;
-  background: rgba(35, 23, 15, 0.58);
-  backdrop-filter: blur(3px);
-}
-
-.modal-edit-body {
-  position: relative;
-  box-sizing: border-box;
-  width: min(760px, 100%);
-  height: auto;
-  max-height: calc(100dvh - 48px);
-  overflow-y: auto;
-  padding: 30px;
-  gap: 0;
-  border: 1px solid rgba(74, 44, 26, 0.14);
-  border-radius: 18px;
-  box-shadow: 0 24px 70px rgba(35, 23, 15, 0.28);
-  font-family: var(--font-1);
-}
-
-.modal-edit-body > .close-edit-modal {
-  position: absolute;
-  top: 18px;
-  right: 18px;
-  display: grid;
-  place-items: center;
-  width: 36px;
-  height: 36px;
-  border: 0;
-  border-radius: 50%;
-  background: rgba(74, 44, 26, 0.09);
-  color: var(--brown);
-  font-size: 1rem;
-  cursor: pointer;
-  transition: background 160ms ease, color 160ms ease;
-}
-
-.modal-edit-body > .close-edit-modal:hover {
-  background: var(--brown);
-  color: #fff;
-}
-
-.edit-modal-header {
-  margin: 0 44px 24px;
-  font-family: var(--font-2);
-  font-size: clamp(1.45rem, 3vw, 1.8rem);
-}
-
-.edit-modal-text {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 20px;
-  padding: 22px;
-  border: 1px solid rgba(74, 44, 26, 0.12);
-  border-radius: 14px;
-  background: rgba(255, 255, 255, 0.48);
-}
-
-.edit-items-grid-1,
-.edit-items-grid-2 {
-  display: flex;
-  min-width: 0;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.edit-modal-text label {
-  margin-top: 4px;
-  color: var(--brown);
-  font-family: var(--font-1);
-  font-size: 0.88rem;
-  font-weight: 600;
-}
-
-.edit-modal-text select,
-.edit-modal-text input,
-#quantEdit input {
-  box-sizing: border-box;
-  width: 100%;
-  min-height: 44px;
-  padding: 10px 12px;
-  border: 1px solid rgba(74, 44, 26, 0.24);
-  border-radius: 9px;
-  background-color: #fff;
-  color: var(--brown);
-  font: 400 0.95rem var(--font-1);
-  text-align: left;
-  transition: border-color 160ms ease, box-shadow 160ms ease;
-}
-
-.edit-modal-text select:focus,
-.edit-modal-text input:focus,
-#quantEdit input:focus {
-  border-color: #9b623c;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(155, 98, 60, 0.16);
-}
-
-#quantEdit {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-#editGrama,
-#editPrecoPq {
-  display: flex;
-  min-height: 44px;
-  align-items: center;
-  padding: 0 12px;
-  border: 1px solid rgba(74, 44, 26, 0.12);
-  border-radius: 9px;
-  background: #f7eee3;
-  color: var(--brown);
-  font-weight: 600;
-}
-
-.modal-edit-body > .modal-buttons {
-  justify-content: flex-end;
-  margin-top: 22px;
-}
-
-.save-edit-ingred {
-  min-height: 46px;
-  padding: 0 22px;
-  border: 0;
-  border-radius: 9px;
-  background: var(--brown);
-  color: #fff;
-  font: 600 0.95rem var(--font-1);
-  cursor: pointer;
-  transition: background 160ms ease, transform 160ms ease;
-}
-
-.save-edit-ingred:hover {
-  background: #6a4027;
-  transform: translateY(-1px);
-}
-
-@media (max-width: 600px) {
-  .overlay-edit {
-    align-items: flex-start;
-    padding: 12px;
-  }
-
-  .modal-edit-body {
-    width: 100%;
-    max-height: calc(100dvh - 24px);
-    padding: 22px 16px 18px;
-    border-radius: 14px;
-  }
-
-  .edit-modal-header {
-    margin: 4px 36px 18px;
-    font-size: 1.4rem;
-  }
-
-  .edit-modal-text {
-    grid-template-columns: minmax(0, 1fr);
-    gap: 16px;
-    padding: 16px;
-  }
-
-  .modal-edit-body > .modal-buttons {
-    margin-top: 16px;
-  }
-
-  .save-edit-ingred {
-    width: 100%;
   }
 }
