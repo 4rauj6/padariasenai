@@ -14,14 +14,17 @@
       rel="stylesheet"
     />
     <title>Projeto PaniCalc</title>
-    <link rel="stylesheet" href="/Front-End/style/layout/index.css" />
+    <link rel="stylesheet" href="Front-End/style/layout/index.css" />
   </head>
 
   <body>
     <div id="homepage" class="home">
       <header>
         <div class="home-logo">
-          <img src="assets/icons/logo-first.svg" alt="Logo da PaniCalc" />
+          <img
+            src="Front-End/src/assets/icons/logo-first.svg"
+            alt="Logo da PaniCalc"
+          />
         </div>
       </header>
 
@@ -31,7 +34,7 @@
             <p>Precifique sua produção de forma inteligente</p>
             <h2 class="font1">
               Sistema para Padaria:<br />
-              <spam>Facilite a gestão do seu</spam>
+              <span>Facilite a gestão do seu</span>
               <br />Negócio
             </h2>
             <p>
@@ -43,13 +46,13 @@
           <section class="home-cards">
             <div class="card" style="width: 9rem; height: 12rem">
               <img
-                src="assets/icons/calc.svg"
+                src="Front-End/src/assets/icons/calc.svg"
                 class="card-img-top"
                 alt="Cálculo de Custos"
               />
               <div class="card-body">
                 <h5 class="card-title">
-                  <a href="pages/ficha%20t%C3%A9cnica/fichaTec.html">
+                  <a href="Front-End/src/pages/ficha técnica/fichaTec.html">
                     Cálculo de custos
                   </a>
                 </h5>
@@ -63,13 +66,15 @@
 
             <div class="card" style="width: 9rem; height: 12rem">
               <img
-                src="assets/icons/statistic.svg"
+                src="Front-End/src/assets/icons/statistic.svg"
                 class="card-img-top"
                 alt="Dados de Lucros e Custos"
               />
               <div class="card-body">
                 <h5 class="card-title">
-                  <a href="pages/rendimento/rendimento.html">Rendimento</a>
+                  <a href="Front-End/src/pages/rendimento/rendimento.html"
+                    >Rendimento</a
+                  >
                 </h5>
                 <p class="card-text">
                   Veja o rendimento<br />
@@ -80,31 +85,33 @@
             </div>
 
             <div class="card" style="width: 9rem; height: 12rem">
-              <img
-                src="assets/icons/icon-tag.svg"
-                class="card-img-top"
-                alt="Precificação Ideal"
-              />
-              <div class="card-body">
-                <h5 class="card-title">
-                  <a href="../../PaniCale--jv/Minhas-pags-Padaria/Precificação/precificacao.html">
-                    Precificação
-                  </a>
-                </h5>
-                <p class="card-text">
-                  Defina o preço de<br />
-                  venda ideal e<br />
-                  aumente seu lucro.
-                </p>
-              </div>
+              <a
+                href="PaniCale--jv/Minhas-pags-Padaria/Precificação/precificacao.html"
+              >
+                <img
+                  src="Front-End/src/assets/icons/icon-tag.svg"
+                  class="card-img-top"
+                  alt="Precificação Ideal"
+                />
+                <div class="card-body">
+                  <h5 class="card-title">Precificação</h5>
+
+                  <p class="card-text">
+                    Defina o preço de<br />
+                    venda ideal e<br />
+                    aumente seu lucro.
+                  </p>
+                </div>
+              </a>
             </div>
           </section>
 
           <div class="home-info">
-            <a href="../../PaniCale--jv/Minhas-pags-Padaria/home2/home.html">
-              Saiba Mais
-            </a>
-            <img src="assets/icons/arrow-icon.png" alt="Saiba Mais" />
+            <a href="pages/home2/home.html"> Saiba Mais </a>
+            <img
+              src="Front-End/src/assets/icons/arrow-icon.png"
+              alt="Saiba Mais"
+            />
           </div>
         </section>
       </main>
