@@ -75,7 +75,7 @@ body {
 .form-content {
   display: flex;
   width: 90%;
-  gap: 280px;
+  gap: 290px;
 }
 
 .form-receita {
@@ -205,10 +205,6 @@ body {
   box-shadow: none;
   transform: translateY(0);
 }
-
-/* ========================================
-   MODAL PRINCIPAL & EDIÇÃO (HARMÔNICOS)
-   ======================================== */
 
 .modal {
   position: fixed;
