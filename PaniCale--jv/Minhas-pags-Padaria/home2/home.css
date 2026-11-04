@@ -1,0 +1,238 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Prata&family=Rufina:wght@400;700&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --fonte-padrao: "Prata", serif;
+  --font-2: "Outfit", sans-serif;
+  --font-3: "Rufina", serif;
+}
+
+body {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.2)),
+    url("../image/fundo2.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+  min-height: 100vh;
+  min-height: 100svh;
+}
+
+main {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  min-height: 100svh;
+  margin-left: 380px;
+  padding: clamp(32px, 5vw, 72px);
+}
+
+.meio {
+  width: min(100%, 880px);
+}
+
+.meio-container {
+  display: flex;
+  align-items: center;
+  gap: clamp(12px, 2vw, 24px);
+  margin: 0 0 clamp(28px, 4vw, 48px);
+}
+
+.meio-container img {
+  width: clamp(48px, 7vw, 88px);
+  height: auto;
+}
+
+.linha-cima {
+  flex: 1;
+  height: 2px;
+  background: #d4a574;
+  min-width: 12px;
+}
+
+.meio h1 {
+  font-family: var(--fonte-padrao);
+  font-size: clamp(30px, 4vw, 48px);
+  color: #fff;
+  text-align: left;
+  margin: 0 0 clamp(28px, 4vw, 48px);
+  font-weight: normal;
+  line-height: 1.35;
+}
+.destaque {
+  color: #d4a574;
+}
+
+.linha-baixo {
+  width: 100%;
+  max-width: 100%;
+  height: 2px;
+  background: #d4a574;
+  margin: 0 0 clamp(28px, 4vw, 48px);
+}
+
+.meio p {
+  font-family: var(--font-2);
+  font-weight: 200;
+  font-size: clamp(18px, 2vw, 22px);
+  color: #fff;
+  margin: 0 0 clamp(28px, 4vw, 48px);
+  line-height: 1.6;
+}
+
+.btn-nova-receita {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  width: 200px;
+  max-width: 100%;
+  height: 50px;
+  background-color: #9a6e3f;
+  border: none;
+  border-radius: 10px;
+  font-family: var(--font-2);
+  font-weight: 300;
+  font-size: 20px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition:
+    transform 0.22s ease,
+    box-shadow 0.22s ease,
+    filter 0.22s ease;
+}
+.btn-nova-receita:hover {
+  transform: translateY(-6px);
+  box-shadow: 0px 12px 18px rgba(0, 0, 0, 0.18);
+  filter: brightness(1.09);
+  color: #fff;
+}
+.btn-nova-receita:active {
+  transform: translateY(-2px);
+  box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.14);
+}
+.btn-nova-receita:visited {
+  color: #fff;
+}
+
+@media (max-width: 900px) {
+  #btn-menu,
+  .Dash_lateral {
+    display: none;
+  }
+
+  .coluna_lateral,
+  .coluna_lateral.oculta {
+    width: 72px;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .coluna_lateral ul {
+    height: auto;
+    margin-top: 112px;
+    gap: clamp(20px, 4vh, 40px);
+  }
+
+  .coluna_lateral a img {
+    width: 28px;
+    height: 28px;
+    object-fit: contain;
+  }
+
+  main {
+    margin-left: 72px;
+    padding: clamp(28px, 5vw, 56px);
+  }
+}
+
+@media (max-width: 600px) {
+  .coluna_lateral,
+  .coluna_lateral.oculta {
+    width: 100%;
+    height: 60px;
+  }
+
+  .coluna_lateral ul {
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: calc(100% - 48px);
+    height: 100%;
+    margin: 0;
+    gap: 0;
+  }
+
+  .coluna_lateral li {
+    width: auto;
+  }
+
+  .coluna_lateral a {
+    width: 44px;
+    height: 48px;
+  }
+
+  .menu-sair-coluna {
+    top: 0;
+    right: 0;
+    bottom: auto;
+    left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 60px;
+  }
+
+  .menu-sair-coluna hr {
+    display: none;
+  }
+
+  .menu-sair-coluna a {
+    width: 44px;
+    height: 48px;
+  }
+
+  .coluna_lateral a img {
+    width: 26px;
+    height: 26px;
+  }
+
+  main {
+    min-height: 100vh;
+    min-height: 100svh;
+    margin-left: 0;
+    padding: 92px clamp(20px, 6vw, 32px) 40px;
+  }
+
+  .meio-container {
+    margin-bottom: 28px;
+  }
+
+  .meio h1 {
+    font-size: clamp(28px, 8vw, 40px);
+    margin-bottom: 28px;
+  }
+
+  .meio h1 br,
+  .meio p br {
+    display: none;
+  }
+
+  .linha-baixo,
+  .meio p {
+    margin-bottom: 28px;
+  }
+
+  .btn-nova-receita {
+    font-size: 18px;
+  }
+}

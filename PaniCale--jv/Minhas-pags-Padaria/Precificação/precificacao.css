@@ -1,0 +1,869 @@
+@charset "UTF-8";
+
+/* ==========================
+   VARIÁVEIS (paleta do Figma)
+   As fontes (--fonte-padrao e --font-2) vêm do header.css
+   ========================== */
+:root {
+    --cor-caramelo: #A97F4A;       /* marrom claro (cartão de destaque) */
+    --cor-creme: #F2E8DA;          /* fundo da página e dos cards */
+    --cor-areia: #E8C9A0;          /* fundo do painel */
+    --cor-marrom: #7A4B2E;         /* textos e números */
+    --cor-marrom-escuro: #4A2E1E;  /* título */
+}
+
+/* ==========================
+   BASE
+   ========================== */
+body {
+    background-color: var(--cor-creme);
+    color: var(--cor-marrom);
+    font-family: var(--font-2);
+    min-height: 100vh;
+}
+
+/* ==========================
+   CONTEÚDO PRINCIPAL
+   ========================== */
+main {
+    margin-left: 90px; /* espaço da coluna lateral fixa */
+    padding: 32px;
+}
+.precificacao {
+    display: grid;
+    gap: 20px;
+    padding: 30px;
+    border-radius: 36px;
+    background-color: var(--cor-areia);
+    box-shadow: inset 0 0 0 1px rgba(122, 75, 46, 0.10);
+}
+.precificacao-cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 0 6px 4px;
+}
+.precificacao-cabecalho-texto h1,
+.precificacao-cabecalho h1 {
+    font-family: var(--fonte-padrao);
+    font-size: 30px;
+    font-weight: 400;
+    color: var(--cor-marrom-escuro);
+}
+.precificacao-cabecalho-texto p {
+    margin: 0;
+}
+.precificacao-cabecalho p {
+    font-size: 14px;
+}
+
+/* ==========================
+   CARDS, RÓTULOS E VALORES
+   ========================== */
+.card {
+    padding: 20px 24px;
+    border-radius: 22px;
+    background-color: var(--cor-creme);
+    box-shadow: 0 10px 24px -16px rgba(74, 46, 30, 0.55), inset 0 0 0 1px rgba(122, 75, 46, 0.08);
+}
+.card-rotulo {
+    display: block;
+    font-size: 14px;
+    font-weight: 400;
+    opacity: 0.85;
+}
+.card-valor {
+    font-family: var(--fonte-padrao);
+    font-weight: 400;
+    line-height: 1.1;
+    white-space: nowrap;
+    font-variant-numeric: lining-nums;
+}
+.card-valor small {
+    margin-right: 0.25em;
+    font-size: 0.58em;
+    opacity: 0.8;
+}
+
+/* ==========================
+   LINHA 1: INDICADORES
+   ========================== */
+.precificacao-indicadores {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+.precificacao-indicadores .card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    text-align: center;
+}
+.precificacao-indicadores .card-valor {
+    font-size: 38px;
+}
+
+/* ==========================
+   SELETOR DE MARKUP
+   ========================== */
+.markup-seletor {
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    max-width: 230px;
+}
+.markup-seletor.aberto {
+    z-index: 30;
+}
+.markup-botao {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+    padding: 5px 14px 5px 24px;
+    border: 1px solid rgba(122, 75, 46, 0.28);
+    border-radius: 999px;
+    background-color: var(--cor-areia);
+    color: var(--cor-marrom);
+    font-family: var(--fonte-padrao);
+    font-size: clamp(24px, 2.6vw, 34px);
+    line-height: 1.15;
+    cursor: pointer;
+    transition: box-shadow 0.2s ease;
+}
+.markup-botao:hover {
+    box-shadow: 0 10px 18px -12px rgba(74, 46, 30, 0.8);
+}
+.markup-botao:focus-visible {
+    outline: 2px solid var(--cor-marrom);
+    outline-offset: 3px;
+}
+.markup-seta {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: var(--cor-marrom);
+    transition: transform 0.2s ease;
+}
+.markup-seta svg {
+    width: 14px;
+    height: 14px;
+}
+.markup-seletor.aberto .markup-seta {
+    transform: rotate(180deg);
+}
+
+/* lista de opções (escondida até o seletor ficar "aberto") */
+.markup-lista {
+    display: none;
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    left: 0;
+    max-height: 250px;
+    padding: 6px;
+    overflow-y: auto;
+    list-style: none;
+    border-radius: 18px;
+    background-color: var(--cor-creme);
+    box-shadow: 0 22px 36px -16px rgba(74, 46, 30, 0.75), inset 0 0 0 1px rgba(122, 75, 46, 0.18);
+    text-align: left;
+    outline: none;
+}
+.markup-seletor.aberto .markup-lista {
+    display: block;
+}
+.markup-lista li {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 9px 16px;
+    border-radius: 12px;
+    font-family: var(--fonte-padrao);
+    font-size: 20px;
+    cursor: pointer;
+}
+/* opção em foco (teclado ou mouse) */
+.markup-lista li.ativo {
+    background-color: var(--cor-areia);
+}
+/* opção escolhida */
+.markup-lista li[aria-selected="true"] {
+    background-color: var(--cor-caramelo);
+    color: var(--cor-creme);
+}
+.markup-lista li[aria-selected="true"]::after {
+    content: "";
+    width: 12px;
+    height: 6px;
+    border-bottom: 2px solid currentColor;
+    border-left: 2px solid currentColor;
+    transform: rotate(-45deg) translateY(-2px);
+}
+
+/* ==========================
+   LINHA 2: PREÇO SUGERIDO E LUCROS
+   ========================== */
+.precificacao-linha-preco {
+    display: grid;
+    grid-template-columns: 5fr 7fr;
+    gap: 20px;
+}
+.preco-destaque {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 30px 32px;
+    overflow: hidden;
+    border-radius: 32px;
+    background-color: var(--cor-caramelo);
+    color: var(--cor-creme);
+    box-shadow: 0 22px 36px -22px rgba(74, 46, 30, 0.9);
+}
+/* círculos decorativos no canto */
+.preco-destaque::after {
+    content: "";
+    position: absolute;
+    right: -70px;
+    bottom: -90px;
+    width: 260px;
+    height: 260px;
+    border: 1px solid rgba(242, 232, 218, 0.35);
+    border-radius: 50%;
+    box-shadow: 0 0 0 26px rgba(242, 232, 218, 0.06), 0 0 0 54px rgba(242, 232, 218, 0.04);
+    pointer-events: none;
+}
+.preco-destaque > * {
+    position: relative;
+    z-index: 1;
+}
+.preco-destaque .card-rotulo {
+    font-size: 15px;
+    opacity: 0.9;
+}
+.preco-destaque .card-valor {
+    margin: 22px 0 14px;
+    font-size: clamp(52px, 6vw, 84px);
+}
+.preco-destaque .card-valor small {
+    opacity: 0.75;
+}
+.preco-destaque-nota {
+    font-size: 13px;
+    opacity: 0.85;
+}
+
+.lucros-card {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    padding: 24px 8px;
+    border-radius: 32px;
+}
+.lucros-coluna {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 16px;
+    padding: 4px 22px;
+}
+.lucros-coluna + .lucros-coluna {
+    border-left: 1.5px solid rgba(122, 75, 46, 0.45);
+}
+.lucros-card .card-valor {
+    font-size: clamp(20px, 2vw, 32px);
+}
+
+/* ==========================
+   LINHA 3: RENDAS
+   ========================== */
+.precificacao-rendas {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+.renda-card {
+    display: flex;
+    align-items: center;
+    gap: 22px;
+    padding: 26px 30px;
+    border-radius: 28px;
+}
+.renda-icone {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background-color: var(--cor-areia);
+    box-shadow: inset 0 0 0 1px rgba(122, 75, 46, 0.18);
+}
+.renda-icone svg {
+    width: 30px;
+    height: 30px;
+}
+.renda-texto {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-width: 0;
+}
+.faturamento-form {
+    flex: 1;
+}
+.campo-faturamento {
+    box-sizing: border-box;
+    width: 100%;
+    padding: 8px 12px;
+    border: 1px solid rgba(122, 75, 46, 0.35);
+    border-radius: 12px;
+    background-color: var(--cor-creme);
+    color: var(--cor-marrom-escuro);
+    font: inherit;
+    font-size: 16px;
+}
+.campo-faturamento:focus-visible {
+    outline: 2px solid var(--cor-marrom);
+    outline-offset: 2px;
+}
+.status-data-faturamento {
+    min-height: 1em;
+    color: var(--cor-marrom);
+    font-size: 12px;
+    opacity: 0.8;
+}
+.status-data-faturamento.dia-com-faturamento {
+    color: #42633d;
+    font-weight: 600;
+    opacity: 1;
+}
+.faturamento-valor-previsto {
+    margin: 0;
+    font-size: 13px;
+    opacity: 0.8;
+}
+.faturamento-estimativa {
+    font-size: 13px;
+    opacity: 0.8;
+}
+.botao-faturamento {
+    padding: 10px 14px;
+    border: 0;
+    border-radius: 12px;
+    background-color: var(--cor-marrom);
+    color: var(--cor-creme);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+.botao-faturamento:hover {
+    background-color: var(--cor-marrom-escuro);
+}
+.botao-zerar-dados-teste {
+    position: fixed;
+    bottom: 18px;
+    left: 106px;
+    z-index: 30;
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    min-height: 44px;
+    padding: 10px 15px;
+    border: 1px solid rgba(133, 53, 41, 0.28);
+    border-radius: 14px;
+    background: rgba(255, 250, 243, 0.96);
+    color: #853529;
+    font: inherit;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 8px 22px -12px rgba(74, 46, 30, 0.65);
+    backdrop-filter: blur(8px);
+}
+.botao-zerar-dados-teste svg {
+    width: 17px;
+    height: 17px;
+    flex: none;
+}
+.botao-zerar-dados-teste:hover {
+    border-color: rgba(133, 53, 41, 0.55);
+    background: #fff3ed;
+    box-shadow: 0 10px 24px -12px rgba(74, 46, 30, 0.72);
+}
+.botao-zerar-dados-teste:focus-visible {
+    outline: 2px solid #853529;
+    outline-offset: 3px;
+}
+.botao-zerar-dados-teste:active {
+    background: #f8e7df;
+}
+.acoes-caixa {
+    position: relative;
+    z-index: 10;
+}
+.botao-acoes-caixa {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    min-height: 48px;
+    padding: 10px 16px;
+    border: 1px solid rgba(74, 46, 30, 0.16);
+    border-radius: 15px;
+    background: linear-gradient(135deg, #fffaf3, var(--cor-creme));
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    color: var(--cor-marrom-escuro);
+    box-shadow: 0 5px 12px -8px rgba(74, 46, 30, 0.75), inset 0 1px 0 rgba(255, 255, 255, 0.9);
+    transition: background-color 0.16s ease, border-color 0.16s ease, box-shadow 0.16s ease;
+}
+.botao-acoes-caixa svg {
+    width: 19px;
+    height: 19px;
+}
+.botao-acoes-caixa svg:first-child {
+    color: var(--cor-marrom);
+}
+.botao-acoes-caixa .seta-acoes-caixa {
+    width: 15px;
+    height: 15px;
+    color: var(--cor-caramelo);
+    transition: transform 0.18s ease;
+}
+.botao-acoes-caixa[aria-expanded="true"] .seta-acoes-caixa {
+    transform: rotate(180deg);
+}
+.botao-acoes-caixa:hover {
+    border-color: rgba(122, 75, 46, 0.38);
+    background: linear-gradient(135deg, #fffdf9, #f8ecdb);
+    box-shadow: 0 8px 16px -8px rgba(74, 46, 30, 0.58), inset 0 1px 0 #fff;
+}
+.botao-acoes-caixa:active {
+    background: var(--cor-areia);
+    box-shadow: inset 0 2px 4px rgba(74, 46, 30, 0.12);
+}
+.botao-acoes-caixa:focus-visible,
+.historico-fechar:focus-visible {
+    outline: 2px solid var(--cor-marrom-escuro);
+    outline-offset: 3px;
+}
+.menu-acoes-caixa {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    display: grid;
+    min-width: 190px;
+    padding: 7px;
+    border: 1px solid rgba(122, 75, 46, 0.14);
+    border-radius: 15px;
+    background: var(--cor-creme);
+    box-shadow: 0 16px 32px -14px rgba(40, 24, 14, 0.5);
+}
+.menu-acoes-caixa[hidden] {
+    display: none;
+}
+.menu-acoes-caixa button {
+    padding: 11px 13px;
+    border: 0;
+    border-radius: 10px;
+    background: transparent;
+    color: var(--cor-marrom-escuro);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+.menu-acoes-caixa button:hover:not(:disabled),
+.menu-acoes-caixa button:focus-visible:not(:disabled) {
+    background: var(--cor-areia);
+}
+.menu-acoes-caixa button:focus-visible {
+    outline: 2px solid var(--cor-marrom);
+    outline-offset: -2px;
+}
+.menu-acoes-caixa button:disabled {
+    color: var(--cor-marrom);
+    opacity: 0.45;
+    cursor: not-allowed;
+}
+.botao-faturamento:focus-visible {
+    outline: 2px solid var(--cor-marrom-escuro);
+    outline-offset: 3px;
+}
+.botao-faturamento:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+}
+.faturamento-status {
+    min-height: 1em;
+    font-size: 13px;
+    opacity: 0.8;
+}
+.dialog-historico {
+    position: fixed;
+    inset: 50% auto auto 50%;
+    transform: translate(-50%, -50%);
+    width: min(600px, calc(100vw - 32px));
+    max-width: none;
+    max-height: min(82vh, 760px);
+    margin: 0;
+    padding: 28px;
+    overflow: auto;
+    border: 0;
+    border-radius: 24px;
+    background-color: var(--cor-creme);
+    color: var(--cor-marrom-escuro);
+    box-shadow: 0 24px 80px rgba(40, 24, 14, 0.38);
+}
+.dialog-historico::backdrop {
+    background: rgba(40, 24, 14, 0.58);
+    backdrop-filter: blur(3px);
+}
+.historico-cabecalho {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 16px;
+    margin-bottom: 22px;
+}
+.historico-sobrelinha {
+    color: var(--cor-caramelo);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.14em;
+}
+.historico-cabecalho h2 {
+    margin: 4px 0 0;
+    font-family: var(--fonte-padrao);
+    font-size: 30px;
+    font-weight: 400;
+}
+.historico-fechar {
+    display: grid;
+    place-items: center;
+    flex: none;
+    width: 38px;
+    height: 38px;
+    border: 0;
+    border-radius: 50%;
+    background: var(--cor-areia);
+    color: var(--cor-marrom);
+    font: inherit;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+#fechar-dialog-fechamento[hidden],
+.fechamento-acoes button[hidden] {
+    display: none;
+}
+.historico-filtro {
+    display: block;
+    margin-bottom: 8px;
+    font-size: 14px;
+    font-weight: 600;
+}
+.dialog-historico > .campo-faturamento {
+    width: 100%;
+}
+.historico-periodo {
+    margin: 12px 0 16px;
+    font-size: 14px;
+    opacity: 0.78;
+}
+.historico-resumo {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+    margin: 18px 0;
+}
+.historico-resumo > div {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    min-width: 0;
+    padding: 14px;
+    border-radius: 16px;
+    background: #fffaf3;
+}
+.historico-resumo span {
+    font-size: 12px;
+    opacity: 0.78;
+}
+.historico-resumo strong {
+    font-family: var(--fonte-padrao);
+    font-size: clamp(18px, 3vw, 25px);
+    font-weight: 400;
+    overflow-wrap: anywhere;
+}
+.historico-status {
+    min-height: 1em;
+    margin: 12px 0 0;
+    font-size: 12px;
+    opacity: 0.78;
+}
+.fechamento-acoes {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+}
+.botao-fechamento-cancelar {
+    padding: 10px 16px;
+    border: 1px solid rgba(122, 75, 46, 0.28);
+    border-radius: 12px;
+    background: #fffaf3;
+    color: var(--cor-marrom);
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+}
+.botao-fechamento-cancelar:hover {
+    background: var(--cor-areia);
+}
+.botao-fechamento-cancelar:focus-visible {
+    outline: 2px solid var(--cor-marrom-escuro);
+    outline-offset: 2px;
+}
+.renda-card .card-valor {
+    font-size: clamp(26px, 3.4vw, 46px);
+}
+
+/* ==========================
+   ANIMAÇÕES
+   "entrar" roda ao abrir a página.
+   "piscar": coloque a classe no #preco-sugerido quando o markup mudar.
+   ========================== */
+@media (prefers-reduced-motion: no-preference) {
+    .preco-destaque {
+        animation: entrar 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+    }
+    .piscar {
+        animation: piscar 0.45s ease-out;
+    }
+    @keyframes entrar {
+        from { opacity: 0; transform: translateY(14px); }
+        to   { opacity: 1; transform: none; }
+    }
+    @keyframes piscar {
+        from { opacity: 0.25; transform: translateY(6px); }
+        to   { opacity: 1; transform: none; }
+    }
+}
+
+/* ==========================
+   RESPONSIVO
+   (a coluna lateral de 90px fica sempre visível)
+   ========================== */
+@media (max-width: 1280px) {
+    .precificacao-linha-preco {
+        grid-template-columns: 1fr;
+    }
+    .preco-destaque {
+        min-height: 220px;
+    }
+}
+@media (max-width: 960px) {
+    .precificacao {
+        padding: 22px;
+    }
+    .precificacao-indicadores {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 14px;
+    }
+    .precificacao-indicadores .card:last-child {
+        grid-column: 1 / -1;
+    }
+    .precificacao-indicadores .card {
+        padding: 18px 14px;
+    }
+    .precificacao-indicadores .card-valor {
+        font-size: 30px;
+    }
+    .renda-card {
+        gap: 16px;
+        padding: 22px;
+    }
+    .renda-icone {
+        width: 54px;
+        height: 54px;
+    }
+}
+@media (max-width: 820px) {
+    main {
+        padding: 16px;
+    }
+    .precificacao {
+        border-radius: 28px;
+    }
+    .precificacao-cabecalho {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 12px;
+    }
+    .botao-acoes-caixa {
+        align-self: flex-end;
+    }
+}
+@media (max-width: 760px) {
+    .precificacao-indicadores,
+    .precificacao-rendas {
+        grid-template-columns: 1fr;
+    }
+    .precificacao-indicadores .card {
+        padding: 20px 24px;
+    }
+    .precificacao-indicadores .card-valor {
+        font-size: 36px;
+    }
+    .markup-seletor {
+        max-width: 320px;
+    }
+    .precificacao-indicadores .card:last-child .markup-seletor {
+        max-width: 320px;
+    }
+    .markup-botao {
+        font-size: 30px;
+    }
+    .lucros-card {
+        grid-template-columns: 1fr;
+        padding: 8px 0;
+    }
+    .lucros-coluna {
+        padding: 16px 22px;
+    }
+    .lucros-coluna + .lucros-coluna {
+        border-top: 1.5px solid rgba(122, 75, 46, 0.45);
+        border-left: 0;
+    }
+    .lucros-card .card-valor {
+        font-size: 28px;
+    }
+    .preco-destaque {
+        min-height: 200px;
+        padding: 26px;
+    }
+}
+@media (max-width: 520px) {
+    .dialog-historico {
+        width: calc(100vw - 24px);
+        max-height: calc(100dvh - 24px);
+        padding: 20px 16px;
+        border-radius: 20px;
+    }
+    .historico-resumo {
+        grid-template-columns: 1fr;
+    }
+    .historico-resumo > div {
+        flex-direction: row;
+        align-items: center;
+        justify-content: space-between;
+    }
+    .fechamento-acoes {
+        flex-direction: column-reverse;
+    }
+    .fechamento-acoes button {
+        width: 100%;
+    }
+    .botao-zerar-dados-teste {
+        bottom: 12px;
+        left: 76px;
+        min-height: 40px;
+        padding: 8px 11px;
+        font-size: 12px;
+    }
+}
+@media (max-width: 480px) {
+    main {
+        padding: 10px;
+    }
+    .precificacao {
+        gap: 14px;
+        padding: 14px;
+        border-radius: 24px;
+    }
+    .precificacao-cabecalho h1 {
+        font-size: 26px;
+    }
+    .precificacao-indicadores .card-valor {
+        font-size: 32px;
+    }
+    /* o ícone vai para cima do texto, para o número caber */
+    .renda-card {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 12px;
+        padding: 18px;
+    }
+    .renda-icone {
+        width: 46px;
+        height: 46px;
+    }
+    .renda-icone svg {
+        width: 24px;
+        height: 24px;
+    }
+    .renda-card .card-valor {
+        font-size: 28px;
+    }
+}
+@media (max-width: 600px) {
+    .coluna_lateral {
+        width: 64px;
+    }
+    .coluna_lateral ul {
+        gap: clamp(36px, 8vh, 64px);
+        margin-top: 112px;
+    }
+    #btn-menu {
+        top: 24px;
+        left: 32px;
+        width: 44px;
+        padding: 8px 6px;
+        font-size: 18px;
+    }
+    #btn-menu.menu-aberto {
+        transform: translateX(min(245px, calc(100vw - 80px)));
+    }
+    main {
+        margin-left: 64px;
+        padding: 12px;
+    }
+    .botao-zerar-dados-teste {
+        left: 76px;
+    }
+    .precificacao {
+        padding: 16px;
+        border-radius: 22px;
+    }
+}
+@media (max-width: 380px) {
+    .precificacao-cabecalho h1 {
+        font-size: 23px;
+    }
+    .precificacao-cabecalho p {
+        font-size: 13px;
+    }
+    .precificacao-indicadores .card {
+        padding: 16px 12px;
+    }
+    .precificacao-indicadores .card-valor {
+        font-size: 28px;
+    }
+    .precificacao-indicadores .card:last-child .markup-seletor {
+        max-width: 100%;
+    }
+    .renda-card {
+        padding: 16px;
+    }
+    .historico-resumo > div {
+        align-items: flex-start;
+    }
+}
