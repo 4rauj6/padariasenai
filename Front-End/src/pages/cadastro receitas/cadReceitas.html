@@ -110,7 +110,7 @@
 
           <li>
             <a
-              href="../PaniCale--jv/PaniCale--jv/Minhas-pags-Padaria/Precificação/precificacao.html"
+              href="../PaniCale--jv/Minhas-pags-Padaria/Precificação/precificacao.html"
             >
               <img
                 src="../rendimento/image/images-header/precificacao.svg"
@@ -122,7 +122,7 @@
 
           <li>
             <a
-              href="../PaniCale--jv/PaniCale--jv/Minhas-pags-Padaria/catalogo/catalogo.html"
+              href="../PaniCale--jv/Minhas-pags-Padaria/catalogo/catalogo.html"
             >
               <img
                 src="../rendimento/image/images-header/catalogo.svg"
@@ -186,12 +186,22 @@
                   <option value="sobremessa">Massa doce</option>
                 </select>
 
-                <label for="uniDesejadas">UNIDADES DESEJADAS:</label>
+                <label for="uniDesejadas">UNIDADES DESEJADAS / BASE:</label>
                 <input
                   type="text"
                   id="uniDesejadas"
                   name="uniDesejadas"
                   placeholder="Ex: 50 unidades"
+                  required
+                />
+
+                <!-- ADICIONE ESTE CAMPO ABAIXO -->
+                <label for="pesoPorPao">PESO DE CADA PÃO (g):</label>
+                <input
+                  type="number"
+                  id="pesoPorPao"
+                  name="pesoPorPao"
+                  placeholder="Ex: 50"
                   required
                 />
 
@@ -234,7 +244,7 @@
 
               <div id="tablePlace"></div>
 
-              <button class="addIngred">
+              <button type="button" class="addIngred">
                 <i class="fa-solid fa-plus"></i> ADICIONAR INGREDIENTE
               </button>
             </div>
@@ -388,7 +398,7 @@
                 </div>
               </div>
               <div class="modal-buttons">
-                <button class="save-ingred addIngred">
+                <button type="button" class="save-ingred">
                   <i class="fa-solid fa-check"></i> Salvar ingrediente
                 </button>
               </div>

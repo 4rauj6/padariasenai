@@ -206,75 +206,64 @@ body {
   transform: translateY(0);
 }
 
+/* ========================================
+   MODAL PRINCIPAL & EDIÇÃO (HARMÔNICOS)
+   ======================================== */
+
 .modal {
   position: fixed;
   inset: 0;
-  z-index: 10;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.overlay {
+.overlay,
+.overlay-edit {
   position: fixed;
   inset: 0;
   display: grid;
   place-items: center;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgba(74, 44, 26, 0.55);
+  backdrop-filter: blur(2px);
 }
 
 .hidden {
-  display: none;
+  display: none !important;
 }
 
-.modal-body {
+.modal-body,
+.modal-edit-body {
   display: flex;
   flex-direction: column;
   background-color: var(--cor-5);
-  width: 600px;
-  height: 370px;
-  padding: 5px;
-  border-radius: 10px;
+  width: min(620px, 92vw);
+  max-height: 90vh;
+  padding: 24px;
+  border-radius: 14px;
+  box-shadow: 0 12px 30px rgba(74, 44, 26, 0.25);
+  overflow-y: auto;
+  font-family: var(--font-1);
+  gap: 16px;
 }
 
-.modal-body h3 {
+.modal-body h3,
+.edit-modal-header {
   text-align: center;
   color: #4a2c1a;
   font-family: var(--font-1);
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 4px;
 }
 
-.modal-text {
+.modal-text,
+.addingIngred {
   display: flex;
   flex-direction: column;
-  padding: 15px;
-  border-radius: 8px;
-}
-
-.modal-body input,
-.modal-body select {
-  min-width: 100%;
-  text-align: center;
-}
-
-.modal-body label {
-  font-family: var(--font-1);
-  color: #4a2c1a;
-}
-
-.modal-buttons {
-  display: flex;
-  justify-content: center;
-  margin-top: 20px;
-  gap: 20px;
-}
-
-.addingIngred {
-  margin-top: 20px;
-}
-
-.addingIngred input,
-.addingIngred select {
-  background-color: #e8c9a0;
-  width: 60%;
-  padding: 2px;
-  border-radius: 5px;
+  gap: 16px;
+  width: 100%;
 }
 
 .modal-form-grid {
@@ -282,7 +271,6 @@ body {
   flex-direction: row;
   gap: 20px;
   width: 100%;
-  text-align: center;
 }
 
 .items-grid,
@@ -290,13 +278,14 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 20px;
+  gap: 14px;
 }
 
 .edit-modal-text {
   display: flex;
   flex-direction: row;
-  gap: 10px;
+  gap: 16px;
+  width: 100%;
 }
 
 .edit-items-grid-1,
@@ -304,73 +293,114 @@ body {
   display: flex;
   flex-direction: column;
   flex: 1;
-  gap: 10px;
+  gap: 12px;
 }
 
 .input-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: 6px;
 }
 
-.input-group label {
+.input-group label,
+.edit-modal-text label {
   font-family: var(--font-1);
-  font-size: 0.85rem;
+  font-size: 0.9rem;
   color: #4a2c1a;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 .input-group input,
-.input-group select {
+.input-group select,
+.edit-modal-text input,
+.edit-modal-text select {
   width: 100%;
-  padding: 6px 8px;
-  border-radius: 5px;
-  border: 2px solid #4a2c1a;
+  padding: 10px 12px;
+  border-radius: 8px;
+  border: 2px solid #e8c9a0;
   background-color: white;
-  outline: none;
-}
-
-#gramaDoIngred {
-  border-radius: 2px;
-  width: 60%;
   color: #4a2c1a;
-  padding: 3px;
+  outline: none;
+  font-size: 0.95rem;
+  font-family: var(--font-1);
+  transition: border-color 0.2s;
 }
 
-.inputs-grid {
-  display: flex;
-  flex-direction: row;
+.input-group input:focus,
+.input-group select:focus,
+.edit-modal-text input:focus,
+.edit-modal-text select:focus {
+  border-color: #4a2c1a;
 }
 
-.close-modal {
+#gramaDoIngred,
+#editGrama,
+#editPrecoPq,
+#precoPq {
+  display: block;
+  width: 100%;
+  padding: 10px 12px;
+  background-color: #f2e8d9;
+  border: 2px solid #e8c9a0;
+  border-radius: 8px;
+  color: #4a2c1a;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.close-modal,
+.close-edit-modal {
   align-self: flex-end;
   background-color: #4a2c1a;
   color: #e8c9a0;
-  border: solid transparent;
+  border: none;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: 6px;
+  width: 32px;
+  height: 32px;
+  display: grid;
+  place-items: center;
+  font-size: 1rem;
+  transition: background-color 0.2s;
 }
 
-.save-ingred {
+.close-modal:hover,
+.close-edit-modal:hover {
+  background-color: #6b422b;
+}
+
+.modal-buttons {
   display: flex;
-  align-self: flex-end;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.save-ingred,
+.save-edit-ingred {
+  display: flex;
   justify-content: center;
   align-items: center;
-  width: 25%;
-  height: 30px;
-  background-color: transparent;
-  color: #4a2c1a;
-  border-radius: 6px;
-  border: solid 2px #4a2c1a;
+  width: 100%;
+  height: 42px;
+  background-color: #4a2c1a;
+  color: #f2e8d9;
+  border-radius: 8px;
+  border: none;
   cursor: pointer;
+  font-weight: 600;
+  font-size: 1rem;
+  font-family: var(--font-1);
+  gap: 8px;
   transition:
-    background-color 0.3s ease-in-out,
-    transform 0.3s ease-in-out;
+    background-color 0.3s ease,
+    transform 0.2s ease;
 }
 
-.save-ingred:hover {
-  background-color: #4a2c1a;
-  color: #e8c9a0;
+.save-ingred:hover,
+.save-edit-ingred:hover {
+  background-color: #6b422b;
+  transform: translateY(-1px);
 }
 
 #tablePlace {
@@ -516,7 +546,7 @@ button {
   justify-content: center;
   align-items: center;
   width: 100%;
-  height: 310px;
+  height: 250px;
   border: 2px solid #e8c9a0;
   border-radius: 6px;
   cursor: pointer;
@@ -568,48 +598,6 @@ button {
   display: none !important;
 }
 
-.overlay-edit {
-  position: fixed;
-  inset: 0;
-  display: grid;
-  place-items: center;
-  background: rgba(0, 0, 0, 0.45);
-}
-
-.edit-data .hidden {
-  display: none;
-}
-
-.modal-edit-body {
-  display: flex;
-  flex-direction: column;
-  background-color: #f2e8d9;
-  width: 600px;
-  height: 450px;
-  padding: 15px;
-  border-radius: 8px;
-  gap: 10px;
-}
-
-.edit-modal-text select {
-  width: 100%;
-  text-align: center;
-}
-
-.edit-modal-text input {
-  width: 100%;
-  text-align: center;
-}
-
-.edit-modal-header {
-  text-align: center;
-  color: #4a2c1a;
-}
-
-.edit-modal-text {
-  color: #4a2c1a;
-}
-
 #quantEdit {
   display: flex;
   flex-direction: column;
@@ -646,8 +634,9 @@ button {
     gap: 10px;
   }
   .form-receita {
-    width: 350px;
-    height: 615px;
+    width: 360px;
+    height: 690px;
+    overflow-y: auto;
   }
   .table-content {
     margin-left: 0;
@@ -672,21 +661,23 @@ button {
     text-align: start;
   }
   .image-upload {
-    height: 210px;
+    height: 160px;
   }
 }
 
 @media (min-width: 1364px) and (max-width: 1445px) {
   .hero {
     min-height: auto;
+    height: auto;
   }
   .form-content {
     flex-direction: row;
     gap: 12px;
   }
   .form-receita {
-    width: 350px;
-    height: 595px;
+    width: 360px;
+    height: 670px;
+    overflow-y: auto;
   }
   .table-content {
     margin-left: 0;
@@ -699,7 +690,7 @@ button {
   .form-receita-inputs textarea,
   .mp-container textarea {
     width: 100%;
-    min-height: 120px;
+    min-height: 100px;
   }
   .maisInfoReceitas {
     flex-direction: row;
@@ -709,21 +700,23 @@ button {
     justify-content: center;
   }
   .image-upload {
-    height: 190px;
+    height: 150px;
   }
 }
 
 @media (max-width: 1280px) {
   .hero {
     min-height: auto;
+    height: auto;
   }
   .form-content {
     flex-direction: row;
     gap: 12px;
   }
   .form-receita {
-    width: 350px;
-    height: 616px;
+    width: 360px;
+    height: 685px;
+    overflow-y: auto;
   }
   .table-content {
     margin-left: 0;
@@ -736,7 +729,7 @@ button {
   .form-receita-inputs textarea,
   .mp-container textarea {
     width: 100%;
-    min-height: 120px;
+    min-height: 100px;
   }
   .maisInfoReceitas {
     flex-direction: row;
@@ -746,21 +739,22 @@ button {
     justify-content: center;
   }
   .image-upload {
-    height: 210px;
+    height: 150px;
   }
 }
 
 @media (max-width: 1024px) {
   .form-receita {
-    width: 300px;
-    height: 570px;
+    width: 320px;
+    height: 660px;
+    overflow-y: auto;
   }
   .table-content {
     margin-left: 0;
     width: 59%;
   }
   .image-upload {
-    height: 150px;
+    height: 130px;
   }
 }
 
@@ -799,7 +793,7 @@ button {
     flex-direction: column;
     padding: 15px;
     width: 100%;
-    height: 100%;
+    height: auto;
   }
   .form-receita-inputs {
     margin-top: 20px;
@@ -865,7 +859,7 @@ button {
     width: 100%;
   }
   .image-upload {
-    height: 26vh;
+    height: 220px;
     width: 100%;
   }
 }
@@ -875,7 +869,7 @@ button {
     height: auto;
   }
   .form-receita {
-    height: 70vh;
+    height: auto;
   }
   .maisInfoReceitas {
     display: grid;
@@ -888,7 +882,7 @@ button {
     text-align: start;
   }
   .image-upload {
-    height: 280px;
+    height: 220px;
   }
 }
 
@@ -926,7 +920,7 @@ button {
     width: 111%;
   }
   .form-receita {
-    height: 600px;
+    height: auto;
   }
   .form-receita-inputs {
     gap: 10px;
@@ -1015,7 +1009,7 @@ button {
     border-bottom: 0;
   }
   .image-upload {
-    height: 250px;
+    height: 200px;
   }
   .addIngred {
     display: flex;
@@ -1068,7 +1062,7 @@ button {
     flex-direction: column !important;
     box-sizing: border-box;
     background-color: #f2e8d9;
-    color: #4a2c1a;
+    color: var(--cor-3);
     width: min(440px, calc(100vw - 24px));
     height: auto;
     max-height: 100vh;
@@ -1094,7 +1088,7 @@ button {
   .modal-text label,
   .addingIngred label,
   #gramaDoIngred {
-    color: #4a2c1a;
+    color: var(--cor-3);
   }
   .modal-text input,
   .modal-text select,
@@ -1103,7 +1097,7 @@ button {
     width: 100%;
     min-height: 1px !important;
     padding: 8px;
-    background-color: var(--cor-2);
+    background-color: white;
   }
   .modal-buttons {
     gap: 10px;
@@ -1112,12 +1106,12 @@ button {
   .add-mais-ingred,
   .save-ingred {
     box-sizing: border-box;
-    width: 50%;
+    width: 100%;
     min-height: 44px;
     padding: 8px;
-    color: #fff;
-    background-color: #6b422b;
-    border: none;
+    color: var(--cor-3);
+    background-color: transparent;
+    border: 2px solid var(--cor-3);
     border-radius: 8px;
   }
   .add-mais-ingred:active,
