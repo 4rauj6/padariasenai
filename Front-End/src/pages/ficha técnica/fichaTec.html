@@ -4,10 +4,50 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ficha Técnica</title>
+    <link rel="stylesheet" href="../rendimento/style/style.css">
     <link rel="stylesheet" href="fichaTec.css">
 </head>
 
 <body>
+
+<button id="btn-menu" aria-label="Abrir ou fechar o menu">
+    <span>☰</span>
+</button>
+
+<div class="coluna_lateral oculta">
+    <ul>
+        <li><a href="../cadastro%20receitas/cadReceitas.html"><img src="../rendimento/image/images-header/receita.svg" alt="Receitas"></a></li>
+        <li><a href="fichaTec.html"><img src="../rendimento/image/images-header/formulacao-da-massa.svg" alt="Ficha Técnica"></a></li>
+        <li><a href="../rendimento/rendimento.html"><img src="../rendimento/image/images-header/rendimento.svg" alt="Rendimento"></a></li>
+        <li><a href="../../../../PaniCale--jv/Minhas-pags-Padaria/Precifica%C3%A7%C3%A3o/precificacao.html"><img src="../rendimento/image/images-header/precificacao.svg" alt="Precificação"></a></li>
+        <li><a href="../../../../PaniCale--jv/Minhas-pags-Padaria/catalogo/catalogo.html"><img src="../rendimento/image/images-header/catalogo.svg" alt="Catálogo"></a></li>
+    </ul>
+    <section class="menu-sair menu-sair-coluna">
+        <hr />
+        <a href="../../index.html"><img src="../rendimento/image/images-header/sair.svg" alt="Início"></a>
+    </section>
+</div>
+
+<header class="Dash_lateral" id="sidebar">
+    <article class="logo">
+        <img src="../rendimento/image/logo-pan.png" alt="Logo-Pan" />
+        <p>PaniCale</p>
+    </article>
+    <hr class="linha-divisora" />
+    <nav class="Dash_menu" aria-label="Navegação principal">
+        <ul>
+            <li><a href="../cadastro%20receitas/cadReceitas.html"><img src="../rendimento/image/images-header/receita.svg" alt=""><span>Receita</span></a></li>
+            <li><a href="fichaTec.html" aria-current="page"><img src="../rendimento/image/images-header/formulacao-da-massa.svg" alt=""><span>Ficha Técnica</span></a></li>
+            <li><a href="../rendimento/rendimento.html"><img src="../rendimento/image/images-header/rendimento.svg" alt=""><span>Rendimento</span></a></li>
+            <li><a href="../../../../PaniCale--jv/Minhas-pags-Padaria/Precifica%C3%A7%C3%A3o/precificacao.html"><img src="../rendimento/image/images-header/precificacao.svg" alt=""><span>Precificação</span></a></li>
+            <li><a href="../../../../PaniCale--jv/Minhas-pags-Padaria/catalogo/catalogo.html"><img src="../rendimento/image/images-header/catalogo.svg" alt=""><span>Catálogo</span></a></li>
+        </ul>
+    </nav>
+    <section class="menu-sair">
+        <hr />
+        <a href="../../index.html"><img src="../rendimento/image/images-header/sair.svg" alt=""><span>Sair</span></a>
+    </section>
+</header>
 
 <div class="app">
     <div class="ficha">
@@ -26,7 +66,7 @@
 
             <div class="product-card">
                 <div class="product-image">
-                    <img src="../../src/img/Pão-frances.png" alt="Imagem do Produto">
+                    <img src="../rendimento/image/pao-rendimento.png" alt="Imagem do Produto">
                 </div>
 
                 <div class="product-info">
@@ -187,5 +227,7 @@
     </div>
 </div>
 
+<div class="overlay-menu" id="overlay"></div>
+<script src="../rendimento/script/script.js" defer></script>
 </body>
 </html>

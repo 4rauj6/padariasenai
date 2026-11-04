@@ -8,123 +8,98 @@
     <link rel="stylesheet" href="precificacao.css" />
   </head>
   <body>
-    <!-- ==========================
-        MENU ICONS / TOGGLE BUTTON
-        ========================== -->
     <button id="btn-menu" aria-label="Abrir ou fechar o menu">
       <span>☰</span>
     </button>
+
     <div class="coluna_lateral escondida">
       <ul>
         <li>
-          <a
-            href="../../../cadastro receitas/cadReceitas.html"
-            aria-label="Receita"
-            ><img src="../image/images-header/receita.svg" alt=""
-          /></a>
+          <a href="../../../Front-End/src/pages/cadastro%20receitas/cadReceitas.html" aria-label="Receita">
+            <img src="../image/images-header/receita.svg" alt="" />
+          </a>
         </li>
         <li>
-          <a
-            href="../../../rendimento/rendimento.html"
-            aria-label="Formulação da massa"
-            ><img src="../image/images-header/formulacao-da-massa.svg" alt=""
-          /></a>
+          <a href="../../../Front-End/src/pages/ficha%20t%C3%A9cnica/fichaTec.html" aria-label="Ficha Técnica">
+            <img src="../image/images-header/formulacao-da-massa.svg" alt="" />
+          </a>
         </li>
         <li>
-          <a href="../../../rendimento/rendimento.html" aria-label="Rendimento"
-            ><img src="../image/images-header/rendimento.svg" alt=""
-          /></a>
+          <a href="../../../Front-End/src/pages/rendimento/rendimento.html" aria-label="Rendimento">
+            <img src="../image/images-header/rendimento.svg" alt="" />
+          </a>
         </li>
         <li>
-          <a
-            href="../../../PaniCale--jv/Minhas-pags-Padaria/Precificação/precificacao.html"
-            aria-label="Precificação"
-            aria-current="page"
-            ><img src="../image/images-header/precificacao.svg" alt=""
-          /></a>
+          <a href="precificacao.html" aria-label="Precificação" aria-current="page">
+            <img src="../image/images-header/precificacao.svg" alt="" />
+          </a>
         </li>
         <li>
-          <a href="../catalogo/catalogo.html" aria-label="Catálogo"
-            ><img src="../image/images-header/catalogo.svg" alt=""
-          /></a>
+          <a href="../catalogo/catalogo.html" aria-label="Catálogo">
+            <img src="../image/images-header/catalogo.svg" alt="" />
+          </a>
         </li>
       </ul>
+
       <section class="menu-sair menu-sair-coluna">
         <hr />
-        <a href="#" aria-label="Sair"
-          ><img src="../image/images-header/sair.svg" alt=""
-        /></a>
+        <a href="../../../Front-End/src/index.html" aria-label="Sair">
+          <img src="../image/images-header/sair.svg" alt="" />
+        </a>
       </section>
     </div>
 
-    <!-- ==========================
-        DASHBOARD SIDEBAR
-        ========================== -->
     <header class="Dash_lateral" id="sidebar">
       <article class="logo">
         <img src="../image/Logo-Pan.png" alt="Logo-Pan" />
         <p>PaniCalc</p>
       </article>
       <hr class="linha-divisora" />
+
       <nav class="Dash_menu">
         <ul>
           <li>
-            <a href="../../../cadastro receitas/cadReceitas.html"
-              ><img src="../image/images-header/receita.svg" alt="" /><span
-                >Receita</span
-              ></a
-            >
+            <a href="../../../Front-End/src/pages/cadastro%20receitas/cadReceitas.html">
+              <img src="../image/images-header/receita.svg" alt="" />
+              <span>Receita</span>
+            </a>
           </li>
           <li>
-            <a href="../../../rendimento/rendimento.html"
-              ><img
-                src="../image/images-header/formulacao-da-massa.svg"
-                alt=""
-              /><span>Formulação da massa</span></a
-            >
+            <a href="../../../Front-End/src/pages/ficha%20t%C3%A9cnica/fichaTec.html">
+              <img src="../image/images-header/formulacao-da-massa.svg" alt="" />
+              <span>Ficha Técnica</span>
+            </a>
           </li>
           <li>
-            <a href="../../../rendimento/rendimento.html"
-              ><img src="../image/images-header/rendimento.svg" alt="" /><span
-                >Rendimento</span
-              ></a
-            >
+            <a href="../../../Front-End/src/pages/rendimento/rendimento.html">
+              <img src="../image/images-header/rendimento.svg" alt="" />
+              <span>Rendimento</span>
+            </a>
           </li>
           <li>
-            <a
-              href="../../Minhas-pags-Padaria/Precificação/precificacao.html"
-              aria-current="page"
-              ><img src="../image/images-header/precificacao.svg" alt="" /><span
-                >Precificação</span
-              ></a
-            >
+            <a href="precificacao.html" aria-current="page">
+              <img src="../image/images-header/precificacao.svg" alt="" />
+              <span>Precificação</span>
+            </a>
           </li>
           <li>
-            <a href="../catalogo/catalogo.html"
-              ><img src="../image/images-header/catalogo.svg" alt="" /><span
-                >Catálogo</span
-              ></a
-            >
+            <a href="../catalogo/catalogo.html">
+              <img src="../image/images-header/catalogo.svg" alt="" />
+              <span>Catálogo</span>
+            </a>
           </li>
         </ul>
       </nav>
+
       <section class="menu-sair">
         <hr />
-        <a href="/Front-End/src/index.html"
-          ><img src="../image/images-header/sair.svg" alt="" /><span
-            >Sair</span
-          ></a
-        >
+        <a href="../../../Front-End/src/index.html">
+          <img src="../image/images-header/sair.svg" alt="" />
+          <span>Sair</span>
+        </a>
       </section>
     </header>
 
-    <!-- ==========================
-        MAIN CONTENT
-        Ids para o JavaScript:
-        markup-seletor, markup-botao, markup-lista, markup-texto,
-        preco-sugerido, preco-nota
-        Os números têm data-valor="nome" e os dias data-dias="nome".
-        ========================== -->
     <main>
       <section class="precificacao" aria-labelledby="precificacao-titulo">
         <div class="precificacao-cabecalho">
@@ -132,6 +107,7 @@
             <h1 id="precificacao-titulo">Precificação</h1>
             <p>Resumo dos custos, preço de venda e renda da receita</p>
           </div>
+
           <div class="acoes-caixa">
             <button
               class="botao-acoes-caixa"
@@ -165,6 +141,7 @@
                 <path d="m7 10 5 5 5-5" />
               </svg>
             </button>
+
             <div class="menu-acoes-caixa" id="menu-acoes-caixa" hidden>
               <button type="button" id="abrir-fechamento">Fechar caixa</button>
               <button type="button" id="abrir-historico" disabled>
@@ -174,7 +151,6 @@
           </div>
         </div>
 
-        <!-- Indicadores -->
         <div class="precificacao-indicadores">
           <dl class="card">
             <dt class="card-rotulo">Custo total (receita + despesas)</dt>
@@ -193,7 +169,6 @@
           <dl class="card">
             <dt class="card-rotulo" id="markup-rotulo">Markup desejado</dt>
             <dd>
-              <!-- Seletor de markup: a classe "aberto" mostra a lista -->
               <div class="markup-seletor" id="markup-seletor">
                 <button
                   type="button"
@@ -218,6 +193,7 @@
                     </svg>
                   </span>
                 </button>
+
                 <ul
                   class="markup-lista"
                   id="markup-lista"
@@ -225,58 +201,27 @@
                   tabindex="-1"
                   aria-labelledby="markup-rotulo"
                 >
-                  <li id="markup-opcao-100" role="option" aria-selected="false">
-                    100 %
-                  </li>
-                  <li id="markup-opcao-115" role="option" aria-selected="false">
-                    115 %
-                  </li>
-                  <li id="markup-opcao-130" role="option" aria-selected="false">
-                    130 %
-                  </li>
-                  <li id="markup-opcao-145" role="option" aria-selected="false">
-                    145 %
-                  </li>
-                  <li id="markup-opcao-160" role="option" aria-selected="false">
-                    160 %
-                  </li>
-                  <li id="markup-opcao-175" role="option" aria-selected="false">
-                    175 %
-                  </li>
-                  <li id="markup-opcao-190" role="option" aria-selected="false">
-                    190 %
-                  </li>
-                  <li id="markup-opcao-205" role="option" aria-selected="false">
-                    205 %
-                  </li>
-                  <li id="markup-opcao-220" role="option" aria-selected="false">
-                    220 %
-                  </li>
-                  <li id="markup-opcao-235" role="option" aria-selected="false">
-                    235 %
-                  </li>
-                  <li id="markup-opcao-250" role="option" aria-selected="false">
-                    250 %
-                  </li>
-                  <li id="markup-opcao-265" role="option" aria-selected="false">
-                    265 %
-                  </li>
-                  <li id="markup-opcao-280" role="option" aria-selected="false">
-                    280 %
-                  </li>
-                  <li id="markup-opcao-295" role="option" aria-selected="true">
-                    295 %
-                  </li>
-                  <li id="markup-opcao-300" role="option" aria-selected="false">
-                    300 %
-                  </li>
+                  <li id="markup-opcao-100" role="option" aria-selected="false">100 %</li>
+                  <li id="markup-opcao-115" role="option" aria-selected="false">115 %</li>
+                  <li id="markup-opcao-130" role="option" aria-selected="false">130 %</li>
+                  <li id="markup-opcao-145" role="option" aria-selected="false">145 %</li>
+                  <li id="markup-opcao-160" role="option" aria-selected="false">160 %</li>
+                  <li id="markup-opcao-175" role="option" aria-selected="false">175 %</li>
+                  <li id="markup-opcao-190" role="option" aria-selected="false">190 %</li>
+                  <li id="markup-opcao-205" role="option" aria-selected="false">205 %</li>
+                  <li id="markup-opcao-220" role="option" aria-selected="false">220 %</li>
+                  <li id="markup-opcao-235" role="option" aria-selected="false">235 %</li>
+                  <li id="markup-opcao-250" role="option" aria-selected="false">250 %</li>
+                  <li id="markup-opcao-265" role="option" aria-selected="false">265 %</li>
+                  <li id="markup-opcao-280" role="option" aria-selected="false">280 %</li>
+                  <li id="markup-opcao-295" role="option" aria-selected="true">295 %</li>
+                  <li id="markup-opcao-300" role="option" aria-selected="false">300 %</li>
                 </ul>
               </div>
             </dd>
           </dl>
         </div>
 
-        <!-- Preço sugerido e lucros -->
         <div class="precificacao-linha-preco">
           <div class="preco-destaque">
             <dl>
@@ -285,9 +230,9 @@
                 <small>R$</small><span data-valor="preco">0,52</span>
               </dd>
             </dl>
-            <span class="preco-destaque-nota" id="preco-nota"
-              >Custo unitário de R$ 0,13 com markup de 300 %</span
-            >
+            <span class="preco-destaque-nota" id="preco-nota">
+              Custo unitário de R$ 0,13 com markup de 300 %
+            </span>
           </div>
 
           <dl class="card lucros-card">
@@ -309,7 +254,6 @@
           </dl>
         </div>
 
-        <!-- Rendas -->
         <div class="precificacao-rendas">
           <div class="card renda-card">
             <div class="renda-icone">
@@ -331,8 +275,8 @@
                 Faturamento do período (0 dias)
               </dt>
               <dd class="card-valor">
-                <small>R$</small
-                ><span data-valor="faturamentoSemana">0,00</span>
+                <small>R$</small>
+                <span data-valor="faturamentoSemana">0,00</span>
               </dd>
             </dl>
           </div>
@@ -353,9 +297,9 @@
               </svg>
             </div>
             <form class="renda-texto faturamento-form" id="faturamento-form">
-              <label class="card-rotulo" for="faturamento-data"
-                >Registrar faturamento do dia</label
-              >
+              <label class="card-rotulo" for="faturamento-data">
+                Registrar faturamento do dia
+              </label>
               <input
                 class="campo-faturamento"
                 id="faturamento-data"
@@ -368,9 +312,10 @@
                 id="status-data-faturamento"
                 aria-live="polite"
               ></small>
-              <label class="card-rotulo" for="paes-sobraram"
-                >Pães que sobraram</label
-              >
+
+              <label class="card-rotulo" for="paes-sobraram">
+                Pães que sobraram
+              </label>
               <input
                 class="campo-faturamento"
                 id="paes-sobraram"
@@ -402,6 +347,7 @@
           </div>
         </div>
       </section>
+
       <dialog
         class="dialog-historico"
         id="dialog-historico"
@@ -421,9 +367,9 @@
             ×
           </button>
         </div>
-        <label class="historico-filtro" for="historico-semana"
-          >Períodos com caixa fechado</label
-        >
+        <label class="historico-filtro" for="historico-semana">
+          Períodos com caixa fechado
+        </label>
         <select class="campo-faturamento" id="historico-semana"></select>
         <p
           class="historico-periodo"
@@ -451,6 +397,7 @@
           aria-live="polite"
         ></p>
       </dialog>
+
       <dialog
         class="dialog-historico"
         id="dialog-fechamento"
@@ -509,6 +456,7 @@
         </div>
       </dialog>
     </main>
+
     <button
       class="botao-zerar-dados-teste"
       id="zerar-dados-teste"
@@ -527,7 +475,9 @@
       </svg>
       <span>Zerar dados de teste</span>
     </button>
+
     <div class="overlay-menu" id="overlay"></div>
+
     <script src="../scripts/scriptHeader.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script src="../scripts/scriptprecificacao.js"></script>
