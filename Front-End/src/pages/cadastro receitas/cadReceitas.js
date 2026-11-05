@@ -878,7 +878,7 @@ document.addEventListener("DOMContentLoaded", () => {
 const saveRecipeButton = document.getElementById("saveRecipe");
 
 if (saveRecipeButton) {
-  saveRecipeButton = addEventListener("click", function () {
+  saveRecipeButton.addEventListener("click", function () {
     const hasRecipeName = document.getElementById("receitaNome").value.trim();
     const hasCategory = getRecipeCatogry.value.trim();
     const hasFarinha = getFarinhaBase.value.trim();
