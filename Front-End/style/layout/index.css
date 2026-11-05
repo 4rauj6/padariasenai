@@ -60,19 +60,19 @@ html {
 }
 
 .home-descript h2,
-spam {
+span {
   text-transform: uppercase;
   font-size: 3.7rem;
 }
 
 .home-descript h2 {
-  color: #b5b5b5;
+  color: rgb(235, 173, 99);
   gap: 20rem;
   margin-bottom: 1rem;
 }
 
-.home-descript spam {
-  color: #bd8944;
+.home-descript span {
+  color: rgb(233, 227, 219);
 }
 
 .home-descript p:first-of-type {
@@ -94,6 +94,10 @@ spam {
   grid-template-rows: 1fr;
   object-fit: contain !important;
   white-space: nowrap;
+}
+
+.home-cards a {
+  text-decoration: none;
 }
 
 .home-cards > .card {
@@ -320,7 +324,7 @@ spam {
   }
 
   .home-descript h2,
-  spam {
+  span {
     font-size: 2rem;
   }
 
@@ -380,7 +384,7 @@ spam {
   }
 
   .home-descript h2,
-  spam {
+  span {
     font-size: 2.8rem;
   }
 

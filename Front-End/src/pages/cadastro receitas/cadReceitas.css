@@ -4,6 +4,7 @@
   --cor-3: #f2e8d9;
   --font-1: "Outfit", sans-serif;
   --font-2: "Rufina", serif;
+  --font-3: "Prata", serif;"
   --line: #e8c9a0;
   --brown: #4a2c1a;
   --cor-4: #f2e8d9;
@@ -19,6 +20,9 @@
   --cor-3-rgb: 74, 44, 26;
   --cor-10-rgb: 0, 0, 0;
 }
+
+@import url("https://fonts.googleapis.com/css2?family=Fredoka:wght@300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Prata&family=Quicksand:wght@300..700&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap");
+@import url('https: //fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap" rel="stylesheet');
 
 * {
   margin: 0;
@@ -52,7 +56,6 @@ body {
 .header-text {
   display: flex;
   flex-direction: row;
-  font-family: var(--font-1);
   color: #4a2c1a;
   gap: 15px;
 }
@@ -61,6 +64,7 @@ body {
   display: flex;
   flex-direction: column;
   margin-top: 20px;
+  font-family: var(--font-3);
 }
 
 .exit-button button {
@@ -92,7 +96,7 @@ body {
 
 .form-receita .infoHeader {
   font-size: 1.3em;
-  font-family: var(--font-1);
+  font-family: var(--font-3);
   font-weight: 600;
 }
 
@@ -110,7 +114,7 @@ body {
   width: 100%;
   min-height: 3px;
   border-radius: 6px;
-  border: none;
+  border: solid 2px var(--cor-3);
   outline: none;
   background-color: white;
   padding: 5px;
@@ -143,7 +147,6 @@ body {
   color: #4a2c1a;
   margin-top: 10px;
   margin-left: 50px;
-  font-family: var(--font-1);
 }
 
 .table-container {
@@ -152,6 +155,10 @@ body {
   min-height: 40px;
   width: 116%;
   border-radius: 6px;
+}
+
+.table-container h2 {
+  font-family: var(--font-3);
 }
 
 .table-container-2 {
@@ -484,11 +491,13 @@ body {
   padding: 10px;
   border-radius: 10px;
   background-color: white;
+  font-family: var(--font-2);
+  border: solid 2px var(--cor-3);
 }
 
 .descInfoBox {
   font-size: 0.9em;
-  font-weight: 400;
+  font-weight: 500;
 }
 
 .valueIB {
@@ -636,7 +645,7 @@ button {
   }
   .table-content {
     margin-left: 0;
-    width: 65%;
+    width: 71%;
   }
   .mp-container {
     padding: 8px;
@@ -657,7 +666,7 @@ button {
     text-align: start;
   }
   .image-upload {
-    height: 160px;
+    height: 210px;
   }
 }
 
@@ -716,7 +725,7 @@ button {
   }
   .table-content {
     margin-left: 0;
-    width: 61%;
+    width: 66%;
   }
   .table-container table {
     width: 100%;
@@ -747,10 +756,10 @@ button {
   }
   .table-content {
     margin-left: 0;
-    width: 59%;
+    width: 63%;
   }
   .image-upload {
-    height: 130px;
+    height: 160px;
   }
 }
 
@@ -928,12 +937,12 @@ button {
     margin-right: 0;
     margin-left: 0;
   }
-  .table-container {
-    width: 160%;
-  }
+
+
   .table-container table {
     min-width: 500px;
   }
+
   .table-container td:last-child {
     gap: 5px;
   }
@@ -942,6 +951,7 @@ button {
     padding: 0;
     overflow: visible;
   }
+
   #tablePlace table {
     display: block;
     width: 100%;
@@ -1028,12 +1038,12 @@ button {
   }
 
   .table-container {
-    width: 189%;
+    width: 176%;
   }
 
   .table-container-2 {
     padding: 10px;
-    width: 189%;
+    width: 176%;
   }
   .maisInfoReceitas {
     display: flex;
@@ -1042,7 +1052,7 @@ button {
     align-items: center;
   }
   .infoBox {
-    width: 290px;
+    width: 100%;
   }
   .modal {
     display: flex;
