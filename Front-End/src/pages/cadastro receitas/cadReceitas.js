@@ -100,6 +100,11 @@ function setModalState(isOpen) {
       return false;
     }
 
+    if (!getPesoPorPao?.value.trim()) {
+      alert("Informe o peso correpondente a cada pão");
+      return;
+    }
+
     if (numero(getRequiredUnit.value) > numero(getFarinhaBase.value)) {
       alert(
         "A quantidade de unidades desejadas não pode ser maior que o peso base da farinha!",
