@@ -922,27 +922,31 @@ document.addEventListener("DOMContentLoaded", () => {
 //   }
 //   alert("Sua receita foi salva");
 // }
-const saveRecipeButton = addEventListener("click", function () {
-  const hasRecipeName = document.getElementById("receitaNome").value.trim();
-  const hasCategory = getRecipeCatogry.value.trim();
-  const hasFarinha = getFarinhaBase.value.trim();
-  const hasTable = tablePlacement?.querySelector("table");
-  const hasData = hasTable?.querySelector("tbody");
-  const tableExists = hasData && hasData.querySelectorAll("tr").length > 0;
+const saveRecipeButton = document.getElementById("saveRecipe");
 
-  if (!hasRecipeName) {
-    alert("Informe o nome da receita");
-    return;
-  } else if (!hasCategory) {
-    alert("Informe a categoria da receita");
-    return;
-  } else if (!tableExists) {
-    alert("Adicione pelo menos um item na sua receita para salvar");
-    return;
-  } else {
-    alert("Receita salva com sucesso");
-  }
-});
+if (saveRecipeButton) {
+  saveRecipeButton = addEventListener("click", function () {
+    const hasRecipeName = document.getElementById("receitaNome").value.trim();
+    const hasCategory = getRecipeCatogry.value.trim();
+    const hasFarinha = getFarinhaBase.value.trim();
+    const hasTable = tablePlacement?.querySelector("table");
+    const hasData = hasTable?.querySelector("tbody");
+    const tableExists = hasData && hasData.querySelectorAll("tr").length > 0;
+
+    if (!hasRecipeName) {
+      alert("Informe o nome da receita");
+      return;
+    } else if (!hasCategory) {
+      alert("Informe a categoria da receita");
+      return;
+    } else if (!tableExists) {
+      alert("Adicione pelo menos um item na sua receita para salvar");
+      return;
+    } else {
+      alert("Receita salva com sucesso");
+    }
+  });
+}
 
 window.addEventListener("beforeunload", () => {
   if (imagePreview?.dataset.objectUrl) {
