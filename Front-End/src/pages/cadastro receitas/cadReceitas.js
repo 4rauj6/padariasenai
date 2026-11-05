@@ -922,8 +922,7 @@ document.addEventListener("DOMContentLoaded", () => {
 //   }
 //   alert("Sua receita foi salva");
 // }
-
-function saveRecipe() {
+const saveRecipeButton = addEventListener("click", function () {
   const hasRecipeName = document.getElementById("receitaNome").value.trim();
   const hasCategory = getRecipeCatogry.value.trim();
   const hasFarinha = getFarinhaBase.value.trim();
@@ -943,7 +942,7 @@ function saveRecipe() {
   } else {
     alert("Receita salva com sucesso");
   }
-}
+});
 
 window.addEventListener("beforeunload", () => {
   if (imagePreview?.dataset.objectUrl) {
