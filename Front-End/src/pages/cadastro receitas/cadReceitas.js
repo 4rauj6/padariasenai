@@ -1,4 +1,3 @@
-// 1. ELEMENTOS DO HTML
 const modal = document.querySelector(".modal");
 const overlay = document.querySelector(".overlay");
 const modalButtons = document.querySelectorAll(".addIngred, .close-modal");
@@ -74,14 +73,14 @@ function numero(valor) {
     ) || 0
   );
 }
-// 4. ATUALIZAR RESULTADOS
+
 function atualizarResultados() {
   massaCruaCalc();
   massaTotalCalc();
   rendimentoCalc();
   valorTotalCalc();
 }
-// 5. ABRIR E FECHAR MODAL PRINCIPAL
+
 function setModalState(isOpen) {
   if (!modal || !overlay) return false;
 
@@ -137,7 +136,7 @@ function setModalState(isOpen) {
 
   return true;
 }
-// 6. EVENTOS DOS BOTÕES DO MODAL
+
 modalButtons.forEach((btn) => {
   btn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -148,7 +147,7 @@ modalButtons.forEach((btn) => {
     }
   });
 });
-// 7. CALCULAR GRAMAS
+
 function calcularGrama(
   percentValue,
   screenRender = getIngredGr,
@@ -189,7 +188,7 @@ function calcularGrama(
 
   return gramas;
 }
-// 8. CALCULAR PREÇO POR QUANTIDADE
+
 function calcPpq(
   gramasCalc,
   precoIngredElement = getIngredPreco,
@@ -226,7 +225,7 @@ function calcPpq(
   screenRender.innerText = `R$ ${precoUtilizado.toFixed(2)}`;
   return precoUtilizado;
 }
-// 9. SELEÇÃO DO INGREDIENTE
+
 if (getIngredName) {
   getIngredName.addEventListener("change", () => {
     const actualIngred = getIngredName.value;
@@ -263,7 +262,7 @@ if (getIngredName) {
     }
   });
 }
-// 10. RECALCULAR INGREDIENTE PRINCIPAL
+
 function recalcularIngredientePrincipal() {
   const percentValue = numero(getIngredQuant?.value);
   const gramas = calcularGrama(percentValue);
@@ -273,7 +272,7 @@ function recalcularIngredientePrincipal() {
 getIngredQuant?.addEventListener("change", recalcularIngredientePrincipal);
 getIngredPreco?.addEventListener("input", recalcularIngredientePrincipal);
 getPctPeso?.addEventListener("input", recalcularIngredientePrincipal);
-// 11. CÁLCULO DA MASSA CRUA
+
 function massaCruaCalc() {
   const rows = document.querySelectorAll("#tablePlace tbody tr");
   let pesoCru = 0;
@@ -295,7 +294,7 @@ function massaCruaCalc() {
 
   return pesoCru;
 }
-// 12. CÁLCULO DA MASSA TOTAL
+
 function massaTotalCalc() {
   const rows = document.querySelectorAll("#tablePlace tbody tr");
   let massaTotal = 0;
@@ -318,7 +317,7 @@ function massaTotalCalc() {
 
   return massaTotal;
 }
-// 13. CÁLCULO DO CUSTO TOTAL
+
 function valorTotalCalc() {
   const rows = document.querySelectorAll("#tablePlace tbody tr");
   let totalCusto = 0;
@@ -337,7 +336,7 @@ function valorTotalCalc() {
     valorTotalSpan.textContent = `R$ ${totalCusto.toFixed(2)}`;
   }
 }
-// 14. CÁLCULO DO RENDIMENTO
+
 function rendimentoCalc() {
   const pesoTotalMassa = massaCruaCalc();
   const pesoPorPao = numero(getPesoPorPao?.value);
@@ -357,7 +356,7 @@ function rendimentoCalc() {
 }
 
 getPesoPorPao?.addEventListener("input", rendimentoCalc);
-// 15. CRIAR TABELA
+
 function criarTabela() {
   let table = tablePlacement.querySelector("table");
 
@@ -394,7 +393,6 @@ function criarTabela() {
 
   return table;
 }
-// 16. SALVAR INGREDIENTE
 if (renderTable) {
   renderTable.addEventListener("click", (e) => {
     if (e.target.closest(".save-edit-ingred")) return;
@@ -493,7 +491,7 @@ if (renderTable) {
     }
   });
 }
-// 17. ORDENAR INGREDIENTES
+
 function FilterByQuant(tb, crescente) {
   const rows = Array.from(tb.querySelectorAll("tr"));
 
@@ -506,7 +504,7 @@ function FilterByQuant(tb, crescente) {
 
   rows.forEach((row) => tb.appendChild(row));
 }
-// 18. SELECIONAR PORCENTAGEM
+
 function percentSelect(selectEl, percentValue) {
   const percentNum = numero(percentValue);
 
@@ -517,7 +515,7 @@ function percentSelect(selectEl, percentValue) {
     }
   }
 }
-// 19. CARREGAR PORCENTAGENS NA EDIÇÃO
+
 function editingIngreds(ingredKey, selectedPercent) {
   const options = porcentPorIngred[ingredKey] || [];
 
@@ -539,7 +537,7 @@ function editingIngreds(ingredKey, selectedPercent) {
 
   percentSelect(editPorcentSelect, selectedPercent);
 }
-// 20. RECALCULAR INGREDIENTE NA EDIÇÃO
+
 function recalcAfterEdit() {
   const ingredKey = editNomeIngred.value;
   let gramas = 0;
@@ -559,7 +557,7 @@ function recalcAfterEdit() {
 
   return gramas;
 }
-// 21. FECHAR MODAL DE EDIÇÃO
+
 function closeEditModal() {
   const overlayEdit = document.querySelector(".overlay-edit");
   const modalEditBody = document.querySelector(".modal-edit-body");
@@ -573,7 +571,7 @@ function closeEditModal() {
     outsideModalBody.style.filter = "blur(0)";
   }
 }
-// 22. MOSTRAR CAMPOS DE EDIÇÃO (COM ESTILOS JAVASCRIPT HARMÔNICOS)
+
 function renderEditFields(ingredKey, currentQuant = "") {
   editNomeIngred.value = ingredKey;
   quantEditContainer.innerHTML = "";
@@ -618,7 +616,7 @@ function renderEditFields(ingredKey, currentQuant = "") {
     }
   }
 }
-// 23. ABRIR MODAL DE EDIÇÃO
+
 function openEditModal(row) {
   if (!row) return;
 
@@ -645,7 +643,6 @@ function openEditModal(row) {
 
   renderEditFields(ingredKey, currentQuant);
 }
-// 24. EVENTOS DOS CAMPOS DE EDIÇÃO
 editPorcentSelect?.addEventListener("change", recalcAfterEdit);
 editIngredPreco?.addEventListener("input", recalcAfterEdit);
 editPesoPacote?.addEventListener("input", recalcAfterEdit);
@@ -653,7 +650,6 @@ editPesoPacote?.addEventListener("input", recalcAfterEdit);
 editNomeIngred?.addEventListener("change", () => {
   renderEditFields(editNomeIngred.value, "");
 });
-// 25. SALVAR EDIÇÃO
 if (saveEditBtn) {
   saveEditBtn.addEventListener("click", (e) => {
     e.preventDefault();
@@ -748,7 +744,7 @@ if (saveEditBtn) {
     }
   });
 }
-// 26. EXCLUIR, EDITAR E ORDENAR
+
 if (tablePlacement) {
   tablePlacement.addEventListener("click", (e) => {
     const deleteItem = e.target.closest(".delete-item");
@@ -793,7 +789,7 @@ if (tablePlacement) {
     atualizarResultados();
   });
 }
-// 27. UPLOAD E PRÉ-VISUALIZAÇÃO DA IMAGEM
+
 const imageInput = document.getElementById("imgReceita");
 const imagePreview = document.getElementById("imagePreview");
 const uploadPlaceholder = document.querySelector(".upload-placeholder");
@@ -833,7 +829,7 @@ if (imageInput) {
     }
   });
 }
-// 28. TOOLTIP
+
 document.addEventListener("DOMContentLoaded", () => {
   let tooltip = document.querySelector(".tooltip");
 
@@ -879,49 +875,6 @@ document.addEventListener("DOMContentLoaded", () => {
   });
 });
 
-// 28. SALVAR RECEITA (VALADIAÇÃO)
-// function saveRecipe() {
-//   const categoria = getRecipeCatogry?.value.trim();
-//   const pesoFarinha = getFarinhaBase?.value.trim();
-//   const unidadesDesejadas = getRequiredUnit?.value.trim();
-//   const pesoPorPao = getPesoPorPao?.value.trim();
-
-//   const table = tablePlacement?.querySelector("table");
-//   const tbody = table?.querySelector("tbody");
-//   const hasIngreds = tbody && tbody.querySelectorAll("tr").length > 0;
-
-//   if (!categoria) {
-//     alert("Por favor, selecione a categoria da receita antes de salvar.");
-//     getRecipeCatogry?.focus();
-//     return;
-//   }
-
-//   if (!unidadesDesejadas || numero(unidadesDesejadas) <= 0) {
-//     alert("Por favor, informe a quantidade de unidades desejadas.");
-//     getRequiredUnit?.focus();
-//     return;
-//   }
-
-//   if (!pesoFarinha || numero(pesoFarinha) <= 0) {
-//     alert("Por favor, informe o peso base da farinha de trigo.");
-//     getFarinhaBase?.focus();
-//     return;
-//   }
-
-//   if (!pesoPorPao || numero(pesoPorPao) <= 0) {
-//     alert("Por favor, informe o peso por pão para calcular o rendimento.");
-//     getPesoPorPao?.focus();
-//     return;
-//   }
-
-//   if (!hasIngreds) {
-//     alert(
-//       "A tabela de ingredientes está vazia. Adicione pelo menos um ingrediente antes de salvar a receita.",
-//     );
-//     return;
-//   }
-//   alert("Sua receita foi salva");
-// }
 const saveRecipeButton = document.getElementById("saveRecipe");
 
 if (saveRecipeButton) {
