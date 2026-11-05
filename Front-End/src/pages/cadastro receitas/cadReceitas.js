@@ -101,7 +101,7 @@ function setModalState(isOpen) {
     }
 
     if (!getPesoPorPao?.value.trim()) {
-      alert("Informe o peso correpondente a cada pão");
+      alert("Informe o peso de cada pão");
       return;
     }
 
